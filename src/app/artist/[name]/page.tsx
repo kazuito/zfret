@@ -3,13 +3,13 @@ import { MicVocalIcon, Music2Icon } from "lucide-react";
 import Link from "next/link";
 
 type Props = {
-  params: {
+  params: Promise<{
     name: string;
-  };
+  }>;
 };
 
 const Page = async ({ params }: Props) => {
-  const { name } = params;
+  const { name } = await params;
   const decodedName = decodeURIComponent(name);
   const songs = await fetchArtistSongs(decodedName);
 

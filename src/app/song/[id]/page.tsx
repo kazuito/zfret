@@ -3,13 +3,13 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 const Page = async ({ params }: Props) => {
-  const { id } = params;
+  const { id } = await params;
 
   const song = await fetchSong(id);
 
