@@ -49,9 +49,9 @@ const Page = async ({ searchParams }: Props) => {
                 href={song.url}
                 className="flex items-center p-2 hover:bg-dimmed rounded-sm"
               >
-                <Music2Icon size={16} />
-                <div className="ml-2">{song.title}</div>
-                <div className="text-muted-foreground ml-4 text-sm">
+                <Music2Icon size={16} className="shrink-0" />
+                <div className="ml-2 truncate">{song.title}</div>
+                <div className="text-muted-foreground shrink-0 ml-4 text-sm">
                   {song.artist.name}
                 </div>
               </Link>
