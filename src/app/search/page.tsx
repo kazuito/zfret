@@ -1,16 +1,15 @@
-import { Input } from "@/components/ui/input";
 import { fetchSearchResults } from "@/lib/song";
 import { MicVocalIcon, Music2Icon, SearchIcon } from "lucide-react";
 import Link from "next/link";
 
 type Props = {
-  searchParams: {
+  searchParams: Promise<{
     q: string;
-  };
+  }>;
 };
 
 const Page = async ({ searchParams }: Props) => {
-  const { q } = searchParams;
+  const { q } = await searchParams;
   const { songs, artists } = await fetchSearchResults(q);
 
   return (
