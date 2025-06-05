@@ -13,6 +13,7 @@ export async function fetchSong(id: string) {
   const title = document.querySelector(".show_name")?.textContent?.trim() ?? "";
   const artistEl = document.querySelector(".show_artist");
   const artistName = artistEl?.textContent?.trim() ?? "";
+  const encodedArtistName = encodeURIComponent(artistName);
 
   const chordsRawData = html.match(/var ufret_chord_datas = (\[.*?\]);/)?.[1];
   if (!chordsRawData) {
@@ -51,7 +52,7 @@ export async function fetchSong(id: string) {
     title,
     artist: {
       name: artistName,
-      url: `/artist/${artistName}`,
+      url: `/artist/${encodedArtistName}`,
     },
     lines: chords,
   };
@@ -66,9 +67,10 @@ export async function fetchSearchResults(query: string) {
   const artistElements = document.querySelectorAll(".artist_list.btn");
   const artists = Array.from(artistElements).map((item) => {
     const name = item.textContent?.trim();
+    const encodedName = encodeURIComponent(name || "");
     return {
       name,
-      url: `/artist/${name}`
+      url: `/artist/${encodedName}`
     };
   });
 
@@ -79,6 +81,7 @@ export async function fetchSearchResults(query: string) {
     .map((item) => {
       const title = item.querySelector("strong")?.textContent?.trim();
       const artistName = item.querySelector("span")?.textContent?.trim();
+      const encodedArtistName = encodeURIComponent(artistName || "");
       const url = item.getAttribute("href");
       const id = url?.match(/data=(\d+)/)?.[1];
       return {
@@ -87,7 +90,7 @@ export async function fetchSearchResults(query: string) {
         url: `/song/${id}`,
         artist: {
           name: artistName,
-          url: `https://www.ufret.jp/artist.php?data=${artistName}`,
+          url: `https://www.ufret.jp/artist.php?data=${encodedArtistName}`,
         },
       };
     })
