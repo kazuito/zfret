@@ -1,9 +1,10 @@
-import { fetchTopSongs } from "@/lib/song";
+import { fetchTopArtists, fetchTopSongs } from "@/lib/song";
 import { TrophyIcon } from "lucide-react";
 import Link from "next/link";
 
 export default async function Home() {
   const topSongs = await fetchTopSongs();
+  const topArtists = await fetchTopArtists();
 
   return (
     <div className="p-6">
@@ -32,7 +33,20 @@ export default async function Home() {
           <TrophyIcon size={22} />
           <div className="text-xl font-bold">Top Artists</div>
         </div>
-        <div className="text-center">Coming soon...</div>
+        <div className="flex flex-col mt-4">
+          {topArtists.map((artist, i) => {
+            return (
+              <Link
+                className="flex rounded-sm hover:bg-dimmed items-center gap-3 p-2"
+                href={artist.url}
+                key={i}
+              >
+                <div className="font-semibold w-6 text-end">{i + 1}</div>
+                <div>{artist.name}</div>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

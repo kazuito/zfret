@@ -142,3 +142,22 @@ export async function fetchTopSongs() {
     };
   });
 }
+
+export async function fetchTopArtists() {
+  const url = "https://www.ufret.jp/rank_artist.php";
+  const res = await fetch(url);
+  const html = await res.text();
+  const { document } = parseHTML(html);
+
+  const artistElements = document.querySelectorAll(
+    "a[href^='/artist.php'].list-group-item.list-group-item-action"
+  );
+  return Array.from(artistElements).map((item) => {
+    const name = item.querySelector("strong")?.textContent?.trim();
+    const encodedName = encodeURIComponent(name || "");
+    return {
+      name,
+      url: `/artist/${encodedName}`,
+    };
+  });
+}
