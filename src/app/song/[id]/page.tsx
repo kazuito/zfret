@@ -34,7 +34,9 @@ const Page = async ({ params }: Props) => {
                         <div className="text-sm">{part.chord}</div>
                       )}
                       {lineHasLyric && (
-                        <div className="opacity-40 h-6 text-nowrap">{part.lyric}</div>
+                        <div className="text-muted-foreground h-6 text-nowrap">
+                          {part.lyric}
+                        </div>
                       )}
                     </div>
                   );
