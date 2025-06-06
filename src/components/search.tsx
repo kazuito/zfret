@@ -5,9 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { Input } from "./ui/input";
 
-type Props = {};
-
-const Search = ({}: Props) => {
+const Search = () => {
   const [query, setQuery] = useState("");
   const [isPending, startTransition] = useTransition();
 

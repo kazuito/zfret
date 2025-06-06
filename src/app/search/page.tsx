@@ -16,7 +16,7 @@ const Page = async ({ searchParams }: Props) => {
     <div className="p-6">
       <div className="flex items-center gap-2">
         <SearchIcon size={22} />
-        <div className="text-xl font-bold">"{q}"</div>
+        <div className="text-xl font-bold">&ldquo;{q}&rdquo;</div>
       </div>
       {songs.length === 0 && (
         <div className="flex justify-center pt-24">
