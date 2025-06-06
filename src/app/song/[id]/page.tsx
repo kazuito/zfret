@@ -21,12 +21,12 @@ const Page = async ({ params }: Props) => {
           {song.artist.name}
         </Link>
       </div>
-      <div className="mt-6">
+      <div className="mt-8">
         <div className="flex flex-col gap-2">
           {song.lines.map((line, i) => {
             const lineHasLyric = line.some((part) => part.lyric);
             return (
-              <div key={i} className="flex items-end gap-2">
+              <div key={i} className="flex items-end gap-2 flex-wrap">
                 {line.map((part, j) => {
                   return (
                     <div key={j} className={cn("flex flex-col")}>
@@ -34,7 +34,7 @@ const Page = async ({ params }: Props) => {
                         <div className="text-sm">{part.chord}</div>
                       )}
                       {lineHasLyric && (
-                        <div className="opacity-40 h-6">{part.lyric}</div>
+                        <div className="opacity-40 h-6 text-nowrap">{part.lyric}</div>
                       )}
                     </div>
                   );
