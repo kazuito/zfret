@@ -3,7 +3,7 @@ import Search from "./search";
 
 const Header = () => {
   return (
-    <div className="flex items-center h-16 w-full border-b px-6 backdrop-blur-2xl z-10">
+    <div className="flex items-center h-16 w-full border-b px-6 backdrop-blur-2xl z-10 sticky top-0">
       <Link href="/">Z-FRET</Link>
       <div className="ml-auto">
         <Search />

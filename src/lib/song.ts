@@ -70,7 +70,7 @@ export async function fetchSearchResults(query: string) {
     const encodedName = encodeURIComponent(name || "");
     return {
       name,
-      url: `/artist/${encodedName}`
+      url: `/artist/${encodedName}`,
     };
   });
 
@@ -123,4 +123,22 @@ export async function fetchArtistSongs(artistName: string) {
       };
     })
     .filter((song) => song.id && song.title);
+}
+
+export async function fetchTopSongs() {
+  const url = "https://www.ufret.jp/rank.php";
+  const res = await fetch(url);
+  const html = await res.text();
+  const { document } = parseHTML(html);
+
+  const songElements = document.querySelectorAll("a[href^='/song.php']");
+  return Array.from(songElements).map((item) => {
+    const title = item.querySelector("strong")?.textContent?.trim();
+    const id = item.getAttribute("href")?.match(/data=(\d+)/)?.[1];
+    return {
+      title,
+      id,
+      url: `/song/${id}`,
+    };
+  });
 }
