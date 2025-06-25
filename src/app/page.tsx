@@ -21,8 +21,11 @@ export default async function Home() {
                 href={song.url}
                 key={i}
               >
-                <div className="font-semibold w-6 text-end">{i + 1}</div>
-                <div>{song.title}</div>
+                <div className="w-6 text-end">{i + 1}</div>
+                <div className="font-semibold">{song.title}</div>
+                <div className="text-sm text-muted-foreground">
+                  {song.artistName}
+                </div>
               </Link>
             );
           })}
@@ -41,8 +44,8 @@ export default async function Home() {
                 href={artist.url}
                 key={i}
               >
-                <div className="font-semibold w-6 text-end">{i + 1}</div>
-                <div>{artist.name}</div>
+                <div className="w-6 text-end">{i + 1}</div>
+                <div className="font-semibold">{artist.name}</div>
               </Link>
             );
           })}

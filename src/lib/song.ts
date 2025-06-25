@@ -132,13 +132,18 @@ export async function fetchTopSongs() {
   const { document } = parseHTML(html);
 
   const songElements = document.querySelectorAll("a[href^='/song.php']");
+
   return Array.from(songElements).map((item) => {
     const title = item.querySelector("strong")?.textContent?.trim();
     const id = item.getAttribute("href")?.match(/data=(\d+)/)?.[1];
+    const artistName = item
+      .querySelector("span:nth-child(3)")
+      ?.textContent?.trim();
     return {
       title,
       id,
       url: `/song/${id}`,
+      artistName,
     };
   });
 }
@@ -152,6 +157,7 @@ export async function fetchTopArtists() {
   const artistElements = document.querySelectorAll(
     "a[href^='/artist.php'].list-group-item.list-group-item-action"
   );
+  
   return Array.from(artistElements).map((item) => {
     const name = item.querySelector("strong")?.textContent?.trim();
     const encodedName = encodeURIComponent(name || "");
