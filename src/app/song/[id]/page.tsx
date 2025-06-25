@@ -15,8 +15,8 @@ const Page = async ({ params }: Props) => {
   const artistSongs = await fetchArtistSongs(song.artist.name);
 
   return (
-    <div className="p-6 mx-auto max-w-3xl">
-      <div className="flex flex-col sm:flex-row top-16 gap-2 sm:gap-4 sm:justify-between sticky sm:top-20">
+    <div className="p-6 pt-4 mx-auto max-w-3xl">
+      <div className="flex flex-col sm:flex-row top-4 gap-2 sm:gap-4 sm:justify-between sticky">
         <div className="backdrop-blur-lg py-3 px-4 w-full h-fit rounded-md overflow-clip bg-primary/5 border">
           <div className="text-xl font-bold text-shadow-2xl">{song.title}</div>
           <Link className="text-muted-foreground" href={song.artist.url}>
