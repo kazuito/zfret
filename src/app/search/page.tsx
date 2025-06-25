@@ -13,7 +13,7 @@ const Page = async ({ searchParams }: Props) => {
   const { songs, artists } = await fetchSearchResults(q);
 
   return (
-    <div className="p-6">
+    <div className="p-6 max-w-3xl mx-auto">
       <div className="flex items-center gap-2">
         <SearchIcon size={22} />
         <div className="text-xl font-bold">&ldquo;{q}&rdquo;</div>

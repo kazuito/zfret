@@ -7,7 +7,7 @@ export default async function Home() {
   const topArtists = await fetchTopArtists();
 
   return (
-    <div className="p-6">
+    <div className="p-6 max-w-3xl mx-auto">
       <div>
         <div className="flex items-center gap-2 justify-center">
           <TrophyIcon size={22} />

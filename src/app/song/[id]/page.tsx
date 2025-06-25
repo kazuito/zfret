@@ -14,7 +14,7 @@ const Page = async ({ params }: Props) => {
   const song = await fetchSong(id);
 
   return (
-    <div className="p-6">
+    <div className="p-6 mx-auto max-w-3xl">
       <div>
         <div className="text-xl font-bold">{song.title}</div>
         <Link className="text-muted-foreground" href={song.artist.url}>

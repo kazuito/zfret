@@ -3,7 +3,7 @@ import { SearchIcon } from "lucide-react";
 
 export default function Loading() {
   return (
-    <div className="p-6">
+    <div className="p-6 max-w-3xl mx-auto">
       <div className="flex items-center gap-2">
         <SearchIcon size={22} />
         <Skeleton className="h-7 w-32" />
