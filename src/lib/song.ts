@@ -20,6 +20,8 @@ export async function fetchSong(id: string) {
     throw new Error("Chords data not found in the HTML");
   }
 
+  const youtubeVideoId = html.match(/var ytID = '(.+?)';/)?.[1] ?? null;
+
   const parsedChordsData = chordsDataSchema.safeParse(
     JSON.parse(chordsRawData)
   );
@@ -55,6 +57,7 @@ export async function fetchSong(id: string) {
       url: `/artist/${encodedArtistName}`,
     },
     lines: chords,
+    youtubeVideoId
   };
 }
 
@@ -157,7 +160,7 @@ export async function fetchTopArtists() {
   const artistElements = document.querySelectorAll(
     "a[href^='/artist.php'].list-group-item.list-group-item-action"
   );
-  
+
   return Array.from(artistElements).map((item) => {
     const name = item.querySelector("strong")?.textContent?.trim();
     const encodedName = encodeURIComponent(name || "");

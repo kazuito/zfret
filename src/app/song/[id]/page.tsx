@@ -1,4 +1,4 @@
-import { fetchSong } from "@/lib/song";
+import { fetchArtistSongs, fetchSong } from "@/lib/song";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -12,14 +12,25 @@ const Page = async ({ params }: Props) => {
   const { id } = await params;
 
   const song = await fetchSong(id);
+  const artistSongs = await fetchArtistSongs(song.artist.name);
 
   return (
     <div className="p-6 mx-auto max-w-3xl">
-      <div>
-        <div className="text-xl font-bold">{song.title}</div>
-        <Link className="text-muted-foreground" href={song.artist.url}>
-          {song.artist.name}
-        </Link>
+      <div className="flex flex-col sm:flex-row top-16 gap-2 sm:gap-4 sm:justify-between sticky sm:top-20">
+        <div className="backdrop-blur-lg py-3 px-4 w-full h-fit rounded-md overflow-clip bg-primary/5 border">
+          <div className="text-xl font-bold text-shadow-2xl">{song.title}</div>
+          <Link className="text-muted-foreground" href={song.artist.url}>
+            {song.artist.name}
+          </Link>
+        </div>
+        <div className="sticky top-0">
+          {song.youtubeVideoId && (
+            <iframe
+              className="rounded-md"
+              src={`https://www.youtube.com/embed/${song.youtubeVideoId}`}
+            />
+          )}
+        </div>
       </div>
       <div className="mt-8">
         <div className="flex flex-col gap-2">
@@ -42,6 +53,30 @@ const Page = async ({ params }: Props) => {
                   );
                 })}
               </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="mt-8">
+        <div className="text-muted-foreground">
+          Songs by{" "}
+          <Link
+            className="text-foreground font-semibold"
+            href={song.artist.url}
+          >
+            {song.artist.name}
+          </Link>
+        </div>
+        <div className="flex flex-wrap gap-2 mt-4">
+          {artistSongs.map((artistSong) => {
+            return (
+              <Link
+                href={artistSong.url}
+                key={artistSong.id}
+                className="py-1.5 px-3 rounded-full border text-sm"
+              >
+                {artistSong.title}
+              </Link>
             );
           })}
         </div>
