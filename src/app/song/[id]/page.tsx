@@ -16,22 +16,23 @@ const Page = async ({ params }: Props) => {
 
   return (
     <div className="p-6 pt-4 mx-auto max-w-3xl">
-      <div className="flex flex-col sm:flex-row top-4 gap-2 sm:gap-4 sm:justify-between sticky">
-        <div className="backdrop-blur-lg py-3 px-4 w-full h-fit rounded-md overflow-clip bg-primary/5 border">
+      <div className="sticky gap-4 top-4 justify-between flex-col sm:flex-row backdrop-blur-lg flex py-3 px-4 w-full h-fit rounded-md overflow-clip bg-primary/5 border">
+        <div className="">
           <div className="text-xl font-bold text-shadow-2xl">{song.title}</div>
           <Link className="text-muted-foreground" href={song.artist.url}>
             {song.artist.name}
           </Link>
         </div>
-        <div className="sticky top-0">
-          {song.youtubeVideoId && (
+        {song.youtubeVideoId && (
+          <div>
             <iframe
               className="rounded-md"
               src={`https://www.youtube.com/embed/${song.youtubeVideoId}`}
             />
-          )}
-        </div>
+          </div>
+        )}
       </div>
+      <div className="sticky top-0"></div>
       <div className="mt-8">
         <div className="flex flex-col gap-2">
           {song.lines.map((line, i) => {
