@@ -20,7 +20,7 @@ const Page = async ({ params }: Props) => {
     <div className="p-6 pt-4 mx-auto max-w-3xl">
       <div className="sticky items-center gap-4 top-4 justify-between flex-row backdrop-blur-lg flex py-3 px-4 w-full h-fit rounded-md overflow-clip bg-primary/5 border">
         <div className="flex flex-col">
-          <Link href="/" className="font-bold text-shadow">
+          <Link href={`/song/${song.id}`} className="font-bold text-shadow">
             {song.title}
           </Link>
           <Link className="text-muted-foreground" href={song.artist.url}>
@@ -41,7 +41,6 @@ const Page = async ({ params }: Props) => {
           // </div>
         )}
       </div>
-      <div className="sticky top-0"></div>
       <div className="mt-8">
         <div className="flex flex-col gap-2">
           {song.lines.map((line, i) => {

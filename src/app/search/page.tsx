@@ -52,7 +52,6 @@ const Page = () => {
     setResult(results);
     setSearchedQuery(query);
 
-    // Update URL with search query
     const params = new URLSearchParams(searchParams);
     if (query) {
       params.set("q", query);
@@ -94,10 +93,10 @@ const Page = () => {
               return (
                 <Link
                   href={artist.url}
-                  className="rounded-full flex gap-1.5 items-center py-1.5 px-3 text-sm bg-secondary border"
+                  className="rounded-full flex gap-1.5 py-1.5 px-3 text-sm bg-secondary border"
                   key={artist.name}
                 >
-                  <MicVocalIcon size={14} />
+                  <MicVocalIcon className="h-[1lh] shrink-0" size={14} />
                   {artist.name}
                 </Link>
               );
@@ -112,8 +111,8 @@ const Page = () => {
                   className="flex items-center p-2 hover:bg-dimmed rounded-sm"
                 >
                   <Music2Icon size={16} className="shrink-0" />
-                  <div className="ml-2 truncate">{song.title}</div>
-                  <div className="text-muted-foreground shrink-0 ml-4 text-sm">
+                  <div className="ml-2 shrink-0">{song.title}</div>
+                  <div className="text-muted-foreground truncate ml-4 text-sm">
                     {song.artist.name}
                   </div>
                 </Link>
