@@ -1,5 +1,7 @@
+import { Button } from "@/components/ui/button";
 import { fetchArtistSongs, fetchSong } from "@/lib/song";
 import { cn } from "@/lib/utils";
+import { PlayIcon } from "lucide-react";
 import Link from "next/link";
 
 type Props = {
@@ -16,20 +18,27 @@ const Page = async ({ params }: Props) => {
 
   return (
     <div className="p-6 pt-4 mx-auto max-w-3xl">
-      <div className="sticky gap-4 top-4 justify-between flex-col sm:flex-row backdrop-blur-lg flex py-3 px-4 w-full h-fit rounded-md overflow-clip bg-primary/5 border">
-        <div className="">
-          <div className="text-xl font-bold text-shadow-2xl">{song.title}</div>
+      <div className="sticky items-center gap-4 top-4 justify-between flex-row backdrop-blur-lg flex py-3 px-4 w-full h-fit rounded-md overflow-clip bg-primary/5 border">
+        <div className="flex flex-col">
+          <Link href="/" className="font-bold text-shadow">
+            {song.title}
+          </Link>
           <Link className="text-muted-foreground" href={song.artist.url}>
             {song.artist.name}
           </Link>
         </div>
         {song.youtubeVideoId && (
           <div>
-            <iframe
-              className="rounded-md"
-              src={`https://www.youtube.com/embed/${song.youtubeVideoId}`}
-            />
+            <Button size="icon" variant="secondary">
+              <PlayIcon />
+            </Button>
           </div>
+          // <div>
+          //   <iframe
+          //     className="rounded-md"
+          //     src={`https://www.youtube.com/embed/${song.youtubeVideoId}`}
+          //   />
+          // </div>
         )}
       </div>
       <div className="sticky top-0"></div>
