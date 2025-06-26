@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { fetchSearchResults } from "@/lib/song";
 import { LoaderIcon, MicVocalIcon, Music2Icon, SearchIcon } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { searchAction } from "./actions";
 
@@ -23,15 +24,42 @@ function SearchButton() {
 }
 
 const Page = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const urlQuery = searchParams.get("q") || "";
+
   const [result, setResult] =
     useState<Awaited<ReturnType<typeof fetchSearchResults>>>();
-  const [query, setQuery] = useState("");
-  const [searchedQuery, setSearchedQuery] = useState("");
+  const [query, setQuery] = useState(urlQuery);
+  const [searchedQuery, setSearchedQuery] = useState(urlQuery);
+
+  useEffect(() => {
+    if (urlQuery) {
+      const performInitialSearch = async () => {
+        const formData = new FormData();
+        formData.append("query", urlQuery);
+        const { results, query } = await searchAction(formData);
+        setResult(results);
+        setSearchedQuery(query);
+      };
+
+      performInitialSearch();
+    }
+  }, [urlQuery]);
 
   const handleSubmit = async (formData: FormData) => {
     const { results, query } = await searchAction(formData);
     setResult(results);
     setSearchedQuery(query);
+
+    // Update URL with search query
+    const params = new URLSearchParams(searchParams);
+    if (query) {
+      params.set("q", query);
+    } else {
+      params.delete("q");
+    }
+    router.push(`/search?${params.toString()}`);
   };
 
   return (
