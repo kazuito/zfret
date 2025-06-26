@@ -15,10 +15,10 @@ const Page = async ({ params }: Props) => {
 
   return (
     <div className="max-w-3xl mx-auto p-6">
-      <div className="flex items-center gap-2">
+      <Link href={`/artist/${name}`} className="w-fit flex items-center gap-2">
         <MicVocalIcon size={22} />
         <div className="text-xl font-bold">{decodedName}</div>
-      </div>
+      </Link>
       <div className="flex flex-col mt-6">
         {songs.map((song) => {
           return (
