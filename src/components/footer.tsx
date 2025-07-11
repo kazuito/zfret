@@ -1,9 +1,7 @@
 import { HomeIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
 
-type Props = {};
-
-const Footer = ({}: Props) => {
+const Footer = () => {
   return (
     <div className="sticky bottom-0 p-4 flex justify-center">
       <div className="flex gap-2 backdrop-blur-sm rounded-full p-2 bg-primary/5 border">
