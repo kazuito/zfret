@@ -42,7 +42,7 @@ const Page = async ({ params }: Props) => {
         )}
       </div>
       <div className="mt-8">
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 px-2 sm:px-6">
           {song.lines.map((line, i) => {
             const lineHasLyric = line.some((part) => part.lyric);
             return (
@@ -54,7 +54,7 @@ const Page = async ({ params }: Props) => {
                         <div className="text-sm">{part.chord}</div>
                       )}
                       {lineHasLyric && (
-                        <div className="text-muted-foreground h-6 text-nowrap">
+                        <div className="bg-gradient-to-b from-foreground/60 to-foreground/20 text-transparent bg-clip-text h-6 text-nowrap">
                           {part.lyric}
                         </div>
                       )}
