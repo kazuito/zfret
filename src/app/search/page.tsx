@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { fetchSearchResults } from "@/lib/song";
-import { LoaderIcon, MicVocalIcon, Music2Icon, SearchIcon } from "lucide-react";
+import { LoaderIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -96,7 +96,6 @@ const Page = () => {
                   className="rounded-full flex gap-1.5 py-1.5 px-3 text-sm bg-secondary border"
                   key={artist.name}
                 >
-                  <MicVocalIcon className="h-[1lh] shrink-0" size={14} />
                   {artist.name}
                 </Link>
               );
@@ -110,7 +109,6 @@ const Page = () => {
                   href={song.url}
                   className="flex items-center p-2 hover:bg-dimmed rounded-sm"
                 >
-                  <Music2Icon size={16} className="shrink-0" />
                   <div className="ml-2 shrink-0">{song.title}</div>
                   <div className="text-muted-foreground truncate ml-4 text-sm">
                     {song.artist.name}
