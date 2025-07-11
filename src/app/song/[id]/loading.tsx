@@ -4,8 +4,7 @@ const Loading = () => {
   return (
     <div className="p-6 mx-auto max-w-3xl">
       <div>
-        <Skeleton className="h-7 w-64 mb-2" />
-        <Skeleton className="h-4 w-32" />
+        <Skeleton className="h-18 w-full" />
       </div>
       <div className="mt-8">
         <div className="flex flex-col gap-2">
