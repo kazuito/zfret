@@ -10,9 +10,9 @@ export default function Loading() {
       
       {/* Song list skeleton */}
       <div className="flex flex-col mt-6">
-        {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="p-2 flex gap-2 items-center rounded-sm">
-            <Skeleton className="h-4 flex-1 max-w-md" />
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div key={i} className="flex gap-2 items-center rounded-sm">
+            <Skeleton className="h-6 flex-1 max-w-md" />
           </div>
         ))}
       </div>
