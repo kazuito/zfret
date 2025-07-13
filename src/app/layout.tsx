@@ -1,6 +1,17 @@
 import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Z-FRET",
@@ -14,7 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className="antialiased dark">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
+      >
         <div className="mx-auto">
           {children}
           <Footer />
