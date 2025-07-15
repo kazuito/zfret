@@ -29,7 +29,7 @@ const Page = async ({ params }: Props) => {
 
   return (
     <div className="">
-      <div className="sticky items-center gap-4 top-[49px] justify-between flex-row bg-gradient-to-b from-background to-transparent flex py-3 w-full h-fit overflow-clip z-10">
+      <div className="items-center gap-4 justify-between flex-row bg-gradient-to-b from-background to-transparent flex my-6 w-full h-fit overflow-clip z-10">
         <div className="mx-auto w-full px-6 max-w-3xl flex flex-col">
           <Link href={`/song/${song.id}`} className="font-bold text-shadow">
             {song.title}
@@ -43,7 +43,11 @@ const Page = async ({ params }: Props) => {
         </div>
       </div>
       <div className="max-w-3xl mx-auto px-4">
-        {song.youtubeVideoId && <Player youtubeVideoId={song.youtubeVideoId} />}
+        {song.youtubeVideoId &&
+        <div className="sm:px-2">
+          <Player youtubeVideoId={song.youtubeVideoId} />
+        </div>
+        }
         <div className="mt-8">
           <div className="flex flex-col gap-2 px-2 sm:px-6">
             {song.lines.map((line, i) => {
