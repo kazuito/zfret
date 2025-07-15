@@ -34,17 +34,16 @@ const Page = async ({ params }: Props) => {
           <Link href={`/song/${song.id}`} className="font-bold text-shadow">
             {song.title}
           </Link>
-          <Link className="text-shadow-md text-muted-foreground" href={song.artist.url}>
+          <Link
+            className="text-shadow-md text-muted-foreground"
+            href={song.artist.url}
+          >
             {song.artist.name}
           </Link>
         </div>
       </div>
       <div className="max-w-3xl mx-auto px-4">
-        {song.youtubeVideoId && (
-          <div className="flex justify-end sm:px-6">
-            <Player youtubeVideoId={song.youtubeVideoId} />
-          </div>
-        )}
+        {song.youtubeVideoId && <Player youtubeVideoId={song.youtubeVideoId} />}
         <div className="mt-8">
           <div className="flex flex-col gap-2 px-2 sm:px-6">
             {song.lines.map((line, i) => {
