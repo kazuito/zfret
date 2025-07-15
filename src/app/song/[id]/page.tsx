@@ -1,8 +1,19 @@
-import { Button } from "@/components/ui/button";
+import Player from "@/components/player";
 import { fetchArtistSongs, fetchSong } from "@/lib/song";
 import { cn } from "@/lib/utils";
-import { PlayIcon } from "lucide-react";
+import {
+  MediaControlBar,
+  MediaController,
+  MediaMuteButton,
+  MediaPlayButton,
+  MediaSeekBackwardButton,
+  MediaSeekForwardButton,
+  MediaTimeDisplay,
+  MediaTimeRange,
+  MediaVolumeRange,
+} from "media-chrome/react";
 import Link from "next/link";
+import ReactPlayer from "react-player";
 
 type Props = {
   params: Promise<{
@@ -18,7 +29,7 @@ const Page = async ({ params }: Props) => {
 
   return (
     <div className="p-6 pt-4 mx-auto max-w-3xl">
-      <div className="sticky items-center gap-4 top-4 justify-between flex-row backdrop-blur-lg flex py-3 px-4 w-full h-fit rounded-md overflow-clip bg-primary/5 border">
+      <div className="sticky items-center gap-4 top-4 justify-between flex-row backdrop-blur-lg flex py-3 px-4 w-full h-fit rounded-md overflow-clip bg-primary/5 border z-10">
         <div className="flex flex-col">
           <Link href={`/song/${song.id}`} className="font-bold text-shadow">
             {song.title}
@@ -27,20 +38,12 @@ const Page = async ({ params }: Props) => {
             {song.artist.name}
           </Link>
         </div>
-        {song.youtubeVideoId && (
-          <div>
-            <Button size="icon" variant="secondary">
-              <PlayIcon />
-            </Button>
-          </div>
-          // <div>
-          //   <iframe
-          //     className="rounded-md"
-          //     src={`https://www.youtube.com/embed/${song.youtubeVideoId}`}
-          //   />
-          // </div>
-        )}
       </div>
+      {song.youtubeVideoId && (
+        <div className="mt-4 flex justify-end sm:px-6">
+          <Player youtubeVideoId={song.youtubeVideoId} />
+        </div>
+      )}
       <div className="mt-8">
         <div className="flex flex-col gap-2 px-2 sm:px-6">
           {song.lines.map((line, i) => {
