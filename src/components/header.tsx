@@ -1,4 +1,6 @@
+import { SearchIcon } from "lucide-react";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 type Props = {};
 
@@ -9,11 +11,13 @@ const Header = ({}: Props) => {
         <Link href="/" className="font-semibold text-sm">
           Z-FRET
         </Link>
-        {/* <div className="ml-auto">
-          <Button size="icon" variant="ghost">
-            <SearchIcon />
+        <div className="ml-auto">
+          <Button size="icon" variant="ghost" asChild>
+            <Link href="/search">
+              <SearchIcon />
+            </Link>
           </Button>
-        </div> */}
+        </div>
       </div>
     </header>
   );
