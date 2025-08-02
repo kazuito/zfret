@@ -1,6 +1,7 @@
 "use client";
 
 import { PlayIcon } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 import ReactPlayer from "react-player";
 
@@ -28,12 +29,18 @@ const Player = ({ youtubeVideoId }: Props) => {
           >
             <div className="absolute inset-0 grid place-content-center bg-background/80 backdrop-blur-xs">
               <div className="flex flex-col items-center gap-4">
-                <PlayIcon className="size-8 group-hover/player:scale-120 transition group-active/player:scale-90" fill="currentColor" />
+                <PlayIcon
+                  className="size-8 group-hover/player:scale-120 transition group-active/player:scale-90"
+                  fill="currentColor"
+                />
               </div>
             </div>
-            <img
+            <Image
+              alt="YouTube Thumbnail"
               src={`https://img.youtube.com/vi/${youtubeVideoId}/mqdefault.jpg`}
               className="w-full h-full"
+              width={640}
+              height={360}
             />
           </button>
         )}

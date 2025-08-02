@@ -2,9 +2,7 @@ import { SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
-type Props = {};
-
-const Header = ({}: Props) => {
+const Header = () => {
   return (
     <header className="border-b sticky top-0 z-10 bg-background">
       <div className="max-w-3xl mx-auto px-6 h-12 flex items-center">
