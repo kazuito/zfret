@@ -3,6 +3,7 @@ import { Hono } from "hono";
 import { handle } from "hono/vercel";
 import { zValidator } from "@hono/zod-validator";
 import { z } from "zod";
+import { googleSearch } from "@/lib/search";
 
 export const runtime = "edge";
 
@@ -35,7 +36,8 @@ app.get("/artist/:name", zValidator("param", artistParamsSchema), async (c) => {
 
 app.get("/search", zValidator("query", searchQuerySchema), async (c) => {
   const { q } = c.req.valid("query");
-  const results = await fetchSearchResults(q);
+  // const results = await fetchSearchResults(q);
+  const results = await googleSearch(q);
   return c.json(results);
 });
 

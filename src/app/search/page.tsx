@@ -1,8 +1,9 @@
 "use client";
 
+import List from "@/components/list";
+import ListItem from "@/components/list-item";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { fetchSearchResults } from "@/lib/song";
 import { LoaderIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -29,7 +30,7 @@ const Page = () => {
   const urlQuery = searchParams.get("q") || "";
 
   const [result, setResult] =
-    useState<Awaited<ReturnType<typeof fetchSearchResults>>>();
+    useState<Awaited<ReturnType<typeof searchAction>>>();
   const [query, setQuery] = useState(urlQuery);
   const [searchedQuery, setSearchedQuery] = useState(urlQuery);
 
@@ -38,7 +39,7 @@ const Page = () => {
       const performInitialSearch = async () => {
         const formData = new FormData();
         formData.append("query", urlQuery);
-        const { results, query } = await searchAction(formData);
+        const results = await searchAction(formData);
         setResult(results);
         setSearchedQuery(query);
       };
@@ -48,7 +49,7 @@ const Page = () => {
   }, [urlQuery]);
 
   const handleSubmit = async (formData: FormData) => {
-    const { results, query } = await searchAction(formData);
+    const results = await searchAction(formData);
     setResult(results);
     setSearchedQuery(query);
 
@@ -77,47 +78,34 @@ const Page = () => {
         </div>
       </form>
 
-      {result?.songs?.length === 0 && searchedQuery && (
-        <div className="flex justify-center pt-24">
-          <div className="text-muted-foreground">
-            No results found for{" "}
-            <span className="font-bold">{searchedQuery}</span>
-          </div>
+      {result?.artists && (
+        <div className="flex flex-wrap gap-2 mb-6">
+          {result.artists.map((artist, i) => {
+            return (
+              <Link
+                key={i}
+                className="rounded-full border px-4 py-1.5 bg-secondary/50"
+                href={artist.link}
+              >
+                {artist.name}
+              </Link>
+            );
+          })}
         </div>
       )}
-
-      {result && (
-        <div className="mt-6">
-          <div className="flex flex-wrap gap-2">
-            {result?.artists?.map((artist) => {
-              return (
-                <Link
-                  href={artist.url}
-                  className="rounded-full flex gap-1.5 py-1.5 px-3 text-sm bg-secondary border"
-                  key={artist.name}
-                >
-                  {artist.name}
-                </Link>
-              );
-            })}
-          </div>
-          <div className="mt-6">
-            {result?.songs?.map((song) => {
-              return (
-                <Link
-                  key={song.id}
-                  href={song.url}
-                  className="flex items-center p-2 hover:bg-dimmed rounded-sm"
-                >
-                  <div className="ml-2 shrink-0">{song.title}</div>
-                  <div className="text-muted-foreground truncate ml-4 text-sm">
-                    {song.artist.name}
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
+      {result?.songs && (
+        <List>
+          {result.songs.map((song, i) => {
+            return (
+              <ListItem
+                key={i}
+                title={song.title}
+                description={song.artistName}
+                href={song.link}
+              ></ListItem>
+            );
+          })}
+        </List>
       )}
     </div>
   );

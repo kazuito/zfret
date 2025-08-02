@@ -1,9 +1,9 @@
 "use server";
 
-import { fetchSearchResults } from "@/lib/song";
+import { googleSearch } from "@/lib/search";
 
 export async function searchAction(formData: FormData) {
   const query = (formData.get("query") as string) || "";
-  const results = await fetchSearchResults(query);
-  return { results, query };
+  const results = await googleSearch(query);
+  return results;
 }
