@@ -1,6 +1,6 @@
 "use client";
 
-import { PlayIcon, YoutubeIcon } from "lucide-react";
+import { PlayIcon } from "lucide-react";
 import { useState } from "react";
 import ReactPlayer from "react-player";
 
@@ -12,8 +12,8 @@ const Player = ({ youtubeVideoId }: Props) => {
   const [showPlayer, setShowPlayer] = useState(false);
 
   return (
-    <div className="">
-      <div className="w-full sm:w-lg aspect-video flex items-center rounded-md overflow-clip">
+    <div className="p-1 border border-border/60 rounded-md bg-secondary/30 w-fit">
+      <div className="w-full sm:w-lg aspect-video flex items-center rounded-sm overflow-clip group/player">
         {showPlayer ? (
           <ReactPlayer
             src={`https://www.youtube.com/watch?v=${youtubeVideoId}`}
@@ -23,12 +23,12 @@ const Player = ({ youtubeVideoId }: Props) => {
           />
         ) : (
           <button
-            className="w-full h-full relative"
+            className="w-full h-full relative cursor-pointer"
             onClick={() => setShowPlayer(true)}
           >
-            <div className="absolute inset-0 grid place-content-center bg-background/80">
+            <div className="absolute inset-0 grid place-content-center bg-background/80 backdrop-blur-xs">
               <div className="flex flex-col items-center gap-4">
-                <PlayIcon className="size-8" fill="currentColor" />
+                <PlayIcon className="size-8 group-hover/player:scale-120 transition group-active/player:scale-90" fill="currentColor" />
               </div>
             </div>
             <img
