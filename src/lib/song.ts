@@ -5,7 +5,9 @@ const chordsDataSchema = z.array(z.string());
 
 export async function fetchSong(id: string) {
   const url = `https://www.ufret.jp/song.php?data=${id}`;
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    next: { revalidate: 86400 } // Cache for 24 hours
+  });
   const html = await res.text();
 
   const { document } = parseHTML(html);
@@ -63,7 +65,9 @@ export async function fetchSong(id: string) {
 
 export async function fetchSearchResults(query: string) {
   const url = `https://www.ufret.jp/search.php?key=${query}`;
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    next: { revalidate: 86400 } // Cache for 24 hours
+  });
   const html = await res.text();
   const { document } = parseHTML(html);
 
@@ -108,7 +112,9 @@ export async function fetchSearchResults(query: string) {
 export async function fetchArtistSongs(artistName: string) {
   const encodedArtistName = encodeURIComponent(artistName);
   const url = `https://www.ufret.jp/artist.php?data=${encodedArtistName}`;
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    next: { revalidate: 86400 } // Cache for 24 hours
+  });
   const html = await res.text();
   const { document } = parseHTML(html);
   const resultElements = document.querySelectorAll(
@@ -130,7 +136,9 @@ export async function fetchArtistSongs(artistName: string) {
 
 export async function fetchTopSongs() {
   const url = "https://www.ufret.jp/rank.php";
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    next: { revalidate: 86400 } // Cache for 24 hours
+  });
   const html = await res.text();
   const { document } = parseHTML(html);
 
@@ -153,7 +161,9 @@ export async function fetchTopSongs() {
 
 export async function fetchTopArtists() {
   const url = "https://www.ufret.jp/rank_artist.php";
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    next: { revalidate: 86400 } // Cache for 24 hours
+  });
   const html = await res.text();
   const { document } = parseHTML(html);
 
