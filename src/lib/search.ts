@@ -14,8 +14,6 @@ export async function googleSearch(query: string) {
     num: 10,
   });
 
-  console.log(res.data.items);
-
   const artistItems =
     res.data.items?.filter((item) => item.link?.includes("/artist.php")) || [];
   const songItems =

@@ -1,19 +1,9 @@
+import List from "@/components/list";
+import ListItem from "@/components/list-item";
 import Player from "@/components/player";
 import { fetchArtistSongs, fetchSong } from "@/lib/song";
 import { cn } from "@/lib/utils";
-import {
-  MediaControlBar,
-  MediaController,
-  MediaMuteButton,
-  MediaPlayButton,
-  MediaSeekBackwardButton,
-  MediaSeekForwardButton,
-  MediaTimeDisplay,
-  MediaTimeRange,
-  MediaVolumeRange,
-} from "media-chrome/react";
 import Link from "next/link";
-import ReactPlayer from "react-player";
 
 type Props = {
   params: Promise<{
@@ -31,7 +21,10 @@ const Page = async ({ params }: Props) => {
     <div className="">
       <div className="items-center gap-4 justify-between flex-row bg-gradient-to-b from-background to-transparent flex my-6 w-full h-fit overflow-clip z-10">
         <div className="mx-auto w-full px-6 max-w-3xl flex flex-col">
-          <Link href={`/song/${song.id}`} className="font-bold text-shadow">
+          <Link
+            href={`/song/${song.id}`}
+            className="font-bold text-shadow text-xl"
+          >
             {song.title}
           </Link>
           <Link
@@ -43,11 +36,11 @@ const Page = async ({ params }: Props) => {
         </div>
       </div>
       <div className="max-w-3xl mx-auto px-4">
-        {song.youtubeVideoId &&
-        <div className="sm:px-2">
-          <Player youtubeVideoId={song.youtubeVideoId} />
-        </div>
-        }
+        {song.youtubeVideoId && (
+          <div className="sm:px-2">
+            <Player youtubeVideoId={song.youtubeVideoId} />
+          </div>
+        )}
         <div className="mt-8">
           <div className="flex flex-col gap-2 px-2 sm:px-6">
             {song.lines.map((line, i) => {
@@ -74,28 +67,20 @@ const Page = async ({ params }: Props) => {
           </div>
         </div>
         <div className="mt-8">
-          <div className="text-muted-foreground">
-            Songs by{" "}
-            <Link
-              className="text-foreground font-semibold"
-              href={song.artist.url}
-            >
-              {song.artist.name}
-            </Link>
-          </div>
-          <div className="flex flex-wrap gap-2 mt-4">
+          <div className="text-muted-foreground"></div>
+          <List
+            heading={<Link href={song.artist.url}>{song.artist.name}</Link>}
+          >
             {artistSongs.map((artistSong) => {
               return (
-                <Link
-                  href={artistSong.url}
+                <ListItem
                   key={artistSong.id}
-                  className="py-1.5 px-3 rounded-full border text-sm"
-                >
-                  {artistSong.title}
-                </Link>
+                  href={artistSong.url}
+                  title={artistSong.title}
+                ></ListItem>
               );
             })}
-          </div>
+          </List>
         </div>
       </div>
     </div>
