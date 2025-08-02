@@ -20,7 +20,12 @@ export async function googleSearch(query: string) {
     res.data.items?.filter((item) => item.link?.includes("/song.php")) || [];
 
   const artists = artistItems.map((item) => {
-    const name = item.title?.split(/(.*?) - ギターコード/)[1] || "";
+    let name = item.title?.split(/(.*?) - ギターコード/)[1] || "";
+
+    if (!name) {
+      name = item.title || "";
+    }
+
     return {
       name,
       link: `/artist/${encodeURIComponent(name)}`,
