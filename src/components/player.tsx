@@ -11,6 +11,7 @@ type Props = {
 
 const Player = ({ youtubeVideoId }: Props) => {
   const [showPlayer, setShowPlayer] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
   return (
     <div className="p-1 border border-border/60 rounded-md bg-secondary/30 sm:w-fit w-full">
@@ -21,11 +22,17 @@ const Player = ({ youtubeVideoId }: Props) => {
             controls
             className="w-full! h-full!"
             autoPlay
+            playing={playing}
+            onPlaying={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
           />
         ) : (
           <button
             className="w-full h-full relative cursor-pointer"
-            onClick={() => setShowPlayer(true)}
+            onClick={() => {
+              setShowPlayer(true);
+              setPlaying(true);
+            }}
           >
             <div className="absolute inset-0 grid place-content-center bg-background/80 backdrop-blur-xs">
               <div className="flex flex-col items-center gap-4">
