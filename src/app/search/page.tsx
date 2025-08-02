@@ -6,61 +6,33 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LoaderIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useQueryState } from "nuqs";
 import { useEffect, useState } from "react";
-import { useFormStatus } from "react-dom";
 import { searchAction } from "./actions";
 
-function SearchButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" size="icon" disabled={pending}>
-      {pending ? (
-        <LoaderIcon size={16} className="animate-spin" />
-      ) : (
-        <SearchIcon size={16} />
-      )}
-    </Button>
-  );
-}
-
 const Page = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const urlQuery = searchParams.get("q") || "";
-
   const [result, setResult] =
     useState<Awaited<ReturnType<typeof searchAction>>>();
-  const [query, setQuery] = useState(urlQuery);
-  const [searchedQuery, setSearchedQuery] = useState(urlQuery);
+  const [urlQuery, setUrlQuery] = useQueryState("q");
+  const [query, setQuery] = useState(urlQuery ?? "");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = () => {
+    setUrlQuery(query);
+  };
+
+  const performSearch = async () => {
+    setLoading(true);
+    const results = await searchAction(query);
+    setResult(results);
+    setLoading(false);
+  };
 
   useEffect(() => {
     if (urlQuery) {
-      const performInitialSearch = async () => {
-        const formData = new FormData();
-        formData.append("query", urlQuery);
-        const results = await searchAction(formData);
-        setResult(results);
-        setSearchedQuery(query);
-      };
-
-      performInitialSearch();
+      performSearch();
     }
   }, [urlQuery]);
-
-  const handleSubmit = async (formData: FormData) => {
-    const results = await searchAction(formData);
-    setResult(results);
-    setSearchedQuery(query);
-
-    const params = new URLSearchParams(searchParams);
-    if (query) {
-      params.set("q", query);
-    } else {
-      params.delete("q");
-    }
-    router.push(`/search?${params.toString()}`);
-  };
 
   return (
     <div className="p-6 max-w-3xl mx-auto">
@@ -69,12 +41,19 @@ const Page = () => {
           <Input
             name="query"
             placeholder="曲名・アーティスト名で検索"
+            disabled={loading}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             autoFocus
             className="backdrop-blur-md"
           />
-          <SearchButton />
+          <Button type="submit" size="icon" disabled={loading}>
+            {loading ? (
+              <LoaderIcon size={16} className="animate-spin" />
+            ) : (
+              <SearchIcon size={16} />
+            )}
+          </Button>
         </div>
       </form>
 
