@@ -57,7 +57,7 @@ const Page = () => {
         </div>
       </form>
 
-      {result?.artists && (
+      {result?.artists && result?.artists.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-6">
           {result.artists.map((artist, i) => {
             return (
@@ -72,7 +72,7 @@ const Page = () => {
           })}
         </div>
       )}
-      {result?.songs && (
+      {result?.songs && result?.songs.length > 0 && (
         <List>
           {result.songs.map((song, i) => {
             return (

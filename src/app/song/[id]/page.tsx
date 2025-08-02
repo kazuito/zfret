@@ -66,8 +66,7 @@ const Page = async ({ params }: Props) => {
             })}
           </div>
         </div>
-        <div className="mt-8">
-          <div className="text-muted-foreground"></div>
+        <div className="my-8">
           <List
             heading={<Link href={song.artist.url}>{song.artist.name}</Link>}
           >
