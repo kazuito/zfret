@@ -68,7 +68,7 @@ const Page = () => {
         <div className="flex items-center gap-2">
           <Input
             name="query"
-            placeholder="Search for songs or artists"
+            placeholder="曲名・アーティスト名で検索"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             autoFocus
