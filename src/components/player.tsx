@@ -12,7 +12,7 @@ const Player = ({ youtubeVideoId }: Props) => {
   const [showPlayer, setShowPlayer] = useState(false);
 
   return (
-    <div className="p-1 border border-border/60 rounded-md bg-secondary/30 w-fit">
+    <div className="p-1 border border-border/60 rounded-md bg-secondary/30 sm:w-fit w-full">
       <div className="w-full sm:w-lg aspect-video flex items-center rounded-sm overflow-clip group/player">
         {showPlayer ? (
           <ReactPlayer
