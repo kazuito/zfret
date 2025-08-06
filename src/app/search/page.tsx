@@ -1,14 +1,21 @@
 "use client";
 
-import List from "@/components/list";
-import ListItem from "@/components/list-item";
+import { List, ListItem } from "@/components/list";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { search, SearchResult } from "@/lib/search";
 import { LoaderIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+
+const PageWrapper = () => {
+  return (
+    <Suspense>
+      <Page />
+    </Suspense>
+  );
+};
 
 const Page = () => {
   const [urlQuery, setUrlQuery] = useQueryState("q");
@@ -99,4 +106,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default PageWrapper;

@@ -1,5 +1,4 @@
-import List from "@/components/list";
-import ListItem from "@/components/list-item";
+import { List, ListItem } from "@/components/list";
 import Player from "@/components/player";
 import { fetchArtistSongs, fetchSong } from "@/lib/song";
 import { cn } from "@/lib/utils";

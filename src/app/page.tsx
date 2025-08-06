@@ -1,5 +1,4 @@
-import List from "@/components/list";
-import ListItem from "@/components/list-item";
+import { List, ListItem } from "@/components/list";
 import { fetchTopArtists, fetchTopSongs } from "@/lib/song";
 
 export default async function Home() {

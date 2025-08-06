@@ -1,9 +1,11 @@
-type Props = {
+import Link from "next/link";
+
+type ListProps = {
   heading?: React.ReactNode;
   children?: React.ReactNode;
 };
 
-const List = ({ heading, children }: Props) => {
+const List = ({ heading, children }: ListProps) => {
   return (
     <div className="rounded-lg bg-secondary/20 border border-border/60">
       {heading && <div className="p-4 font-semibold text-sm">{heading}</div>}
@@ -12,4 +14,26 @@ const List = ({ heading, children }: Props) => {
   );
 };
 
-export default List;
+type ListItemProps = {
+  prefix?: React.ReactNode;
+  title?: string;
+  description?: string;
+  href: string;
+};
+
+const ListItem = ({ prefix, title, description, href }: ListItemProps) => {
+  return (
+    <Link
+      href={href}
+      className="py-3 px-4 flex items-center gap-3 bg-secondary/20 rounded-md border border-border/60"
+    >
+      {prefix && <div className="w-6 text-sm text-foreground/80">{prefix}</div>}
+      <div className="truncate">{title}</div>
+      {description && (
+        <div className="text-sm text-foreground/60 truncate">{description}</div>
+      )}
+    </Link>
+  );
+};
+
+export { List, ListItem };
