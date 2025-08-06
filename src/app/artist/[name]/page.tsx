@@ -1,3 +1,4 @@
+import AddHistory from "@/components/add-history";
 import { List, ListItem } from "@/components/list";
 import { fetchArtistSongs } from "@/lib/song";
 import Link from "next/link";
@@ -13,8 +14,16 @@ const Page = async ({ params }: Props) => {
   const decodedName = decodeURIComponent(name);
   const songs = await fetchArtistSongs(decodedName);
 
+  const historyItem = {
+    type: "artist" as const,
+    name: decodedName,
+    link: `/artist/${name}`,
+    timestamp: Date.now(),
+  };
+
   return (
     <div className="max-w-3xl mx-auto p-6">
+      <AddHistory item={historyItem} />
       <Link href={`/artist/${name}`} className="w-fit flex items-center gap-2">
         <div className="text-xl font-bold">{decodedName}</div>
       </Link>

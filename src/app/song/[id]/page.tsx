@@ -1,3 +1,4 @@
+import AddHistory from "@/components/add-history";
 import { List, ListItem } from "@/components/list";
 import Player from "@/components/player";
 import { fetchArtistSongs, fetchSong } from "@/lib/song";
@@ -16,8 +17,17 @@ const Page = async ({ params }: Props) => {
   const song = await fetchSong(id);
   const artistSongs = await fetchArtistSongs(song.artist.name);
 
+  const historyItem = {
+    type: "song" as const,
+    title: song.title,
+    artistName: song.artist.name,
+    link: `/song/${id}`,
+    timestamp: Date.now(),
+  };
+
   return (
     <div className="">
+      <AddHistory item={historyItem} />
       <div className="items-center gap-4 justify-between flex-row bg-gradient-to-b from-background to-transparent flex my-6 w-full h-fit overflow-clip z-10">
         <div className="mx-auto w-full px-6 max-w-3xl flex flex-col">
           <Link
