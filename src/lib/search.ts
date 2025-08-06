@@ -1,55 +1,52 @@
 "use server";
 
-import { customsearch } from "@googleapis/customsearch";
+import { load } from "cheerio";
 
-const customSearch = customsearch({
-  version: "v1",
-  auth: process.env.GOOGLE_API_KEY,
-});
+export async function search(query: string) {
+  const res = await fetch(
+    `https://www.ufret.jp/search.php?key=${encodeURIComponent(query)}`
+  );
+  const $ = load(await res.text());
 
-export async function googleSearch(query: string) {
-  const res = await customSearch.cse.list({
-    q: query,
-    cx: process.env.GOOGLE_CX_ID,
-    num: 10,
-  });
+  const artists = $("a.artist_list")
+    .map((_, el) => {
+      const $el = $(el);
+      const name = $el.text().trim();
+      return {
+        name,
+        link: `/artist/${encodeURIComponent(name)}`,
+        id: name,
+      };
+    })
+    .get();
 
-  const artistItems =
-    res.data.items?.filter((item) => item.link?.includes("/artist.php")) || [];
-  const songItems =
-    res.data.items?.filter((item) => item.link?.includes("/song.php")) || [];
+  const songs = $("a[href^='/song.php'].list-group-item")
+    .map((_, el) => {
+      const $el = $(el);
+      const title = $el.find("strong").text().trim();
+      const artistName = $el.find("span:last-child").text().trim();
+      const url = new URL($el.attr("href") ?? "", "https://a.co");
+      const id = url.searchParams.get("data");
+      const badge = $el.find(".badge");
 
-  const artists = artistItems.map((item) => {
-    let name = item.title?.split(/(.*?) - ギターコード/)[1] || "";
+      if (badge.length > 0) {
+        return null;
+      }
 
-    if (!name) {
-      name = item.title || "";
-    }
-
-    return {
-      name,
-      link: `/artist/${encodeURIComponent(name)}`,
-    };
-  });
-
-  const songs = songItems.map((item) => {
-    let title = item.title?.match(/(.*?)\s\//)?.[1] ?? "";
-    const artistName = item.title?.match(/\/\s(.*?)\sギターコード/)?.[1] ?? "";
-
-    if (!title) {
-      title = item.title ?? "";
-    }
-
-    const id = new URL(item.link ?? "").searchParams.get("data") || "";
-    return {
-      title: title.replace(/^初心者向け簡単コード /, ""),
-      artistName,
-      link: `/song/${id}`,
-    };
-  });
+      return {
+        title,
+        artistName,
+        link: `/song/${id}`,
+        id,
+      };
+    })
+    .get()
+    .filter(Boolean);
 
   return {
     artists,
     songs,
   };
 }
+
+export type SearchResult = Awaited<ReturnType<typeof search>>;
