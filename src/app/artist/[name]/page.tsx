@@ -2,7 +2,6 @@ import AddHistory from "@/components/add-history";
 import { List, ListItem } from "@/components/list";
 import PageHeading from "@/components/page-heading";
 import { fetchArtistSongs } from "@/lib/song";
-import Link from "next/link";
 
 type Props = {
   params: Promise<{
@@ -25,14 +24,7 @@ const Page = async ({ params }: Props) => {
   return (
     <div className="max-w-3xl mx-auto p-6 pt-0">
       <AddHistory item={historyItem} />
-      <PageHeading>
-        <Link
-          href={`/artist/${name}`}
-          className="w-fit flex items-center gap-2"
-        >
-          <div className="text-xl font-bold">{decodedName}</div>
-        </Link>
-      </PageHeading>
+      <PageHeading>{decodedName}</PageHeading>
       <div>
         <List>
           {songs.map((song) => {

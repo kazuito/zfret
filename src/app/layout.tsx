@@ -1,3 +1,4 @@
+import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -33,9 +34,10 @@ export default function RootLayout({
         className={cn("antialiased dark", lexend.className, kosugi.variable)}
       >
         <NuqsAdapter>
-          <div className="mx-auto">
+          <div className="min-h-[100dvh] flex flex-col">
             <Header />
-            {children}
+            <div className="grow">{children}</div>
+            <Footer />
           </div>
         </NuqsAdapter>
       </body>
