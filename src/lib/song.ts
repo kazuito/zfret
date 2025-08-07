@@ -115,7 +115,12 @@ export async function fetchSearchResults(query: string) {
   };
 }
 
-export async function fetchArtistSongs(artistName: string) {
+export async function fetchArtistSongs(
+  artistName: string,
+  { limit } = {
+    limit: -1,
+  }
+) {
   const encodedArtistName = encodeURIComponent(artistName);
   const url = `https://www.ufret.jp/artist.php?data=${encodedArtistName}`;
   const res = await fetch(url, {
@@ -137,7 +142,8 @@ export async function fetchArtistSongs(artistName: string) {
         url: `/song/${id}`,
       };
     })
-    .filter((song) => song.id && song.title);
+    .filter((song) => song.id && song.title)
+    .slice(0, limit);
 }
 
 type FetchTopSongsArgs = {

@@ -90,10 +90,7 @@ const ListFooterLink = ({ className, ...props }: ListFooterLinkProps) => {
   return (
     <Button asChild variant="ghost">
       <Link
-        className={cn(
-          "flex items-center text-foreground/60 [&_svg]:size-4 gap-1.5",
-          className
-        )}
+        className={cn("flex items-center text-foreground/60", className)}
         {...props}
       ></Link>
     </Button>

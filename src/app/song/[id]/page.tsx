@@ -5,6 +5,7 @@ import PageHeading from "@/components/page-heading";
 import Player from "@/components/player";
 import { fetchArtistSongs, fetchSong } from "@/lib/song";
 import { cn } from "@/lib/utils";
+import { ArrowRightIcon } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -30,7 +31,9 @@ const Page = async ({ params }: Props) => {
   const { id } = await params;
 
   const song = await fetchSong(id);
-  const artistSongs = await fetchArtistSongs(song.artist.name);
+  const artistSongs = await fetchArtistSongs(song.artist.name, {
+    limit: 10,
+  });
 
   const historyItem = {
     type: "song" as const,
@@ -121,6 +124,12 @@ const Page = async ({ params }: Props) => {
                 );
               })}
             </List.Content>
+            <List.Footer>
+              <List.FooterLink href={`/artist/${song.artist.name}`}>
+                View more songs by {song.artist.name}
+                <ArrowRightIcon />
+              </List.FooterLink>
+            </List.Footer>
           </List.Wrapper>
         </div>
       </div>
