@@ -1,4 +1,3 @@
-"use client";
 
 import Link from "next/link";
 
@@ -17,13 +16,14 @@ const List = ({ heading, children }: ListProps) => {
 };
 
 type ListItemProps = {
-  prefix?: React.ReactNode;
   title?: string;
   description?: string;
   href: string;
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
 };
 
-const ListItem = ({ prefix, title, description, href }: ListItemProps) => {
+const ListItem = ({ prefix, title, description, href, suffix }: ListItemProps) => {
   return (
     <Link
       href={href}
@@ -34,6 +34,7 @@ const ListItem = ({ prefix, title, description, href }: ListItemProps) => {
       {description && (
         <div className="text-sm text-foreground/60 truncate">{description}</div>
       )}
+      {suffix && <div className="ml-auto text-sm text-foreground/40">{suffix}</div>}
     </Link>
   );
 };

@@ -2,7 +2,13 @@
 
 import { BrowsingHistoryItem } from "@/components/add-history";
 import { List, ListItem } from "@/components/list";
+import dayjs from "dayjs";
+import "dayjs/locale/ja";
+import relativeTime from "dayjs/plugin/relativeTime";
 import { useLocalStorage } from "react-use";
+
+dayjs.locale("ja");
+dayjs.extend(relativeTime);
 
 const Page = () => {
   const [history] = useLocalStorage<BrowsingHistoryItem[]>(
@@ -10,12 +16,13 @@ const Page = () => {
     []
   );
 
-  const reversedHistory = history?.reverse() ?? [];
+  const reversedHistory = history?.toReversed() ?? [];
 
   return (
     <div className="max-w-3xl mx-auto p-6">
       <List heading="閲覧履歴">
         {reversedHistory.map((item, i) => {
+          const agoText = dayjs().to(dayjs(item.timestamp));
           if (item.type === "song") {
             return (
               <ListItem
@@ -23,11 +30,17 @@ const Page = () => {
                 href={item.link}
                 title={item.title}
                 description={item.artistName}
+                suffix={agoText}
               ></ListItem>
             );
           } else if (item.type === "artist")
             return (
-              <ListItem key={i} href={item.link} title={item.name}></ListItem>
+              <ListItem
+                key={i}
+                href={item.link}
+                title={item.name}
+                suffix={agoText}
+              ></ListItem>
             );
           return null;
         })}
