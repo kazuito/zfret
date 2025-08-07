@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -8,7 +10,13 @@ const Footer = () => {
         <Link href="/" className="font-semibold">
           Z-FRET
         </Link>
-        <div className="ml-auto">
+        <div className="ml-auto flex items-center h-5 gap-2">
+          <Button variant="ghost" asChild>
+            <Link href="https://github.com/kazuito/zfret" target="_blank">
+              Source
+            </Link>
+          </Button>
+          <Separator orientation="vertical" />
           <ThemeToggle />
         </div>
       </div>
