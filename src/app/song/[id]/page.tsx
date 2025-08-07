@@ -3,6 +3,7 @@ import { List, ListItem } from "@/components/list";
 import Player from "@/components/player";
 import { fetchArtistSongs, fetchSong } from "@/lib/song";
 import { cn } from "@/lib/utils";
+import { MicVocalIcon } from "lucide-react";
 import Link from "next/link";
 
 type Props = {
@@ -77,15 +78,14 @@ const Page = async ({ params }: Props) => {
         </div>
         <div className="my-8">
           <List
-            heading={<Link href={song.artist.url}>{song.artist.name}</Link>}
+            prefix={<MicVocalIcon />}
+            title={<Link href={song.artist.url}>{song.artist.name}</Link>}
           >
             {artistSongs.map((artistSong) => {
               return (
-                <ListItem
-                  key={artistSong.id}
-                  href={artistSong.url}
-                  title={artistSong.title}
-                ></ListItem>
+                <ListItem key={artistSong.id} href={artistSong.url}>
+                  {artistSong.title}
+                </ListItem>
               );
             })}
           </List>

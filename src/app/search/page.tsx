@@ -93,9 +93,10 @@ const Page = () => {
                   <ListItem
                     href={song.link}
                     key={song.id}
-                    title={song.title}
                     description={song.artistName}
-                  />
+                  >
+                    {song.title}
+                  </ListItem>
                 ))}
               </List>
             )}

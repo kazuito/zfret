@@ -31,11 +31,9 @@ const Page = async ({ params }: Props) => {
         <List>
           {songs.map((song) => {
             return (
-              <ListItem
-                href={song.url}
-                key={song.id}
-                title={song.title}
-              ></ListItem>
+              <ListItem href={song.url} key={song.id}>
+                {song.title}
+              </ListItem>
             );
           })}
         </List>

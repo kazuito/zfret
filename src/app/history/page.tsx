@@ -4,6 +4,7 @@ import { List, ListItem } from "@/components/list";
 import RelativeTime from "@/components/relative-time";
 import { useBrowsingHistory } from "@/hooks/use-browsing-history";
 import "dayjs/locale/ja";
+import { HistoryIcon } from "lucide-react";
 
 const Page = () => {
   const [history] = useBrowsingHistory();
@@ -12,26 +13,28 @@ const Page = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-6">
-      <List heading="閲覧履歴">
+      <List prefix={<HistoryIcon />} title="閲覧履歴">
         {reversedHistory.map((item, i) => {
           if (item.type === "song") {
             return (
               <ListItem
                 key={i}
                 href={item.link}
-                title={item.title}
                 description={item.artistName}
                 suffix={<RelativeTime to={item.timestamp} />}
-              ></ListItem>
+              >
+                {item.title}
+              </ListItem>
             );
           } else if (item.type === "artist")
             return (
               <ListItem
                 key={i}
                 href={item.link}
-                title={item.name}
                 suffix={<RelativeTime to={item.timestamp} />}
-              ></ListItem>
+              >
+                {item.name}
+              </ListItem>
             );
           return null;
         })}

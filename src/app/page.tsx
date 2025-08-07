@@ -1,5 +1,6 @@
 import { List, ListItem } from "@/components/list";
 import { fetchTopArtists, fetchTopSongs } from "@/lib/song";
+import { AudioLinesIcon, MicVocalIcon } from "lucide-react";
 
 export default async function Home() {
   const topSongs = await fetchTopSongs();
@@ -7,26 +8,34 @@ export default async function Home() {
 
   return (
     <div className="p-6 max-w-3xl mx-auto">
-      <List heading={"人気曲ランキング"}>
+      <List
+        prefix={<AudioLinesIcon className="animate-pulse" />}
+        title="人気曲ランキング"
+      >
         {topSongs.map((song, i) => (
           <ListItem
             key={i}
             href={`/song/${song.id}`}
-            prefix={i + 1}
-            title={song.title}
+            prefix={<div className="w-6">{i + 1}</div>}
             description={song.artistName}
-          />
+          >
+            {song.title}
+          </ListItem>
         ))}
       </List>
       <div className="mt-6">
-        <List heading={"人気アーティストランキング"}>
+        <List
+          prefix={<MicVocalIcon className="animate-pulse" />}
+          title="人気アーティストランキング"
+        >
           {topArtists.map((artist, i) => (
             <ListItem
               key={i}
               href={artist.url}
-              prefix={i + 1}
-              title={artist.name}
-            />
+              prefix={<div className="w-6">{i + 1}</div>}
+            >
+              {artist.name}
+            </ListItem>
           ))}
         </List>
       </div>
