@@ -1,5 +1,5 @@
 import AddHistory from "@/components/add-history";
-import { List, ListItem } from "@/components/list";
+import { List } from "@/components/list";
 import PageHeading from "@/components/page-heading";
 import { fetchArtistSongs } from "@/lib/song";
 import { Metadata } from "next";
@@ -36,15 +36,17 @@ const Page = async ({ params }: Props) => {
       <AddHistory item={historyItem} />
       <PageHeading>{decodedName}</PageHeading>
       <div>
-        <List>
-          {songs.map((song) => {
-            return (
-              <ListItem href={song.url} key={song.id}>
-                {song.title}
-              </ListItem>
-            );
-          })}
-        </List>
+        <List.Wrapper>
+          <List.Content>
+            {songs.map((song) => {
+              return (
+                <List.Item href={song.url} key={song.id}>
+                  {song.title}
+                </List.Item>
+              );
+            })}
+          </List.Content>
+        </List.Wrapper>
       </div>
     </div>
   );

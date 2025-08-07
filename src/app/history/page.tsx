@@ -1,6 +1,6 @@
 "use client";
 
-import { List, ListItem } from "@/components/list";
+import { List } from "@/components/list";
 import PageHeading from "@/components/page-heading";
 import RelativeTime from "@/components/relative-time";
 import { useBrowsingHistory } from "@/hooks/use-browsing-history";
@@ -26,34 +26,36 @@ const Page = () => {
           </Link>
         </div>
       ) : (
-        <List>
-          {computedHistory.map((item, i) => {
-            if (item.type === "song") {
-              return (
-                <ListItem
-                  key={i}
-                  href={item.link}
-                  description={item.artistName}
-                  prefix={<AudioLinesIcon className="text-foreground/50" />}
-                  suffix={<RelativeTime to={item.timestamp} />}
-                >
-                  {item.title}
-                </ListItem>
-              );
-            } else if (item.type === "artist")
-              return (
-                <ListItem
-                  key={i}
-                  href={item.link}
-                  prefix={<MicVocalIcon className="text-foreground/50" />}
-                  suffix={<RelativeTime to={item.timestamp} />}
-                >
-                  {item.name}
-                </ListItem>
-              );
-            return null;
-          })}
-        </List>
+        <List.Wrapper>
+          <List.Content>
+            {computedHistory.map((item, i) => {
+              if (item.type === "song") {
+                return (
+                  <List.Item
+                    key={i}
+                    href={item.link}
+                    description={item.artistName}
+                    prefix={<AudioLinesIcon className="text-foreground/50" />}
+                    suffix={<RelativeTime to={item.timestamp} />}
+                  >
+                    {item.title}
+                  </List.Item>
+                );
+              } else if (item.type === "artist")
+                return (
+                  <List.Item
+                    key={i}
+                    href={item.link}
+                    prefix={<MicVocalIcon className="text-foreground/50" />}
+                    suffix={<RelativeTime to={item.timestamp} />}
+                  >
+                    {item.name}
+                  </List.Item>
+                );
+              return null;
+            })}
+          </List.Content>
+        </List.Wrapper>
       )}
     </div>
   );

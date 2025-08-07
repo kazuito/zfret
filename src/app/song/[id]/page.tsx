@@ -1,5 +1,5 @@
 import AddHistory from "@/components/add-history";
-import { List, ListItem } from "@/components/list";
+import { List } from "@/components/list";
 import PageHeading from "@/components/page-heading";
 import Player from "@/components/player";
 import { fetchArtistSongs, fetchSong } from "@/lib/song";
@@ -96,15 +96,22 @@ const Page = async ({ params }: Props) => {
           </div>
         </div>
         <div className="my-10">
-          <List title={<Link href={song.artist.url}>{song.artist.name}</Link>}>
-            {artistSongs.map((artistSong) => {
-              return (
-                <ListItem key={artistSong.id} href={artistSong.url}>
-                  {artistSong.title}
-                </ListItem>
-              );
-            })}
-          </List>
+          <List.Wrapper>
+            <List.Header asChild>
+              <Link href={`/artist/${song.artist.name}`} className="w-fit">
+                {song.artist.name}
+              </Link>
+            </List.Header>
+            <List.Content>
+              {artistSongs.map((artistSong) => {
+                return (
+                  <List.Item key={artistSong.id} href={artistSong.url}>
+                    {artistSong.title}
+                  </List.Item>
+                );
+              })}
+            </List.Content>
+          </List.Wrapper>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { List, ListItem } from "@/components/list";
+import { List } from "@/components/list";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { search, SearchResult } from "@/lib/search";
@@ -88,17 +88,19 @@ const Page = () => {
               </div>
             )}
             {results.songs.length > 0 && (
-              <List>
-                {results.songs.map((song) => (
-                  <ListItem
-                    key={song.id}
-                    href={song.link}
-                    description={song.artistName}
-                  >
-                    {song.title}
-                  </ListItem>
-                ))}
-              </List>
+              <List.Wrapper>
+                <List.Content>
+                  {results.songs.map((song) => (
+                    <List.Item
+                      key={song.id}
+                      href={song.link}
+                      description={song.artistName}
+                    >
+                      {song.title}
+                    </List.Item>
+                  ))}
+                </List.Content>
+              </List.Wrapper>
             )}
           </div>
         )}
