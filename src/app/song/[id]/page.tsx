@@ -41,7 +41,7 @@ const Page = async ({ params }: Props) => {
             <Player youtubeVideoId={song.youtubeVideoId} />
           </div>
         )}
-        <div className="mt-8">
+        <div className="mt-10">
           <div className="flex flex-col gap-2">
             {song.lines.map((line, i) => {
               const lineHasLyric = line.some((part) => part.lyric);
@@ -66,7 +66,7 @@ const Page = async ({ params }: Props) => {
             })}
           </div>
         </div>
-        <div className="my-8">
+        <div className="my-10">
           <List
             prefix={<MicVocalIcon />}
             title={<Link href={song.artist.url}>{song.artist.name}</Link>}

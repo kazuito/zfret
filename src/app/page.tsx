@@ -16,7 +16,7 @@ export default async function Home() {
             <ListItem
               key={i}
               href={`/song/${song.id}`}
-              prefix={<div className="w-6">{i + 1}</div>}
+              prefix={<div className="min-w-4">{i + 1}</div>}
               description={song.artistName}
             >
               {song.title}
