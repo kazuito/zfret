@@ -1,5 +1,6 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Kosugi, Lexend } from "next/font/google";
@@ -20,7 +21,7 @@ const kosugi = Kosugi({
 
 export const metadata: Metadata = {
   title: "Z-FRET",
-  description: "Access chord faster.",
+  description: "Play chords comfortably.",
 };
 
 export default function RootLayout({
@@ -29,16 +30,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
-      <body
-        className={cn("antialiased dark", lexend.className, kosugi.variable)}
-      >
+    <html lang="ja" suppressHydrationWarning>
+      <head />
+      <body className={cn("antialiased", lexend.className, kosugi.variable)}>
         <NuqsAdapter>
-          <div className="min-h-[100dvh] flex flex-col">
-            <Header />
-            <div className="grow">{children}</div>
-            <Footer />
-          </div>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="min-h-[100dvh] flex flex-col">
+              <Header />
+              <div className="grow">{children}</div>
+              <Footer />
+            </div>
+          </ThemeProvider>
         </NuqsAdapter>
       </body>
     </html>

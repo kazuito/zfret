@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeToggle } from "./theme-toggle";
 
 const Footer = () => {
   return (
@@ -7,6 +8,9 @@ const Footer = () => {
         <Link href="/" className="font-semibold">
           Z-FRET
         </Link>
+        <div className="ml-auto">
+          <ThemeToggle />
+        </div>
       </div>
     </div>
   );
