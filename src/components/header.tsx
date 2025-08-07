@@ -1,4 +1,4 @@
-import { HistoryIcon, SearchIcon } from "lucide-react";
+import { HeartIcon, HistoryIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
@@ -13,6 +13,11 @@ const Header = () => {
           <Button size="icon" variant="ghost" asChild>
             <Link href="/search">
               <SearchIcon />
+            </Link>
+          </Button>
+          <Button size="icon" variant="ghost" asChild>
+            <Link href="/favorites">
+              <HeartIcon />
             </Link>
           </Button>
           <Button size="icon" variant="ghost" asChild>

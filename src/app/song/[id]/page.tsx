@@ -1,4 +1,5 @@
 import AddHistory from "@/components/add-history";
+import FavButton from "@/components/fav-button";
 import { List } from "@/components/list";
 import PageHeading from "@/components/page-heading";
 import Player from "@/components/player";
@@ -39,11 +40,20 @@ const Page = async ({ params }: Props) => {
     timestamp: Date.now(),
   };
 
+  const favItem = {
+    type: "song" as const,
+    title: song.title,
+    artistName: song.artist.name,
+    link: `/song/${id}`,
+    timestamp: Date.now(),
+  };
+
   return (
     <div className="p-6 pt-0 max-w-3xl mx-auto">
       <AddHistory item={historyItem} />
       <PageHeading
         subtitle={<Link href={song.artist.url}>{song.artist.name}</Link>}
+        endContent={<FavButton item={favItem} />}
       >
         {song.title}
       </PageHeading>
