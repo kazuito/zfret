@@ -3,20 +3,13 @@
 import { LS_KEYS } from "@/lib/constants";
 import { useEffect, useState } from "react";
 
-export type FavoriteItem =
-  | {
-      type: "song";
-      title: string;
-      artistName: string;
-      link: string;
-      timestamp: number;
-    }
-  | {
-      type: "artist";
-      name: string;
-      link: string;
-      timestamp: number;
-    };
+export type FavoriteItem = {
+  type: "song";
+  title: string;
+  artistName: string;
+  link: string;
+  timestamp: number;
+};
 
 export function useFavorites() {
   const [favorites, setFavorites] = useState<FavoriteItem[] | null>(null);
