@@ -7,21 +7,20 @@ dayjs.locale("ja");
 dayjs.extend(relativeTime);
 
 type Props = {
-  from?: dayjs.Dayjs | Date | string | number;
-  to?: dayjs.Dayjs | Date | string | number;
+  from?: dayjs.ConfigType;
+  to?: dayjs.ConfigType;
 };
 
-const RelativeTime = (
-  { from, to }: Props = {
-    from: dayjs(),
-    to: dayjs(),
-  }
-) => {
-  const [text, setText] = useState(dayjs(from).to(dayjs(to)));
+const RelativeTime = (props: Props) => {
+  const from = dayjs(props.from);
+  const to = dayjs(props.to);
+
+  const [text, setText] = useState(from.to(to));
 
   useEffect(() => {
+    // Update the text every second
     const interval = setInterval(() => {
-      setText(dayjs(from).to(dayjs(to)));
+      setText(from.to(to));
     }, 1000);
     return () => clearInterval(interval);
   }, [from, to]);
