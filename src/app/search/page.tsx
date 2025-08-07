@@ -69,7 +69,7 @@ const Page = () => {
         )}
         {empty && (
           <div className="text-center my-20 text-foreground/60">
-            No results found for "<b>{urlQuery}</b>".
+            No results found for &quot;<b>{urlQuery}</b>&quot;.
           </div>
         )}
         {!loading && results && (
