@@ -11,7 +11,7 @@ export default async function Home() {
     <div className="p-6 pt-0 max-w-3xl mx-auto flex flex-col">
       <PageHeading>Z-FRET</PageHeading>
       <div className="flex flex-col gap-6">
-        <List prefix={<AudioLinesIcon />} title="人気曲ランキング">
+        <List prefix={<AudioLinesIcon />} title="TOP SONGS">
           {topSongs.map((song, i) => (
             <ListItem
               key={i}
@@ -23,7 +23,7 @@ export default async function Home() {
             </ListItem>
           ))}
         </List>
-        <List prefix={<MicVocalIcon />} title="人気アーティストランキング">
+        <List prefix={<MicVocalIcon />} title="TOP ARTISTS">
           {topArtists.map((artist, i) => (
             <ListItem
               key={i}

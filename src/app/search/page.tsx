@@ -63,13 +63,13 @@ const Page = () => {
           <div className="justify-center flex my-20 text-foreground/60">
             <div className="flex gap-1 items-center animate-bounce">
               <LoaderIcon className="animate-spin size-4" />
-              検索中...
+              Searching...
             </div>
           </div>
         )}
         {empty && (
           <div className="text-center my-20 text-foreground/60">
-            <b>{urlQuery}</b> の検索結果が見つかりませんでした。
+            No results found for "<b>{urlQuery}</b>".
           </div>
         )}
         {!loading && results && (
@@ -80,7 +80,7 @@ const Page = () => {
                   <Link
                     key={artist.id}
                     href={artist.link}
-                    className="px-4 py-2 border rounded-full bg-secondary/40"
+                    className="px-4 py-2 border rounded-full bg-secondary/40 truncate"
                   >
                     {artist.name}
                   </Link>
