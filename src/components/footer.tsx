@@ -12,7 +12,7 @@ const Footer = () => {
             Z-FRET
           </Link>
           <div className="text-sm text-foreground/60 mt-1">
-            This app is using data from <Link href="https://www.ufret.jp" target="_blank">
+            Z-FRET is using data from <Link href="https://www.ufret.jp" target="_blank">
             www.ufret.jp
             </Link>
           </div>
