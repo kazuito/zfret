@@ -31,16 +31,9 @@ const Page = async ({ params }: Props) => {
     <div className="p-6 pt-0 max-w-3xl mx-auto">
       <AddHistory item={historyItem} />
       <PageHeading
-        subtitle={
-          <Link
-            className="text-shadow-md text-muted-foreground"
-            href={song.artist.url}
-          >
-            {song.artist.name}
-          </Link>
-        }
+        subtitle={<Link href={song.artist.url}>{song.artist.name}</Link>}
       >
-        <Link href={`/song/${song.id}`}>{song.title}</Link>
+        {song.title}
       </PageHeading>
       <div className="max-w-3xl mx-auto">
         {song.youtubeVideoId && (
