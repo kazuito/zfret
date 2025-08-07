@@ -48,7 +48,7 @@ const Page = () => {
       <form className="flex gap-2" onSubmit={handleSubmit}>
         <Input
           type="search"
-          placeholder="曲名・アーティスト名で検索"
+          placeholder="Search for songs or artists"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           disabled={loading}
