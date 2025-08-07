@@ -73,13 +73,13 @@ const Page = () => {
           </div>
         )}
         {!loading && results && (
-          <div className="mt-6 flex flex-col gap-4">
+          <div className="mt-6 flex flex-col gap-6">
             {results.artists.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {results.artists.map((artist) => (
                   <Link
-                    href={artist.link}
                     key={artist.id}
+                    href={artist.link}
                     className="px-4 py-2 border rounded-full bg-secondary/40"
                   >
                     {artist.name}
@@ -91,8 +91,8 @@ const Page = () => {
               <List>
                 {results.songs.map((song) => (
                   <ListItem
-                    href={song.link}
                     key={song.id}
+                    href={song.link}
                     description={song.artistName}
                   >
                     {song.title}
