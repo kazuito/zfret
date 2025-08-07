@@ -1,7 +1,6 @@
 import { List, ListItem } from "@/components/list";
-import PageHeading from "@/components/page-heading";
 import { fetchTopArtists, fetchTopSongs } from "@/lib/song";
-import { AudioLinesIcon, MicVocalIcon } from "lucide-react";
+import { AudioLinesIcon, MicVocalIcon, TargetIcon } from "lucide-react";
 
 export default async function Home() {
   const topSongs = await fetchTopSongs();
@@ -9,7 +8,12 @@ export default async function Home() {
 
   return (
     <div className="p-6 pt-0 max-w-3xl mx-auto flex flex-col">
-      <PageHeading>Z-FRET</PageHeading>
+      <div className="sm:h-100 h-60 relative overflow-clip flex items-center justify-center">
+        <TargetIcon className="absolute -z-1 w-[min(768px,100vw)] h-auto left-1/2 top-1/2 -translate-1/2 opacity-4" />
+        <div>
+          <div className="sm:text-5xl font-medium text-4xl">Z-FRET</div>
+        </div>
+      </div>
       <div className="flex flex-col gap-6">
         <List prefix={<AudioLinesIcon />} title="TOP SONGS">
           {topSongs.map((song, i) => (
