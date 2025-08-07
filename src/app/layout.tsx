@@ -37,8 +37,6 @@ export default function RootLayout({
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
           >
             <div className="min-h-[100dvh] flex flex-col">
               <Header />
