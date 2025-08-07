@@ -2,11 +2,21 @@ import AddHistory from "@/components/add-history";
 import { List, ListItem } from "@/components/list";
 import PageHeading from "@/components/page-heading";
 import { fetchArtistSongs } from "@/lib/song";
+import { Metadata } from "next";
 
 type Props = {
   params: Promise<{
     name: string;
   }>;
+};
+
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  const { name } = await params;
+  return {
+    title: `${decodeURIComponent(name)} | Z-FRET`,
+  };
 };
 
 const Page = async ({ params }: Props) => {

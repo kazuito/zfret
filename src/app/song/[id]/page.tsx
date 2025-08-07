@@ -5,12 +5,25 @@ import Player from "@/components/player";
 import { fetchArtistSongs, fetchSong } from "@/lib/song";
 import { cn } from "@/lib/utils";
 import { MicVocalIcon } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
 
 type Props = {
   params: Promise<{
     id: string;
   }>;
+};
+
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  const { id } = await params;
+  const song = await fetchSong(id);
+  return {
+    title: `${decodeURIComponent(song.title)} - ${decodeURIComponent(
+      song.artist.name
+    )} | Z-FRET`,
+  };
 };
 
 const Page = async ({ params }: Props) => {
