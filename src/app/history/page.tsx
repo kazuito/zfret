@@ -3,13 +3,8 @@
 import { BrowsingHistoryItem } from "@/components/add-history";
 import { List, ListItem } from "@/components/list";
 import RelativeTime from "@/components/relative-time";
-import dayjs from "dayjs";
 import "dayjs/locale/ja";
-import relativeTime from "dayjs/plugin/relativeTime";
 import { useLocalStorage } from "react-use";
-
-dayjs.locale("ja");
-dayjs.extend(relativeTime);
 
 const Page = () => {
   const [history] = useLocalStorage<BrowsingHistoryItem[]>(
