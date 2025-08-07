@@ -1,3 +1,4 @@
+import { load } from "cheerio";
 import { parseHTML } from "linkedom";
 import z from "zod";
 
@@ -9,13 +10,16 @@ export async function fetchSong(id: string) {
     next: { revalidate: 86400 }, // Cache for 24 hours
   });
   const html = await res.text();
+  const $ = load(html);
 
-  const { document } = parseHTML(html);
-
-  const title = document.querySelector(".show_name")?.textContent?.trim() ?? "";
-  const artistEl = document.querySelector(".show_artist");
-  const artistName = artistEl?.textContent?.trim() ?? "";
+  const title = $(".show_name").text().trim();
+  const artistName = $(".show_artist").first().text().trim();
   const encodedArtistName = encodeURIComponent(artistName);
+  const lyricistComposerMatch = $(".show_lyrics")
+    .text()
+    .match(/作詞 : (.+)\/作曲 : (.+)/);
+  const lyricistNames = lyricistComposerMatch?.[1]?.split(", ") ?? [];
+  const composerNames = lyricistComposerMatch?.[2]?.split(", ") ?? [];
 
   const chordsRawData = html.match(/var ufret_chord_datas = (\[.*?\]);/)?.[1];
   if (!chordsRawData) {
@@ -58,6 +62,8 @@ export async function fetchSong(id: string) {
       name: artistName,
       url: `/artist/${encodedArtistName}`,
     },
+    lyricistNames,
+    composerNames,
     lines: chords,
     youtubeVideoId,
   };

@@ -74,6 +74,25 @@ const Page = async ({ params }: Props) => {
               );
             })}
           </div>
+          <div className="flex flex-col gap-3 items-end mt-6 text-sm">
+            <div className="flex items-center gap-2 font-semibold">
+              <Link href={`/song/${id}`}>{song.title}</Link>
+              <hr className="h-px w-2 bg-foreground/80" />
+              <Link href={song.artist.url}>{song.artist.name}</Link>
+            </div>
+            <div className="text-foreground/60">
+              Lyric by{" "}
+              <span className="text-foreground">
+                {song.lyricistNames.join(", ")}
+              </span>
+            </div>
+            <div className="text-foreground/60">
+              Composed by{" "}
+              <span className="text-foreground">
+                {song.composerNames.join(", ")}
+              </span>
+            </div>
+          </div>
         </div>
         <div className="my-10">
           <List
