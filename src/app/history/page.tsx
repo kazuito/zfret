@@ -1,16 +1,12 @@
 "use client";
 
-import { BrowsingHistoryItem } from "@/components/add-history";
 import { List, ListItem } from "@/components/list";
 import RelativeTime from "@/components/relative-time";
+import { useBrowsingHistory } from "@/hooks/use-browsing-history";
 import "dayjs/locale/ja";
-import { useLocalStorage } from "react-use";
 
 const Page = () => {
-  const [history] = useLocalStorage<BrowsingHistoryItem[]>(
-    "browsing-history",
-    []
-  );
+  const [history] = useBrowsingHistory();
 
   const reversedHistory = history?.toReversed() ?? [];
 

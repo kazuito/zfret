@@ -1,32 +1,17 @@
 "use client";
 
+import {
+  BrowsingHistoryItem,
+  useBrowsingHistory,
+} from "@/hooks/use-browsing-history";
 import { useEffect } from "react";
-import { useLocalStorage } from "react-use";
-
-export type BrowsingHistoryItem =
-  | {
-      type: "song";
-      title: string;
-      artistName: string;
-      link: string;
-      timestamp: number;
-    }
-  | {
-      type: "artist";
-      name: string;
-      link: string;
-      timestamp: number;
-    };
 
 type Props = {
   item: BrowsingHistoryItem;
 };
 
 const AddHistory = ({ item }: Props) => {
-  const [history, setHistory] = useLocalStorage<BrowsingHistoryItem[]>(
-    "browsing-history",
-    []
-  );
+  const [history, setHistory] = useBrowsingHistory();
 
   useEffect(() => {
     if (history === undefined) return;
