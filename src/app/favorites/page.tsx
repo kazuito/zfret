@@ -38,6 +38,10 @@ const Page = () => {
   const [selectedSort, setSelectedSort] = useState("timestamp");
   const [isAsc, setIsAsc] = useState(true);
 
+  const toggleSortOrder = () => {
+    setIsAsc((prev) => !prev);
+  };
+
   const computedFavorites = useMemo(() => {
     if (!favorites || favorites.length === 0) return [];
     const sortFn = sortBy[selectedSort as keyof typeof sortBy]?.fn;
@@ -54,7 +58,7 @@ const Page = () => {
             <Button
               size="icon"
               variant="outline"
-              onClick={() => setIsAsc(!isAsc)}
+              onClick={toggleSortOrder}
               className="rounded-e-none border-e-0"
               title="Toggle sort order"
             >
