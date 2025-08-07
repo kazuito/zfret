@@ -134,7 +134,15 @@ export async function fetchArtistSongs(artistName: string) {
     .filter((song) => song.id && song.title);
 }
 
-export async function fetchTopSongs() {
+type FetchTopSongsArgs = {
+  limit?: number;
+};
+
+export async function fetchTopSongs(
+  { limit }: FetchTopSongsArgs = {
+    limit: 10,
+  }
+) {
   const url = "https://www.ufret.jp/rank.php";
   const res = await fetch(url, {
     next: { revalidate: 86400 }, // Cache for 24 hours
@@ -144,7 +152,7 @@ export async function fetchTopSongs() {
 
   const songElements = document.querySelectorAll("a[href^='/song.php']");
 
-  return Array.from(songElements).map((item) => {
+  const topSongs = Array.from(songElements).map((item) => {
     const title = item.querySelector("strong")?.textContent?.trim();
     const id = item.getAttribute("href")?.match(/data=(\d+)/)?.[1];
     const artistName = item
@@ -157,9 +165,17 @@ export async function fetchTopSongs() {
       artistName,
     };
   });
+
+  return topSongs.slice(0, limit);
 }
 
-export async function fetchTopArtists() {
+type FetchTopArtistsArgs = {
+  limit?: number;
+};
+
+export async function fetchTopArtists(
+  { limit }: FetchTopArtistsArgs = { limit: 10 }
+) {
   const url = "https://www.ufret.jp/rank_artist.php";
   const res = await fetch(url, {
     next: { revalidate: 86400 }, // Cache for 24 hours
@@ -171,7 +187,7 @@ export async function fetchTopArtists() {
     "a[href^='/artist.php'].list-group-item.list-group-item-action"
   );
 
-  return Array.from(artistElements).map((item) => {
+  const topArtists = Array.from(artistElements).map((item) => {
     const name = item.querySelector("strong")?.textContent?.trim();
     const encodedName = encodeURIComponent(name || "");
     return {
@@ -179,4 +195,6 @@ export async function fetchTopArtists() {
       url: `/artist/${encodedName}`,
     };
   });
+
+  return topArtists.slice(0, limit);
 }
