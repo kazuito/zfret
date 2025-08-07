@@ -10,7 +10,7 @@ const List = ({ prefix, title, children }: ListProps) => {
   return (
     <div className="rounded-lg bg-secondary/20 border border-border/60">
       {(title || prefix) && (
-        <div className="flex items-center gap-2 p-4 [&_svg]:size-4.5 font-semibold">
+        <div className="flex items-center gap-2.5 px-5.5 py-4 [&_svg]:size-4.5 font-semibold">
           {prefix}
           {title}
         </div>
@@ -40,7 +40,11 @@ const ListItem = ({
       href={href}
       className="py-3 px-4 flex items-center gap-3 bg-secondary/20 rounded-md border border-border/60"
     >
-      {prefix && <div className="text-sm text-foreground/80">{prefix}</div>}
+      {prefix && (
+        <div className="text-sm text-foreground/80 [&_svg]:size-4.5">
+          {prefix}
+        </div>
+      )}
       <div className="truncate">{children}</div>
       {description && (
         <div className="text-sm text-foreground/60 truncate">{description}</div>

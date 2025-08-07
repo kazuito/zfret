@@ -8,10 +8,7 @@ export default async function Home() {
 
   return (
     <div className="p-6 max-w-3xl mx-auto">
-      <List
-        prefix={<AudioLinesIcon className="animate-pulse" />}
-        title="人気曲ランキング"
-      >
+      <List prefix={<AudioLinesIcon />} title="人気曲ランキング">
         {topSongs.map((song, i) => (
           <ListItem
             key={i}
@@ -24,10 +21,7 @@ export default async function Home() {
         ))}
       </List>
       <div className="mt-6">
-        <List
-          prefix={<MicVocalIcon className="animate-pulse" />}
-          title="人気アーティストランキング"
-        >
+        <List prefix={<MicVocalIcon />} title="人気アーティストランキング">
           {topArtists.map((artist, i) => (
             <ListItem
               key={i}

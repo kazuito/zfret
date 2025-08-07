@@ -4,7 +4,7 @@ import { List, ListItem } from "@/components/list";
 import RelativeTime from "@/components/relative-time";
 import { useBrowsingHistory } from "@/hooks/use-browsing-history";
 import "dayjs/locale/ja";
-import { HistoryIcon } from "lucide-react";
+import { AudioLinesIcon, HistoryIcon, MicVocalIcon } from "lucide-react";
 
 const Page = () => {
   const [history] = useBrowsingHistory();
@@ -21,6 +21,7 @@ const Page = () => {
                 key={i}
                 href={item.link}
                 description={item.artistName}
+                prefix={<AudioLinesIcon className="text-foreground/50" />}
                 suffix={<RelativeTime to={item.timestamp} />}
               >
                 {item.title}
@@ -31,6 +32,7 @@ const Page = () => {
               <ListItem
                 key={i}
                 href={item.link}
+                prefix={<MicVocalIcon className="text-foreground/50" />}
                 suffix={<RelativeTime to={item.timestamp} />}
               >
                 {item.name}
