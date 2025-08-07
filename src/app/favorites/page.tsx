@@ -24,12 +24,23 @@ const sortBy = {
   },
   title: {
     label: "Title",
-    fn: (a: FavoriteItem, b: FavoriteItem) => a.title.localeCompare(b.title),
+    fn: (a: FavoriteItem, b: FavoriteItem) => {
+      const titleComparison = a.title.localeCompare(b.title);
+      if (titleComparison === 0) {
+        return a.artistName.localeCompare(b.artistName);
+      }
+      return titleComparison;
+    },
   },
   artist: {
     label: "Artist",
-    fn: (a: FavoriteItem, b: FavoriteItem) =>
-      a.artistName.localeCompare(b.artistName),
+    fn: (a: FavoriteItem, b: FavoriteItem) => {
+      const artistComparison = a.artistName.localeCompare(b.artistName);
+      if (artistComparison === 0) {
+        return a.title.localeCompare(b.title);
+      }
+      return artistComparison;
+    },
   },
 };
 
@@ -74,7 +85,7 @@ const Page = () => {
               <SelectTrigger className="rounded-s-none">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent align="end">
                 <SelectGroup>
                   <SelectLabel>Sort by</SelectLabel>
                   {Object.entries(sortBy).map(([key, value]) => (
