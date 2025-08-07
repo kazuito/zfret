@@ -1,17 +1,20 @@
 import Header from "@/components/header";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Kosugi, Lexend } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const lexend = Lexend({
+  variable: "--font-lexend",
   subsets: ["latin"],
+  fallback: ["var(--font-kosugi)"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const kosugi = Kosugi({
+  variable: "--font-kosugi",
   subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -27,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
+        className={cn("antialiased dark", lexend.className, kosugi.variable)}
       >
         <NuqsAdapter>
           <div className="mx-auto">

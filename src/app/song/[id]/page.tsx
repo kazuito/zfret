@@ -1,5 +1,6 @@
 import AddHistory from "@/components/add-history";
 import { List, ListItem } from "@/components/list";
+import PageHeading from "@/components/page-heading";
 import Player from "@/components/player";
 import { fetchArtistSongs, fetchSong } from "@/lib/song";
 import { cn } from "@/lib/utils";
@@ -27,32 +28,28 @@ const Page = async ({ params }: Props) => {
   };
 
   return (
-    <div className="">
+    <div className="p-6 pt-0 max-w-3xl mx-auto">
       <AddHistory item={historyItem} />
-      <div className="items-center gap-4 justify-between flex-row bg-gradient-to-b from-background to-transparent flex my-6 w-full h-fit overflow-clip z-10">
-        <div className="mx-auto w-full px-6 max-w-3xl flex flex-col">
-          <Link
-            href={`/song/${song.id}`}
-            className="font-bold text-shadow text-xl"
-          >
-            {song.title}
-          </Link>
+      <PageHeading
+        subtitle={
           <Link
             className="text-shadow-md text-muted-foreground"
             href={song.artist.url}
           >
             {song.artist.name}
           </Link>
-        </div>
-      </div>
-      <div className="max-w-3xl mx-auto px-4">
+        }
+      >
+        <Link href={`/song/${song.id}`}>{song.title}</Link>
+      </PageHeading>
+      <div className="max-w-3xl mx-auto">
         {song.youtubeVideoId && (
           <div className="sm:px-2">
             <Player youtubeVideoId={song.youtubeVideoId} />
           </div>
         )}
         <div className="mt-8">
-          <div className="flex flex-col gap-2 px-2 sm:px-6">
+          <div className="flex flex-col gap-2">
             {song.lines.map((line, i) => {
               const lineHasLyric = line.some((part) => part.lyric);
               return (

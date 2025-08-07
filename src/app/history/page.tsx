@@ -1,6 +1,7 @@
 "use client";
 
 import { List, ListItem } from "@/components/list";
+import PageHeading from "@/components/page-heading";
 import RelativeTime from "@/components/relative-time";
 import { useBrowsingHistory } from "@/hooks/use-browsing-history";
 import "dayjs/locale/ja";
@@ -12,8 +13,11 @@ const Page = () => {
   const reversedHistory = history?.toReversed() ?? [];
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      <List prefix={<HistoryIcon />} title="閲覧履歴">
+    <div className="max-w-3xl mx-auto p-6 pt-0">
+      <PageHeading>
+        最近見たページ
+      </PageHeading>
+      <List>
         {reversedHistory.map((item, i) => {
           if (item.type === "song") {
             return (
