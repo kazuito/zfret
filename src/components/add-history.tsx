@@ -15,12 +15,10 @@ const AddHistory = ({ item }: Props) => {
 
   useEffect(() => {
     if (history === undefined) return;
-    const lastHistory = history.at(-1);
-    if (lastHistory && lastHistory.link === item.link) {
-      return;
-    } else {
-      setHistory((prevHistory) => [...(prevHistory ?? []), item]);
-    }
+    setHistory((prevHistory) => [
+      ...(prevHistory?.filter((h) => h.link !== item.link) ?? []),
+      item,
+    ]);
   }, [item]);
 
   return null;
