@@ -10,20 +10,20 @@ const Header = () => {
           Z-FRET
         </Link>
         <div className="ml-auto">
-          <Button size="icon" variant="ghost" title="Search" asChild>
-            <Link href="/search">
+          <Button size="icon" variant="ghost" asChild>
+            <Link href="/search" title="Search">
               <SearchIcon />
               <span className="sr-only">Search</span>
             </Link>
           </Button>
-          <Button size="icon" variant="ghost" title="Favorites" asChild>
-            <Link href="/favorites">
+          <Button size="icon" variant="ghost" asChild>
+            <Link href="/favorites" title="Favorites">
               <HeartIcon />
               <span className="sr-only">Favorites</span>
             </Link>
           </Button>
-          <Button size="icon" variant="ghost" title="History" asChild>
-            <Link href="/history">
+          <Button size="icon" variant="ghost" asChild>
+            <Link href="/history" title="History">
               <HistoryIcon />
               <span className="sr-only">History</span>
             </Link>
