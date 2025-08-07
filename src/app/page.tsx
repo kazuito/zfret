@@ -9,9 +9,12 @@ export default async function Home() {
   return (
     <div className="p-6 pt-0 max-w-3xl mx-auto flex flex-col">
       <div className="sm:h-100 h-60 relative overflow-clip flex items-center justify-center">
-        <TargetIcon className="absolute -z-1 w-[min(768px,100vw)] h-auto left-1/2 top-1/2 -translate-1/2 opacity-4" />
-        <div>
-          <div className="sm:text-5xl font-medium text-4xl">Z-FRET</div>
+        <TargetIcon className="absolute -z-1 w-[min(768px,100vw)] h-auto left-1/2 top-1/2 -translate-1/2 opacity-2 dark:opacity-3" />
+        <div className="flex flex-col items-start sm:items-center gap-2">
+          <div className="sm:text-5xl font-medium text-4xl">
+            The Place for Chords
+          </div>
+          <div>A chord library of Japan Hits</div>
         </div>
       </div>
       <div className="flex flex-col gap-6">
