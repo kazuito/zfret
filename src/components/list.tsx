@@ -50,7 +50,9 @@ const ListItem = ({
         <div className="text-sm text-foreground/60 truncate">{description}</div>
       )}
       {suffix && (
-        <div className="ml-auto text-sm text-foreground/40">{suffix}</div>
+        <div className="ml-auto text-sm text-foreground/40 text-nowrap">
+          {suffix}
+        </div>
       )}
     </Link>
   );
