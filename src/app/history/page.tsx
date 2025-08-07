@@ -2,6 +2,7 @@
 
 import { BrowsingHistoryItem } from "@/components/add-history";
 import { List, ListItem } from "@/components/list";
+import RelativeTime from "@/components/relative-time";
 import dayjs from "dayjs";
 import "dayjs/locale/ja";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -22,7 +23,6 @@ const Page = () => {
     <div className="max-w-3xl mx-auto p-6">
       <List heading="閲覧履歴">
         {reversedHistory.map((item, i) => {
-          const agoText = dayjs().to(dayjs(item.timestamp));
           if (item.type === "song") {
             return (
               <ListItem
@@ -30,7 +30,7 @@ const Page = () => {
                 href={item.link}
                 title={item.title}
                 description={item.artistName}
-                suffix={agoText}
+                suffix={<RelativeTime to={item.timestamp} />}
               ></ListItem>
             );
           } else if (item.type === "artist")
@@ -39,7 +39,7 @@ const Page = () => {
                 key={i}
                 href={item.link}
                 title={item.name}
-                suffix={agoText}
+                suffix={<RelativeTime to={item.timestamp} />}
               ></ListItem>
             );
           return null;
