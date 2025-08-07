@@ -36,11 +36,7 @@ const Page = async ({ params }: Props) => {
         {song.title}
       </PageHeading>
       <div className="max-w-3xl mx-auto">
-        {song.youtubeVideoId && (
-          <div className="sm:px-2">
-            <Player youtubeVideoId={song.youtubeVideoId} />
-          </div>
-        )}
+        {song.youtubeVideoId && <Player youtubeVideoId={song.youtubeVideoId} />}
         <div className="mt-10">
           <div className="flex flex-col gap-2">
             {song.lines.map((line, i) => {
