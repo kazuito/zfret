@@ -7,7 +7,7 @@ type Props = {
 
 const PageHeading = ({ children, subtitle }: Props) => {
   return (
-    <div className="my-10">
+    <div className="my-10 px-2">
       <Link
         href=""
         className="font-semibold text-xl sm:text-2xl flex items-center gap-2 sm:gap-3 [&_svg]:size-5 sm:[&_svg]:size-6 w-fit"

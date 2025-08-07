@@ -4,7 +4,6 @@ import { List, ListItem } from "@/components/list";
 import PageHeading from "@/components/page-heading";
 import RelativeTime from "@/components/relative-time";
 import { useBrowsingHistory } from "@/hooks/use-browsing-history";
-import "dayjs/locale/ja";
 import { AudioLinesIcon, HistoryIcon, MicVocalIcon } from "lucide-react";
 import Link from "next/link";
 

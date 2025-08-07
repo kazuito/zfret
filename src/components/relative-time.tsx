@@ -1,9 +1,7 @@
 import dayjs from "dayjs";
-import "dayjs/locale/ja";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useEffect, useState } from "react";
 
-dayjs.locale("ja");
 dayjs.extend(relativeTime);
 
 type Props = {
