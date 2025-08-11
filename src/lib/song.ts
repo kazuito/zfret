@@ -14,18 +14,26 @@ export async function fetchSong(id: string) {
   const title = $(".show_name").text().trim();
   const artistName = $(".show_artist").first().text().trim();
   const encodedArtistName = encodeURIComponent(artistName);
+
+  const tags = $("p[style='margin-bottom:5px;'] > span.badge")
+    .map((_, el) => $(el).text().trim())
+    .get()
+    .filter(Boolean);
+
+  console.log(tags);
+
   const writerComposerMatch = $(".show_lyrics")
     .text()
     .match(/作詞 : (.+)\/作曲 : (.+)/);
   const writerNames = writerComposerMatch?.[1]?.split(", ") ?? [];
   const composerNames = writerComposerMatch?.[2]?.split(", ") ?? [];
 
+  const youtubeVideoId = html.match(/var ytID = '(.+?)';/)?.[1] ?? null;
+
   const chordsRawData = html.match(/var ufret_chord_datas = (\[.*?\]);/)?.[1];
   if (!chordsRawData) {
     throw new Error("Chords data not found in the HTML");
   }
-
-  const youtubeVideoId = html.match(/var ytID = '(.+?)';/)?.[1] ?? null;
 
   const parsedChordsData = chordsDataSchema.safeParse(
     JSON.parse(chordsRawData)
@@ -92,17 +100,32 @@ export async function fetchArtistSongs(
 
   return resultElements
     .map((_, el) => {
-      const title = $(el).find("strong").text()?.trim();
-      const href = $(el).attr("href");
+      const $el = $(el);
+      const title = $el.find("strong").text()?.trim();
+      const href = $el.attr("href");
       const id = href?.match(/data=(\d+)/)?.[1];
+      const tags = $el
+        .find("span.badge")
+        .map((_, el) => $(el).text().trim())
+        .get();
+
+      if ($el.find(".fab.fa-smile").length) tags.push("beginner");
+
       return {
         id,
         title,
         url: `/song/${id}`,
+        tags,
       };
     })
     .get()
     .filter((song) => song.id && song.title)
+    .filter(
+      (song) =>
+        !song.tags.includes("ピアノソロ初級") &&
+        !song.tags.includes("弾き語りTAB譜") &&
+        !song.tags.includes("beginner")
+    )
     .slice(0, options.limit);
 }
 
@@ -154,14 +177,20 @@ export async function fetchTopSongs(
       const title = $el.find("strong").text().trim();
       const id = $el.attr("href")?.match(/data=(\d+)/)?.[1];
       const artistName = $el.find("span").last().text().trim();
+      const tags = $el
+        .find("span.badge")
+        .map((_, el) => $(el).text().trim())
+        .get();
       return {
         title,
         id,
         url: `/song/${id}`,
         artistName,
+        tags,
       };
     })
-    .get();
+    .get()
+    .filter((song) => !song.tags.includes("初心者"));
 
   return topSongs.slice(0, options.limit);
 }
