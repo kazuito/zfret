@@ -1,6 +1,6 @@
 import { load } from "cheerio";
 import { parseHTML } from "linkedom";
-import z from "zod";
+import { z } from "zod";
 
 const chordsDataSchema = z.array(z.string());
 
@@ -69,56 +69,14 @@ export async function fetchSong(id: string) {
   };
 }
 
-export async function fetchSearchResults(query: string) {
-  const url = `https://www.ufret.jp/search.php?key=${query}`;
-  const res = await fetch(url, {
-    next: { revalidate: 86400 }, // Cache for 24 hours
-  });
-  const html = await res.text();
-  const { document } = parseHTML(html);
-
-  const artistElements = document.querySelectorAll(".artist_list.btn");
-  const artists = Array.from(artistElements).map((item) => {
-    const name = item.textContent?.trim();
-    const encodedName = encodeURIComponent(name || "");
-    return {
-      name,
-      url: `/artist/${encodedName}`,
-    };
-  });
-
-  const songElements = document.querySelectorAll(
-    ".list-group > .list-group-item.list-group-item-action:not(:has(.badge))"
-  );
-  const songs = Array.from(songElements)
-    .map((item) => {
-      const title = item.querySelector("strong")?.textContent?.trim();
-      const artistName = item.querySelector("span")?.textContent?.trim();
-      const encodedArtistName = encodeURIComponent(artistName || "");
-      const url = item.getAttribute("href");
-      const id = url?.match(/data=(\d+)/)?.[1];
-      return {
-        id,
-        title,
-        url: `/song/${id}`,
-        artist: {
-          name: artistName,
-          url: `https://www.ufret.jp/artist.php?data=${encodedArtistName}`,
-        },
-      };
-    })
-    .filter((song) => song.id && song.title && song.artist);
-
-  return {
-    artists,
-    songs,
-  };
-}
+type FetchArtistSongsOptions = {
+  limit?: number;
+};
 
 export async function fetchArtistSongs(
   artistName: string,
-  { limit } = {
-    limit: -1,
+  options: FetchArtistSongsOptions = {
+    limit: 10,
   }
 ) {
   const encodedArtistName = encodeURIComponent(artistName);
@@ -143,15 +101,15 @@ export async function fetchArtistSongs(
       };
     })
     .filter((song) => song.id && song.title)
-    .slice(0, limit);
+    .slice(0, options.limit);
 }
 
-type FetchTopSongsArgs = {
+type FetchTopSongsOptions = {
   limit?: number;
 };
 
 export async function fetchTopSongs(
-  { limit }: FetchTopSongsArgs = {
+  options: FetchTopSongsOptions = {
     limit: 10,
   }
 ) {
@@ -178,15 +136,15 @@ export async function fetchTopSongs(
     };
   });
 
-  return topSongs.slice(0, limit);
+  return topSongs.slice(0, options.limit);
 }
 
-type FetchTopArtistsArgs = {
+type FetchTopArtistsOptions = {
   limit?: number;
 };
 
 export async function fetchTopArtists(
-  { limit }: FetchTopArtistsArgs = { limit: 10 }
+  options: FetchTopArtistsOptions = { limit: 10 }
 ) {
   const url = "https://www.ufret.jp/rank_artist.php";
   const res = await fetch(url, {
@@ -208,5 +166,5 @@ export async function fetchTopArtists(
     };
   });
 
-  return topArtists.slice(0, limit);
+  return topArtists.slice(0, options.limit);
 }
