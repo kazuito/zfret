@@ -20,8 +20,6 @@ export async function fetchSong(id: string) {
     .get()
     .filter(Boolean);
 
-  console.log(tags);
-
   const writerComposerMatch = $(".show_lyrics")
     .text()
     .match(/作詞 : (.+)\/作曲 : (.+)/);
