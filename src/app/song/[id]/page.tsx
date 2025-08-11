@@ -3,7 +3,7 @@ import FavButton from "@/components/fav-button";
 import { List } from "@/components/list";
 import PageHeading from "@/components/page-heading";
 import Player from "@/components/player";
-import { fetchArtistSongs, fetchSong } from "@/lib/song";
+import { fetchRelatedSongs, fetchSong } from "@/lib/song";
 import { cn } from "@/lib/utils";
 import { ArrowRightIcon } from "lucide-react";
 import { Metadata } from "next";
@@ -31,7 +31,7 @@ const Page = async ({ params }: Props) => {
   const { id } = await params;
 
   const song = await fetchSong(id);
-  const artistSongs = await fetchArtistSongs(song.artist.name, {
+  const artistSongs = await fetchRelatedSongs(song.id, song.artist.name, {
     limit: 10,
   });
 

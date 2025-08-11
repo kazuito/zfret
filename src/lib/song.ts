@@ -76,7 +76,7 @@ type FetchArtistSongsOptions = {
 export async function fetchArtistSongs(
   artistName: string,
   options: FetchArtistSongsOptions = {
-    limit: 10,
+    limit: -1,
   }
 ) {
   const encodedArtistName = encodeURIComponent(artistName);
@@ -104,8 +104,32 @@ export async function fetchArtistSongs(
     .slice(0, options.limit);
 }
 
+type FetchRelatedSongsOptions = {
+  limit: number;
+};
+
+export async function fetchRelatedSongs(
+  songId: string,
+  artistName: string,
+  options: FetchRelatedSongsOptions = {
+    limit: 20,
+  }
+) {
+  const artistSongs = await fetchArtistSongs(artistName);
+  const selfIndex = artistSongs.findIndex((song) => song.id === songId);
+
+  if (selfIndex === -1) return artistSongs.slice(0, options.limit);
+
+  const startIndex = Math.max(0, selfIndex - options.limit / 2);
+  const endIndex = Math.min(artistSongs.length, startIndex + options.limit);
+
+  return artistSongs
+    .filter((song) => song.id !== songId)
+    .slice(startIndex, endIndex);
+}
+
 type FetchTopSongsOptions = {
-  limit?: number;
+  limit: number;
 };
 
 export async function fetchTopSongs(
@@ -140,7 +164,7 @@ export async function fetchTopSongs(
 }
 
 type FetchTopArtistsOptions = {
-  limit?: number;
+  limit: number;
 };
 
 export async function fetchTopArtists(
