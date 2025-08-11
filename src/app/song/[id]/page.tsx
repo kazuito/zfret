@@ -97,7 +97,7 @@ const Page = async ({ params }: Props) => {
             <div className="text-foreground/60">
               Written by{" "}
               <span className="text-foreground">
-                {song.lyricistNames.join(", ")}
+                {song.writerNames.join(", ")}
               </span>
             </div>
             <div className="text-foreground/60">

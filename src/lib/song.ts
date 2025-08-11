@@ -1,5 +1,4 @@
 import { load } from "cheerio";
-import { parseHTML } from "linkedom";
 import { z } from "zod";
 
 const chordsDataSchema = z.array(z.string());
@@ -15,11 +14,11 @@ export async function fetchSong(id: string) {
   const title = $(".show_name").text().trim();
   const artistName = $(".show_artist").first().text().trim();
   const encodedArtistName = encodeURIComponent(artistName);
-  const lyricistComposerMatch = $(".show_lyrics")
+  const writerComposerMatch = $(".show_lyrics")
     .text()
     .match(/作詞 : (.+)\/作曲 : (.+)/);
-  const lyricistNames = lyricistComposerMatch?.[1]?.split(", ") ?? [];
-  const composerNames = lyricistComposerMatch?.[2]?.split(", ") ?? [];
+  const writerNames = writerComposerMatch?.[1]?.split(", ") ?? [];
+  const composerNames = writerComposerMatch?.[2]?.split(", ") ?? [];
 
   const chordsRawData = html.match(/var ufret_chord_datas = (\[.*?\]);/)?.[1];
   if (!chordsRawData) {
@@ -62,7 +61,7 @@ export async function fetchSong(id: string) {
       name: artistName,
       url: `/artist/${encodedArtistName}`,
     },
-    lyricistNames,
+    writerNames,
     composerNames,
     lines: chords,
     youtubeVideoId,
@@ -85,21 +84,24 @@ export async function fetchArtistSongs(
     next: { revalidate: 86400 }, // Cache for 24 hours
   });
   const html = await res.text();
-  const { document } = parseHTML(html);
-  const resultElements = document.querySelectorAll(
-    ".list-group > .list-group-item.list-group-item-action:not([style='display:none;'])"
-  );
-  return Array.from(resultElements)
-    .map((item) => {
-      const title = item.querySelector("strong")?.textContent?.trim();
-      const url = item.getAttribute("href");
-      const id = url?.match(/data=(\d+)/)?.[1];
+  const $ = load(html);
+
+  const resultElements = $(
+    ".list-group > .list-group-item.list-group-item-action"
+  ).filter((_, el) => $(el).attr("style") !== "display:none;");
+
+  return resultElements
+    .map((_, el) => {
+      const title = $(el).find("strong").text()?.trim();
+      const href = $(el).attr("href");
+      const id = href?.match(/data=(\d+)/)?.[1];
       return {
         id,
         title,
         url: `/song/${id}`,
       };
     })
+    .get()
     .filter((song) => song.id && song.title)
     .slice(0, options.limit);
 }
@@ -142,23 +144,24 @@ export async function fetchTopSongs(
     next: { revalidate: 86400 }, // Cache for 24 hours
   });
   const html = await res.text();
-  const { document } = parseHTML(html);
+  const $ = load(html);
 
-  const songElements = document.querySelectorAll("a[href^='/song.php']");
+  const songElements = $("a[href^='/song.php']");
 
-  const topSongs = Array.from(songElements).map((item) => {
-    const title = item.querySelector("strong")?.textContent?.trim();
-    const id = item.getAttribute("href")?.match(/data=(\d+)/)?.[1];
-    const artistName = item
-      .querySelector("span:last-child")
-      ?.textContent?.trim();
-    return {
-      title,
-      id,
-      url: `/song/${id}`,
-      artistName,
-    };
-  });
+  const topSongs = songElements
+    .map((_, el) => {
+      const $el = $(el);
+      const title = $el.find("strong").text().trim();
+      const id = $el.attr("href")?.match(/data=(\d+)/)?.[1];
+      const artistName = $el.find("span").last().text().trim();
+      return {
+        title,
+        id,
+        url: `/song/${id}`,
+        artistName,
+      };
+    })
+    .get();
 
   return topSongs.slice(0, options.limit);
 }
@@ -175,20 +178,22 @@ export async function fetchTopArtists(
     next: { revalidate: 86400 }, // Cache for 24 hours
   });
   const html = await res.text();
-  const { document } = parseHTML(html);
+  const $ = load(html);
 
-  const artistElements = document.querySelectorAll(
+  const artistElements = $(
     "a[href^='/artist.php'].list-group-item.list-group-item-action"
   );
 
-  const topArtists = Array.from(artistElements).map((item) => {
-    const name = item.querySelector("strong")?.textContent?.trim();
-    const encodedName = encodeURIComponent(name || "");
-    return {
-      name,
-      url: `/artist/${encodedName}`,
-    };
-  });
+  const topArtists = artistElements
+    .map((_, el) => {
+      const name = $(el).find("strong").text().trim();
+      const encodedName = encodeURIComponent(name || "");
+      return {
+        name,
+        url: `/artist/${encodedName}`,
+      };
+    })
+    .get();
 
   return topArtists.slice(0, options.limit);
 }
