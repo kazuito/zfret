@@ -71,6 +71,7 @@ export async function fetchSong(id: string) {
     composerNames,
     lines: chords,
     youtubeVideoId,
+    tags,
   };
 }
 
