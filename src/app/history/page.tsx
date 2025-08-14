@@ -3,9 +3,23 @@
 import { List } from "@/components/list";
 import PageHeading from "@/components/page-heading";
 import RelativeTime from "@/components/relative-time";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useBrowsingHistory } from "@/hooks/use-browsing-history";
-import { AudioLinesIcon, HistoryIcon, MicVocalIcon } from "lucide-react";
+import {
+  AudioLinesIcon,
+  EllipsisIcon,
+  HistoryIcon,
+  MicVocalIcon,
+  TrashIcon,
+} from "lucide-react";
 import Link from "next/link";
+import { toast } from "sonner";
 
 const Page = () => {
   const { historyItems } = useBrowsingHistory();
@@ -14,7 +28,7 @@ const Page = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-6 pt-0">
-      <PageHeading>
+      <PageHeading endContent={<HeaderContent />}>
         <HistoryIcon />
         History
       </PageHeading>
@@ -58,6 +72,43 @@ const Page = () => {
         </List.Wrapper>
       )}
     </div>
+  );
+};
+
+const HeaderContent = () => {
+  const { clearAllHistory, historyItems, setHistoryItems } =
+    useBrowsingHistory();
+
+  const handleClear = () => {
+    if (window.confirm("Are you sure you want to clear your history?")) {
+      clearAllHistory();
+      const currentItems = [...historyItems];
+      toast.success("History cleared.", {
+        action: {
+          label: "Undo",
+          onClick: () => {
+            setHistoryItems(currentItems);
+            toast.dismiss();
+          },
+        },
+      });
+    }
+  };
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="icon">
+          <EllipsisIcon />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem variant="destructive" onClick={handleClear}>
+          <TrashIcon />
+          Clear All History
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 

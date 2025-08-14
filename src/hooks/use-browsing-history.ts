@@ -21,19 +21,24 @@ export function useBrowsingHistory() {
     BrowsingHistoryItem[]
   >(LS_KEYS.BROWSING_HISTORY, []);
 
+  const setHistoryItems = (items: BrowsingHistoryItem[]) => {
+    saveHistoryItems(items);
+  }
+
   const addHistoryItem = (item: BrowsingHistoryItem) => {
     saveHistoryItems((prev) => {
       return [...prev.filter((h) => h.link !== item.link), item];
     });
   };
 
-  const removeAllHistory = () => {
+  const clearAllHistory = () => {
     saveHistoryItems([]);
   };
 
   return {
     historyItems,
+    setHistoryItems,
     addHistoryItem,
-    removeAllHistory,
+    clearAllHistory,
   };
 }

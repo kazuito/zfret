@@ -105,7 +105,7 @@ const Page = () => {
       </PageHeading>
       {computedFavorites.length === 0 ? (
         <div>
-          No favorites yet. Well, how about{" "}
+          No favorites yet. How about{" "}
           <Link href="/song/41824" className="text-blue-500">
             Lemon
           </Link>

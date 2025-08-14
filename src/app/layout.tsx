@@ -1,6 +1,7 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Kosugi, Lexend } from "next/font/google";
@@ -34,15 +35,13 @@ export default function RootLayout({
       <head />
       <body className={cn("antialiased", lexend.className, kosugi.variable)}>
         <NuqsAdapter>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-          >
+          <ThemeProvider attribute="class" defaultTheme="system">
             <div className="min-h-[100dvh] flex flex-col">
               <Header />
               <div className="grow">{children}</div>
               <Footer />
             </div>
+            <Toaster />
           </ThemeProvider>
         </NuqsAdapter>
       </body>
