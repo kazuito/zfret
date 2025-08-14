@@ -15,6 +15,7 @@ import {
 import { FavoriteItem, useFavorites } from "@/hooks/use-favorites";
 import { cn } from "@/lib/utils";
 import { HeartIcon, ListFilterIcon } from "lucide-react";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 const sortBy = {
@@ -102,21 +103,31 @@ const Page = () => {
         <HeartIcon />
         Favorites
       </PageHeading>
-      <List.Wrapper>
-        <List.Content>
-          {computedFavorites?.map((item) => {
-            return (
-              <List.Item
-                key={item.link}
-                href={item.link}
-                description={item.artistName}
-              >
-                {item.title}
-              </List.Item>
-            );
-          })}
-        </List.Content>
-      </List.Wrapper>
+      {computedFavorites.length === 0 ? (
+        <div>
+          No favorites yet. Well, how about{" "}
+          <Link href="/song/41824" className="text-blue-500">
+            Lemon
+          </Link>
+          ?
+        </div>
+      ) : (
+        <List.Wrapper>
+          <List.Content>
+            {computedFavorites.map((item) => {
+              return (
+                <List.Item
+                  key={item.link}
+                  href={item.link}
+                  description={item.artistName}
+                >
+                  {item.title}
+                </List.Item>
+              );
+            })}
+          </List.Content>
+        </List.Wrapper>
+      )}
     </div>
   );
 };
