@@ -7,40 +7,33 @@ import { search, SearchResult } from "@/lib/search";
 import { LoaderIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
-import { Suspense, useEffect, useState } from "react";
-
-const PageWrapper = () => {
-  return (
-    <Suspense>
-      <Page />
-    </Suspense>
-  );
-};
+import { useEffect, useState, useTransition } from "react";
 
 const Page = () => {
-  const [urlQuery, setUrlQuery] = useQueryState("q");
+  const [urlQuery, setUrlQuery] = useQueryState("q", {
+    history: "replace",
+  });
   const [query, setQuery] = useState(urlQuery ?? "");
   const [results, setResults] = useState<SearchResult>();
-  const [loading, setLoading] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
-  const empty = !!(
+  const showEmptyMessage = !!(
     urlQuery &&
-    !loading &&
+    !isPending &&
     results?.artists.length === 0 &&
     results?.songs.length === 0
   );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setUrlQuery(query);
+    setUrlQuery(query.trim());
   };
 
   useEffect(() => {
-    if (!urlQuery) return;
-    setLoading(true);
-    search(urlQuery)
-      .then((data) => setResults(data))
-      .finally(() => setLoading(false));
+    const q = urlQuery?.trim();
+    if (!q) return;
+    setQuery(q);
+    startTransition(() => search(q).then(setResults));
   }, [urlQuery]);
 
   return (
@@ -48,31 +41,37 @@ const Page = () => {
       <form className="flex gap-2" onSubmit={handleSubmit}>
         <Input
           type="search"
+          name="q"
+          aria-label="Search"
           placeholder="Search for songs or artists"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          disabled={loading}
+          disabled={isPending}
           autoFocus
         />
-        <Button size="icon" disabled={loading}>
+        <Button type="submit" size="icon" disabled={isPending}>
           <SearchIcon />
         </Button>
       </form>
       <div>
-        {loading && (
-          <div className="justify-center flex my-20 text-foreground/60">
+        {isPending && (
+          <div
+            role="status"
+            aria-live="polite"
+            className="justify-center flex my-20 text-foreground/60"
+          >
             <div className="flex gap-1 items-center animate-bounce">
               <LoaderIcon className="animate-spin size-4" />
               Searching...
             </div>
           </div>
         )}
-        {empty && (
+        {showEmptyMessage && (
           <div className="text-center my-20 text-foreground/60">
             No results found for &quot;<b>{urlQuery}</b>&quot;.
           </div>
         )}
-        {!loading && results && (
+        {!isPending && results && (
           <div className="mt-6 flex flex-col gap-6">
             {results.artists.length > 0 && (
               <div className="flex flex-wrap gap-2">
@@ -109,4 +108,4 @@ const Page = () => {
   );
 };
 
-export default PageWrapper;
+export default Page;
