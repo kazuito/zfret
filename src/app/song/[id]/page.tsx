@@ -1,4 +1,5 @@
 import AddHistory from "@/components/add-history";
+import { ClientOnly } from "@/components/client-only";
 import FavButton from "@/components/fav-button";
 import { List } from "@/components/list";
 import PageHeading from "@/components/page-heading";
@@ -56,7 +57,11 @@ const Page = async ({ params }: Props) => {
       <AddHistory item={historyItem} />
       <PageHeading
         subtitle={<Link href={song.artist.url}>{song.artist.name}</Link>}
-        endContent={<FavButton item={favItem} />}
+        endContent={
+          <ClientOnly>
+            <FavButton item={favItem} />
+          </ClientOnly>
+        }
       >
         {song.title}
       </PageHeading>

@@ -10,13 +10,9 @@ type Props = {
 };
 
 const FavButton = ({ item }: Props) => {
-  const { loading, getIsFavorite, toggleFavorite } = useFavorites();
+  const { favorites, toggleFavorite } = useFavorites();
 
-  const isFavorite = getIsFavorite(item);
-
-  if (loading) {
-    return null;
-  }
+  const isFavorite = favorites.some((fav) => fav.link === item.link);
 
   return (
     <Button
@@ -24,16 +20,15 @@ const FavButton = ({ item }: Props) => {
       variant="secondary"
       onClick={() => toggleFavorite(item)}
       className={cn(
-        "rounded-full",
-        isFavorite && "!bg-red-500/10 hover:!bg-red-500/20"
+        "rounded-full duration-300 starting:scale-95 starting:opacity-0 transition ease-out",
+        isFavorite
+          ? "!bg-red-500/10 hover:!bg-red-500/20"
+          : "opacity-50 hover:opacity-100"
       )}
       title="Toggle favorite"
     >
       {isFavorite ? (
-        <HeartIcon
-          className="text-red-500"
-          fill="currentColor"
-        />
+        <HeartIcon className="text-red-500" fill="currentColor" />
       ) : (
         <HeartIcon />
       )}

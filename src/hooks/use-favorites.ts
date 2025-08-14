@@ -1,7 +1,7 @@
 "use client";
 
 import { LS_KEYS } from "@/lib/constants";
-import { useEffect, useState } from "react";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 export type FavoriteItem = {
   type: "song";
@@ -12,59 +12,31 @@ export type FavoriteItem = {
 };
 
 export function useFavorites() {
-  const [favorites, setFavorites] = useState<FavoriteItem[] | null>(null);
-  const loading = favorites === null;
+  const [favorites, saveFavorites] = useLocalStorage<FavoriteItem[]>(
+    LS_KEYS.FAVORITES,
+    []
+  );
 
-  // Initialize from localStorage
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(LS_KEYS.FAVORITES);
-      if (stored) {
-        setFavorites(JSON.parse(stored));
-      }
-    } catch (error) {
-      console.error("Failed to load favorites:", error);
-      setFavorites([]);
-    }
-  }, []);
-
-  // Save to localStorage when favorites change
-  useEffect(() => {
-    if (loading) return;
-    try {
-      localStorage.setItem(LS_KEYS.FAVORITES, JSON.stringify(favorites));
-    } catch (error) {
-      console.error("Failed to save favorites:", error);
-    }
-  }, [favorites]);
-
-  const toggleFavorite = (item: FavoriteItem) => {
-    if (loading) return;
-    setFavorites((prev) => {
-      if (prev === null) return null;
-      const isFavorite = prev.some(
-        (fav) => fav.type === item.type && fav.link === item.link
-      );
-
-      if (isFavorite) {
-        return prev.filter((fav) => fav.link !== item.link);
-      } else {
-        return [...prev, { ...item, timestamp: Date.now() }];
-      }
-    });
+  const addFavorite = (item: FavoriteItem) => {
+    saveFavorites([...favorites, item]);
   };
 
-  const getIsFavorite = (item: FavoriteItem) => {
-    return favorites?.some(
-      (fav) => fav.type === item.type && fav.link === item.link
-    );
+  const removeFavorite = (item: FavoriteItem) => {
+    saveFavorites(favorites.filter((fav) => fav.link !== item.link));
+  };
+
+  const toggleFavorite = (item: FavoriteItem) => {
+    if (favorites.some((fav) => fav.link === item.link)) {
+      removeFavorite(item);
+    } else {
+      addFavorite(item);
+    }
   };
 
   return {
-    loading,
     favorites,
-    setFavorites,
-    getIsFavorite,
+    addFavorite,
+    removeFavorite,
     toggleFavorite,
   };
 }
