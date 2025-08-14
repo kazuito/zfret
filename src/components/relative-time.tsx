@@ -7,19 +7,23 @@ dayjs.extend(relativeTime);
 type Props = {
   from?: dayjs.ConfigType;
   to?: dayjs.ConfigType;
+  interval?: number;
 };
 
-const RelativeTime = (props: Props) => {
+const RelativeTime = (
+  props: Props = {
+    interval: 1000,
+  }
+) => {
   const from = dayjs(props.from);
   const to = dayjs(props.to);
 
   const [text, setText] = useState(from.to(to));
 
   useEffect(() => {
-    // Update the text every second
     const interval = setInterval(() => {
       setText(from.to(to));
-    }, 1000);
+    }, props.interval);
     return () => clearInterval(interval);
   }, [from, to]);
 
