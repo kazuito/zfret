@@ -54,7 +54,9 @@ const Page = async ({ params }: Props) => {
 
   return (
     <div className="p-6 pt-0 max-w-3xl mx-auto">
-      <AddHistory item={historyItem} />
+      <ClientOnly>
+        <AddHistory item={historyItem} />
+      </ClientOnly>
       <PageHeading
         subtitle={<Link href={song.artist.url}>{song.artist.name}</Link>}
         endContent={

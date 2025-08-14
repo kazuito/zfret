@@ -1,5 +1,5 @@
 import { LS_KEYS } from "@/lib/constants";
-import { useLocalStorage } from "react-use";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 export type BrowsingHistoryItem =
   | {
@@ -17,5 +17,23 @@ export type BrowsingHistoryItem =
     };
 
 export function useBrowsingHistory() {
-  return useLocalStorage<BrowsingHistoryItem[]>(LS_KEYS.BROWSING_HISTORY, []);
+  const [historyItems, saveHistoryItems] = useLocalStorage<
+    BrowsingHistoryItem[]
+  >(LS_KEYS.BROWSING_HISTORY, []);
+
+  const addHistoryItem = (item: BrowsingHistoryItem) => {
+    saveHistoryItems((prev) => {
+      return [...prev.filter((h) => h.link !== item.link), item];
+    });
+  };
+
+  const removeAllHistory = () => {
+    saveHistoryItems([]);
+  };
+
+  return {
+    historyItems,
+    addHistoryItem,
+    removeAllHistory,
+  };
 }

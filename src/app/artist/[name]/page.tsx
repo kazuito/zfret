@@ -1,4 +1,5 @@
 import AddHistory from "@/components/add-history";
+import { ClientOnly } from "@/components/client-only";
 import { List } from "@/components/list";
 import PageHeading from "@/components/page-heading";
 import { fetchArtistSongs } from "@/lib/song";
@@ -33,7 +34,9 @@ const Page = async ({ params }: Props) => {
 
   return (
     <div className="max-w-3xl mx-auto p-6 pt-0">
-      <AddHistory item={historyItem} />
+      <ClientOnly>
+        <AddHistory item={historyItem} />
+      </ClientOnly>
       <PageHeading>{decodedName}</PageHeading>
       <div>
         <List.Wrapper>

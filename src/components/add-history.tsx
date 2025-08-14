@@ -11,14 +11,10 @@ type Props = {
 };
 
 const AddHistory = ({ item }: Props) => {
-  const [history, setHistory] = useBrowsingHistory();
+  const { addHistoryItem } = useBrowsingHistory();
 
   useEffect(() => {
-    if (history === undefined) return;
-    setHistory((prevHistory) => [
-      ...(prevHistory?.filter((h) => h.link !== item.link) ?? []),
-      item,
-    ]);
+    addHistoryItem(item);
   }, [item]);
 
   return null;

@@ -8,9 +8,9 @@ import { AudioLinesIcon, HistoryIcon, MicVocalIcon } from "lucide-react";
 import Link from "next/link";
 
 const Page = () => {
-  const [history] = useBrowsingHistory();
+  const { historyItems } = useBrowsingHistory();
 
-  const computedHistory = history?.toReversed() ?? [];
+  const computedHistory = historyItems?.toReversed() ?? [];
 
   return (
     <div className="max-w-3xl mx-auto p-6 pt-0">
