@@ -7,7 +7,7 @@ const Page = async () => {
   const songs = await fetchTopSongs({ limit: 100 });
 
   return (
-    <div className="max-w-3xl mx-auto p-6 pt-0">
+    <>
       <PageHeading>
         <AudioLinesIcon />
         TOP SONGS
@@ -26,7 +26,7 @@ const Page = async () => {
           ))}
         </List.Content>
       </List.Wrapper>
-    </div>
+    </>
   );
 };
 
