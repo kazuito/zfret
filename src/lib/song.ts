@@ -8,7 +8,7 @@ const chordsDataSchema = z.array(z.string());
 export async function fetchSong(id: string) {
   const url = `https://www.ufret.jp/song.php?data=${id}`;
   const res = await fetch(url, {
-    next: { revalidate: 86400 }, // Cache for 24 hours
+    next: { revalidate: 3600 * 24 * 14 }, // Cache for 14 days
   });
   const html = await res.text();
   const $ = load(html);
@@ -90,7 +90,7 @@ export async function fetchArtistSongs(
   const encodedArtistName = encodeURIComponent(artistName);
   const url = `https://www.ufret.jp/artist.php?data=${encodedArtistName}`;
   const res = await fetch(url, {
-    next: { revalidate: 86400 }, // Cache for 24 hours
+    next: { revalidate: 3600 * 24 * 3 }, // Cache for 3 days
   });
   const html = await res.text();
   const $ = load(html);
@@ -165,7 +165,7 @@ export async function fetchTopSongs(
 ) {
   const url = "https://www.ufret.jp/rank.php";
   const res = await fetch(url, {
-    next: { revalidate: 86400 }, // Cache for 24 hours
+    next: { revalidate: 3600 * 24 }, // Cache for 24 hours
   });
   const html = await res.text();
   const $ = load(html);

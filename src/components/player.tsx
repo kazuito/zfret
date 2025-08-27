@@ -1,7 +1,6 @@
 "use client";
 
 import { PlayIcon } from "lucide-react";
-import Image from "next/image";
 import { useState } from "react";
 import ReactPlayer from "react-player";
 
@@ -42,12 +41,10 @@ const Player = ({ youtubeVideoId }: Props) => {
                 />
               </div>
             </div>
-            <Image
+            <img
               alt="YouTube Thumbnail"
               src={`https://img.youtube.com/vi/${youtubeVideoId}/mqdefault.jpg`}
               className="w-full h-full"
-              width={640}
-              height={360}
             />
           </button>
         )}
