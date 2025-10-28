@@ -5,6 +5,9 @@ import PageHeading from "@/components/page-heading";
 import { fetchArtistSongs } from "@/lib/song";
 import { Metadata } from "next";
 
+export const dynamic = "force-static";
+export const revalidate = 259200; // 3 days
+
 type Props = {
   params: Promise<{
     name: string;

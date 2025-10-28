@@ -3,6 +3,9 @@ import PageHeading from "@/components/page-heading";
 import { fetchTopSongs } from "@/lib/song";
 import { AudioLinesIcon } from "lucide-react";
 
+export const dynamic = "force-static";
+export const revalidate = 86400; // 1 day
+
 const Page = async () => {
   const songs = await fetchTopSongs({ limit: 100 });
 
