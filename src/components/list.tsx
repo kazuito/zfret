@@ -9,7 +9,7 @@ type ListWrapperProps = {
 
 const ListWrapper = ({ children }: ListWrapperProps) => {
   return (
-    <div className="rounded-lg bg-secondary/20 border border-border/60">
+    <div className="rounded-lg bg-secondary/40 dark:bg-secondary/20 border border-border/60">
       {children}
     </div>
   );
@@ -56,7 +56,7 @@ const ListItem = ({
   return (
     <Link
       href={href}
-      className="py-3 px-4 flex items-center gap-3 bg-secondary/20 rounded-md border border-border/60"
+      className="py-3 px-4 flex items-center gap-3 bg-background dark:bg-secondary/20 rounded-md border border-border/60"
     >
       {prefix && (
         <div className="text-sm text-foreground/80 [&_svg]:size-4.5">
