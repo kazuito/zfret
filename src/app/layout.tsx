@@ -3,6 +3,7 @@ import Header from "@/components/header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Kosugi, Lexend } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
@@ -45,6 +46,7 @@ export default function RootLayout({
           </ThemeProvider>
         </NuqsAdapter>
       </body>
+      <GoogleAnalytics gaId="G-B53WYKM66T" />
     </html>
   );
 }
