@@ -1,32 +1,52 @@
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
-import { useEffect, useMemo, useState } from "react";
+import { formatDistance, isValid } from "date-fns";
+import { useCallback, useEffect, useReducer } from "react";
 
-dayjs.extend(relativeTime);
+type DateInput = Date | number | string | undefined;
 
 type Props = {
-  from?: dayjs.ConfigType;
-  to?: dayjs.ConfigType;
+  from?: DateInput;
+  to?: DateInput;
   interval?: number;
 };
 
-const RelativeTime = (
-  props: Props = {
-    interval: 1000,
-  },
-) => {
-  const from = useMemo(() => dayjs(props.from), [props.from]);
-  const to = useMemo(() => dayjs(props.to), [props.to]);
-  const intervalMs = props.interval ?? 1000;
+const parseDateInput = (value: DateInput): Date | null => {
+  if (value instanceof Date) {
+    return value;
+  }
 
-  const [text, setText] = useState(from.to(to));
+  if (value === undefined) {
+    return null;
+  }
+
+  const parsed = new Date(value);
+  return isValid(parsed) ? parsed : null;
+};
+
+const RelativeTime = ({ from, to, interval = 1000 }: Props) => {
+  const intervalMs = interval ?? 1000;
+
+  const computeLabel = useCallback(() => {
+    const baseDate = parseDateInput(from) ?? new Date();
+    const targetDate = parseDateInput(to) ?? new Date();
+
+    if (!isValid(baseDate) || !isValid(targetDate)) {
+      return "";
+    }
+
+    return formatDistance(targetDate, baseDate, { addSuffix: true });
+  }, [from, to]);
+
+  const [, bump] = useReducer((count: number) => count + 1, 0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setText(from.to(to));
+    const id = setInterval(() => {
+      bump();
     }, intervalMs);
-    return () => clearInterval(interval);
-  }, [from, intervalMs, to]);
+
+    return () => clearInterval(id);
+  }, [intervalMs]);
+
+  const text = computeLabel();
 
   return <>{text}</>;
 };
