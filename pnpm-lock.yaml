@@ -44,9 +44,6 @@ importers:
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
-      google:
-        specifier: link:@next/third-parties/google
-        version: link:@next/third-parties/google
       hono:
         specifier: ^4.7.11
         version: 4.8.4
