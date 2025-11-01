@@ -9,7 +9,7 @@ type ListWrapperProps = {
 
 const ListWrapper = ({ children }: ListWrapperProps) => {
   return (
-    <div className="rounded-lg bg-secondary/40 dark:bg-secondary/20 border border-border/60">
+    <div className="bg-secondary/40 dark:bg-secondary/20 border-border/60 rounded-lg border">
       {children}
     </div>
   );
@@ -24,7 +24,7 @@ const ListHeader = ({ asChild = false, ...props }: ListHeaderProps) => {
 
   return (
     <Comp
-      className="flex items-center gap-2.5 px-5.5 py-4 [&_svg]:size-4.5 font-semibold"
+      className="flex items-center gap-2.5 px-5.5 py-4 font-semibold [&_svg]:size-4.5"
       {...props}
     />
   );
@@ -56,19 +56,19 @@ const ListItem = ({
   return (
     <Link
       href={href}
-      className="py-3 px-4 flex items-center gap-3 bg-background dark:bg-secondary/20 rounded-md border border-border/60"
+      className="bg-background dark:bg-secondary/20 border-border/60 flex items-center gap-3 rounded-md border px-4 py-3"
     >
       {prefix && (
-        <div className="text-sm text-foreground/80 [&_svg]:size-4.5">
+        <div className="text-foreground/80 text-sm [&_svg]:size-4.5">
           {prefix}
         </div>
       )}
       <div className="truncate">{children}</div>
       {description && (
-        <div className="text-sm text-foreground/60 truncate">{description}</div>
+        <div className="text-foreground/60 truncate text-sm">{description}</div>
       )}
       {suffix && (
-        <div className="ml-auto text-sm text-foreground/40 text-nowrap">
+        <div className="text-foreground/40 ml-auto text-sm text-nowrap">
           {suffix}
         </div>
       )}
@@ -81,7 +81,7 @@ type ListFooterProps = {
 };
 
 const ListFooter = ({ children }: ListFooterProps) => {
-  return <div className="p-2 flex justify-end pt-1">{children}</div>;
+  return <div className="flex justify-end p-2 pt-1">{children}</div>;
 };
 
 type ListFooterLinkProps = React.ComponentProps<typeof Link>;
@@ -90,7 +90,7 @@ const ListFooterLink = ({ className, ...props }: ListFooterLinkProps) => {
   return (
     <Button asChild variant="ghost">
       <Link
-        className={cn("flex items-center text-foreground/60", className)}
+        className={cn("text-foreground/60 flex items-center", className)}
         {...props}
       ></Link>
     </Button>

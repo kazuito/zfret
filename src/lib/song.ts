@@ -35,7 +35,7 @@ export const fetchSong = cache(async (id: string) => {
   }
 
   const parsedChordsData = chordsDataSchema.safeParse(
-    JSON.parse(chordsRawData)
+    JSON.parse(chordsRawData),
   );
   if (!parsedChordsData.success) {
     throw new Error("Invalid chords data format");
@@ -84,7 +84,7 @@ export async function fetchArtistSongs(
   artistName: string,
   options: FetchArtistSongsOptions = {
     limit: -1,
-  }
+  },
 ) {
   const encodedArtistName = encodeURIComponent(artistName);
   const url = `https://www.ufret.jp/artist.php?data=${encodedArtistName}`;
@@ -95,7 +95,7 @@ export async function fetchArtistSongs(
   const $ = load(html);
 
   const resultElements = $(
-    ".list-group > .list-group-item.list-group-item-action"
+    ".list-group > .list-group-item.list-group-item-action",
   ).filter((_, el) => $(el).attr("style") !== "display:none;");
 
   return resultElements
@@ -124,7 +124,7 @@ export async function fetchArtistSongs(
       (song) =>
         !song.tags.includes("ピアノソロ初級") &&
         !song.tags.includes("弾き語りTAB譜") &&
-        !song.tags.includes("beginner")
+        !song.tags.includes("beginner"),
     )
     .slice(0, options.limit);
 }
@@ -138,7 +138,7 @@ export async function fetchRelatedSongs(
   artistName: string,
   options: FetchRelatedSongsOptions = {
     limit: 20,
-  }
+  },
 ) {
   const artistSongs = await fetchArtistSongs(artistName);
   const selfIndex = artistSongs.findIndex((song) => song.id === songId);
@@ -160,7 +160,7 @@ type FetchTopSongsOptions = {
 export async function fetchTopSongs(
   options: FetchTopSongsOptions = {
     limit: 10,
-  }
+  },
 ) {
   const url = "https://www.ufret.jp/rank.php";
   const res = await fetch(url, {
@@ -200,7 +200,7 @@ type FetchTopArtistsOptions = {
 };
 
 export async function fetchTopArtists(
-  options: FetchTopArtistsOptions = { limit: 10 }
+  options: FetchTopArtistsOptions = { limit: 10 },
 ) {
   const url = "https://www.ufret.jp/rank_artist.php";
   const res = await fetch(url, {
@@ -210,7 +210,7 @@ export async function fetchTopArtists(
   const $ = load(html);
 
   const artistElements = $(
-    "a[href^='/artist.php'].list-group-item.list-group-item-action"
+    "a[href^='/artist.php'].list-group-item.list-group-item-action",
   );
 
   const topArtists = artistElements

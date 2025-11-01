@@ -20,10 +20,10 @@ const FavButton = ({ item }: Props) => {
       variant="secondary"
       onClick={() => toggleFavorite(item)}
       className={cn(
-        "rounded-full duration-300 starting:scale-95 starting:opacity-0 transition ease-out",
+        "rounded-full transition duration-300 ease-out starting:scale-95 starting:opacity-0",
         isFavorite
           ? "!bg-red-500/10 hover:!bg-red-500/20"
-          : "opacity-50 hover:opacity-100"
+          : "opacity-50 hover:opacity-100",
       )}
       title="Toggle favorite"
     >

@@ -8,16 +8,16 @@ type Props = {
 
 const PageHeading = ({ children, subtitle, endContent }: Props) => {
   return (
-    <div className="my-10 px-2 flex">
+    <div className="my-10 flex px-2">
       <div>
         <Link
           href=""
-          className="font-semibold text-xl sm:text-2xl flex items-center gap-2 sm:gap-3 [&_svg]:size-5 sm:[&_svg]:size-6 w-fit"
+          className="flex w-fit items-center gap-2 text-xl font-semibold sm:gap-3 sm:text-2xl [&_svg]:size-5 sm:[&_svg]:size-6"
         >
           {children}
         </Link>
         {subtitle && (
-          <div className="sm:text-lg text-foreground/60 mt-1 w-fit">
+          <div className="text-foreground/60 mt-1 w-fit sm:text-lg">
             {subtitle}
           </div>
         )}

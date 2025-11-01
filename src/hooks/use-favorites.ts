@@ -18,12 +18,10 @@ export type FavoriteItemInput = Omit<FavoriteItem, "timestamp"> & {
 export function useFavorites() {
   const [favorites, saveFavorites] = useLocalStorage<FavoriteItem[]>(
     LS_KEYS.FAVORITES,
-    []
+    [],
   );
 
-  const normalizeFavorite = (
-    item: FavoriteItemInput
-  ): FavoriteItem => ({
+  const normalizeFavorite = (item: FavoriteItemInput): FavoriteItem => ({
     ...item,
     timestamp: item.timestamp ?? Date.now(),
   });

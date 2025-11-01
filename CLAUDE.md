@@ -25,13 +25,11 @@ Z-FRET is a Next.js 15 application that provides chord information for songs by 
 ### Key Components
 
 - **API Layer** (`src/app/api/[[...route]]/route.ts`): Hono-based API with three main endpoints:
-
   - `GET /api/song/:id` - Fetch individual song data with chords
   - `GET /api/artist/:name` - Fetch songs by artist
   - `GET /api/search?q=query` - Search songs and artists
 
 - **Data Layer** (`src/lib/song.ts`): Core scraping logic that:
-
   - Parses HTML from ufret.jp using cheerio
   - Extracts chord progressions from embedded JavaScript data
   - Transforms chord/lyric data into structured format

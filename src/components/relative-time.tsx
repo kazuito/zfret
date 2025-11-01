@@ -13,7 +13,7 @@ type Props = {
 const RelativeTime = (
   props: Props = {
     interval: 1000,
-  }
+  },
 ) => {
   const from = useMemo(() => dayjs(props.from), [props.from]);
   const to = useMemo(() => dayjs(props.to), [props.to]);

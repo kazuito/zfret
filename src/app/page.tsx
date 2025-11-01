@@ -16,11 +16,11 @@ export default async function Home() {
   const topArtists = await fetchTopArtists();
 
   return (
-    <div className="p-6 pt-0 max-w-3xl mx-auto flex flex-col">
-      <div className="sm:h-100 h-60 relative overflow-clip flex items-center justify-center">
-        <TargetIcon className="absolute -z-1 w-[min(768px,100vw)] h-auto left-1/2 top-1/2 -translate-1/2 opacity-2 dark:opacity-3" />
-        <div className="flex flex-col items-start sm:items-center gap-2">
-          <div className="sm:text-5xl font-medium text-4xl">
+    <div className="mx-auto flex max-w-3xl flex-col p-6 pt-0">
+      <div className="relative flex h-60 items-center justify-center overflow-clip sm:h-100">
+        <TargetIcon className="absolute top-1/2 left-1/2 -z-1 h-auto w-[min(768px,100vw)] -translate-1/2 opacity-2 dark:opacity-3" />
+        <div className="flex flex-col items-start gap-2 sm:items-center">
+          <div className="text-4xl font-medium sm:text-5xl">
             The Place for Chords
           </div>
           <div>A chord library of Japan Hits</div>

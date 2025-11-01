@@ -35,7 +35,7 @@ const Page = async ({ params }: Props) => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 pt-0">
+    <div className="mx-auto max-w-3xl p-6 pt-0">
       <ClientOnly>
         <AddHistory item={historyItem} />
       </ClientOnly>

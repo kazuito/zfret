@@ -38,7 +38,7 @@ export default function RootLayout({
       <body className={cn("antialiased", lexend.className, kosugi.variable)}>
         <NuqsAdapter>
           <ThemeProvider attribute="class" defaultTheme="system">
-            <div className="min-h-[100dvh] flex flex-col">
+            <div className="flex min-h-[100dvh] flex-col">
               <Header />
               <div className="grow">{children}</div>
               <Footer />

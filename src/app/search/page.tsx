@@ -48,7 +48,7 @@ const Page = () => {
   }, [startTransition, urlQuery]);
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
+    <div className="mx-auto max-w-3xl p-6">
       <form className="flex gap-2" onSubmit={handleSubmit}>
         <Input
           type="search"
@@ -69,16 +69,16 @@ const Page = () => {
           <div
             role="status"
             aria-live="polite"
-            className="justify-center flex my-20 text-foreground/60"
+            className="text-foreground/60 my-20 flex justify-center"
           >
-            <div className="flex gap-1 items-center animate-bounce">
-              <LoaderIcon className="animate-spin size-4" />
+            <div className="flex animate-bounce items-center gap-1">
+              <LoaderIcon className="size-4 animate-spin" />
               Searching...
             </div>
           </div>
         )}
         {showEmptyMessage && (
-          <div className="text-center my-20 text-foreground/60">
+          <div className="text-foreground/60 my-20 text-center">
             No results found for &quot;<b>{urlQuery}</b>&quot;.
           </div>
         )}
@@ -90,7 +90,7 @@ const Page = () => {
                   <Link
                     key={artist.id}
                     href={artist.link}
-                    className="px-4 py-2 border rounded-full bg-secondary/40 truncate"
+                    className="bg-secondary/40 truncate rounded-full border px-4 py-2"
                   >
                     {artist.name}
                   </Link>

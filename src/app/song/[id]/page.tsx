@@ -26,7 +26,7 @@ export const generateMetadata = async ({
   const song = await fetchSong(id);
   return {
     title: `${decodeURIComponent(song.title)} - ${decodeURIComponent(
-      song.artist.name
+      song.artist.name,
     )} | Z-FRET`,
   };
 };
@@ -54,7 +54,7 @@ const Page = async ({ params }: Props) => {
   };
 
   return (
-    <div className="p-6 pt-0 max-w-3xl mx-auto">
+    <div className="mx-auto max-w-3xl p-6 pt-0">
       <ClientOnly>
         <AddHistory item={historyItem} />
       </ClientOnly>
@@ -68,14 +68,14 @@ const Page = async ({ params }: Props) => {
       >
         {song.title}
       </PageHeading>
-      <div className="max-w-3xl mx-auto">
+      <div className="mx-auto max-w-3xl">
         {song.youtubeVideoId && <Player youtubeVideoId={song.youtubeVideoId} />}
         <div className="mt-10">
           <div className="flex flex-col gap-2">
             {song.lines.map((line, i) => {
               const lineHasLyric = line.some((part) => part.lyric);
               return (
-                <div key={i} className="flex items-end gap-2 flex-wrap">
+                <div key={i} className="flex flex-wrap items-end gap-2">
                   {line.map((part, j) => {
                     return (
                       <div key={j} className={cn("flex flex-col")}>
@@ -83,7 +83,7 @@ const Page = async ({ params }: Props) => {
                           <div className="text-sm">{part.chord}</div>
                         )}
                         {lineHasLyric && (
-                          <div className="bg-gradient-to-b from-foreground/60 to-foreground/20 text-transparent bg-clip-text h-6 text-nowrap">
+                          <div className="from-foreground/60 to-foreground/20 h-6 bg-gradient-to-b bg-clip-text text-nowrap text-transparent">
                             {part.lyric}
                           </div>
                         )}
@@ -94,11 +94,11 @@ const Page = async ({ params }: Props) => {
               );
             })}
           </div>
-          <div className="flex flex-col gap-2 items-end mt-10 text-sm text-end">
-            <div className="flex items-center gap-2 shrink-0 flex-wrap">
+          <div className="mt-10 flex flex-col items-end gap-2 text-end text-sm">
+            <div className="flex shrink-0 flex-wrap items-center gap-2">
               <Link href={`/song/${id}`}>{song.title}</Link>
               <div className="flex items-center gap-2">
-                <hr className="h-px w-4 bg-foreground/60" />
+                <hr className="bg-foreground/60 h-px w-4" />
                 <Link href={song.artist.url}>{song.artist.name}</Link>
               </div>
             </div>

@@ -2,9 +2,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const Loading = () => {
   return (
-    <div className="max-w-3xl mx-auto p-6 pt-0">
+    <div className="mx-auto max-w-3xl p-6 pt-0">
       <div className="my-10">
-        <Skeleton className="w-40 h-8" />
+        <Skeleton className="h-8 w-40" />
       </div>
       <Skeleton className="h-screen w-full" />
     </div>

@@ -4,9 +4,9 @@ import { Button } from "./ui/button";
 
 const Header = () => {
   return (
-    <header className="border-b sticky top-0 z-10 bg-background">
-      <div className="max-w-3xl mx-auto px-6 h-12 flex items-center">
-        <Link href="/" className="font-semibold text-sm">
+    <header className="bg-background sticky top-0 z-10 border-b">
+      <div className="mx-auto flex h-12 max-w-3xl items-center px-6">
+        <Link href="/" className="text-sm font-semibold">
           Z-FRET
         </Link>
         <div className="ml-auto">

@@ -16,8 +16,10 @@ export type BrowsingHistoryItem =
       timestamp: number;
     };
 
-export type BrowsingHistoryItemInput =
-  | Omit<BrowsingHistoryItem, "timestamp"> & { timestamp?: number };
+export type BrowsingHistoryItemInput = Omit<
+  BrowsingHistoryItem,
+  "timestamp"
+> & { timestamp?: number };
 
 export function useBrowsingHistory() {
   const [historyItems, saveHistoryItems] = useLocalStorage<

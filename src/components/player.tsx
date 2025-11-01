@@ -13,13 +13,13 @@ const Player = ({ youtubeVideoId }: Props) => {
   const [playing, setPlaying] = useState(false);
 
   return (
-    <div className="p-1 border border-border/60 rounded-md bg-secondary/30 sm:w-fit w-full">
-      <div className="w-full sm:w-lg aspect-video flex items-center rounded-sm overflow-clip group/player">
+    <div className="border-border/60 bg-secondary/30 w-full rounded-md border p-1 sm:w-fit">
+      <div className="group/player flex aspect-video w-full items-center overflow-clip rounded-sm sm:w-lg">
         {showPlayer ? (
           <ReactPlayer
             src={`https://www.youtube.com/watch?v=${youtubeVideoId}`}
             controls
-            className="w-full! h-full!"
+            className="h-full! w-full!"
             autoPlay
             playing={playing}
             onPlaying={() => setPlaying(true)}
@@ -27,16 +27,16 @@ const Player = ({ youtubeVideoId }: Props) => {
           />
         ) : (
           <button
-            className="w-full h-full relative cursor-pointer"
+            className="relative h-full w-full cursor-pointer"
             onClick={() => {
               setShowPlayer(true);
               setPlaying(true);
             }}
           >
-            <div className="absolute inset-0 grid place-content-center bg-background/80 backdrop-blur-xs">
+            <div className="bg-background/80 absolute inset-0 grid place-content-center backdrop-blur-xs">
               <div className="flex flex-col items-center gap-4">
                 <PlayIcon
-                  className="size-8 group-hover/player:scale-120 transition group-active/player:scale-90"
+                  className="size-8 transition group-hover/player:scale-120 group-active/player:scale-90"
                   fill="currentColor"
                 />
               </div>
