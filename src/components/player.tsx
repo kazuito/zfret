@@ -44,7 +44,8 @@ const Player = ({ youtubeVideoId }: Props) => {
             <img
               alt="YouTube Thumbnail"
               src={`https://img.youtube.com/vi/${youtubeVideoId}/mqdefault.jpg`}
-              className="w-full h-full"
+              sizes="(min-width: 640px) 640px, 100vw"
+              className="object-cover"
             />
           </button>
         )}

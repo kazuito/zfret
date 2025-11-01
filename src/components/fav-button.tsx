@@ -1,12 +1,12 @@
 "use client";
 
-import { FavoriteItem, useFavorites } from "@/hooks/use-favorites";
+import { FavoriteItemInput, useFavorites } from "@/hooks/use-favorites";
 import { cn } from "@/lib/utils";
 import { HeartIcon } from "lucide-react";
 import { Button } from "./ui/button";
 
 type Props = {
-  item: FavoriteItem;
+  item: FavoriteItemInput;
 };
 
 const FavButton = ({ item }: Props) => {

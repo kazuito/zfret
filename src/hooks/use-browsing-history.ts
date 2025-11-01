@@ -16,6 +16,9 @@ export type BrowsingHistoryItem =
       timestamp: number;
     };
 
+export type BrowsingHistoryItemInput =
+  | Omit<BrowsingHistoryItem, "timestamp"> & { timestamp?: number };
+
 export function useBrowsingHistory() {
   const [historyItems, saveHistoryItems] = useLocalStorage<
     BrowsingHistoryItem[]
@@ -23,11 +26,19 @@ export function useBrowsingHistory() {
 
   const setHistoryItems = (items: BrowsingHistoryItem[]) => {
     saveHistoryItems(items);
-  }
+  };
 
-  const addHistoryItem = (item: BrowsingHistoryItem) => {
+  const addHistoryItem = (item: BrowsingHistoryItemInput) => {
+    const normalizedItem = {
+      ...item,
+      timestamp: item.timestamp ?? Date.now(),
+    } as BrowsingHistoryItem;
+
     saveHistoryItems((prev) => {
-      return [...prev.filter((h) => h.link !== item.link), item];
+      return [
+        ...prev.filter((h) => h.link !== normalizedItem.link),
+        normalizedItem,
+      ];
     });
   };
 

@@ -11,21 +11,36 @@ export type FavoriteItem = {
   timestamp: number;
 };
 
+export type FavoriteItemInput = Omit<FavoriteItem, "timestamp"> & {
+  timestamp?: number;
+};
+
 export function useFavorites() {
   const [favorites, saveFavorites] = useLocalStorage<FavoriteItem[]>(
     LS_KEYS.FAVORITES,
     []
   );
 
-  const addFavorite = (item: FavoriteItem) => {
-    saveFavorites([...favorites, item]);
+  const normalizeFavorite = (
+    item: FavoriteItemInput
+  ): FavoriteItem => ({
+    ...item,
+    timestamp: item.timestamp ?? Date.now(),
+  });
+
+  const addFavorite = (item: FavoriteItemInput) => {
+    const normalized = normalizeFavorite(item);
+    saveFavorites([
+      ...favorites.filter((fav) => fav.link !== normalized.link),
+      normalized,
+    ]);
   };
 
-  const removeFavorite = (item: FavoriteItem) => {
+  const removeFavorite = (item: FavoriteItemInput) => {
     saveFavorites(favorites.filter((fav) => fav.link !== item.link));
   };
 
-  const toggleFavorite = (item: FavoriteItem) => {
+  const toggleFavorite = (item: FavoriteItemInput) => {
     if (favorites.some((fav) => fav.link === item.link)) {
       removeFavorite(item);
     } else {

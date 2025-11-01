@@ -32,7 +32,6 @@ const Page = async ({ params }: Props) => {
     type: "artist" as const,
     name: decodedName,
     link: `/artist/${name}`,
-    timestamp: Date.now(),
   };
 
   return (

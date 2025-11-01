@@ -1,13 +1,13 @@
 "use client";
 
 import {
-  BrowsingHistoryItem,
+  BrowsingHistoryItemInput,
   useBrowsingHistory,
 } from "@/hooks/use-browsing-history";
 import { useEffect } from "react";
 
 type Props = {
-  item: BrowsingHistoryItem;
+  item: BrowsingHistoryItemInput;
 };
 
 const AddHistory = ({ item }: Props) => {
@@ -15,7 +15,7 @@ const AddHistory = ({ item }: Props) => {
 
   useEffect(() => {
     addHistoryItem(item);
-  }, [item]);
+  }, [addHistoryItem, item]);
 
   return null;
 };

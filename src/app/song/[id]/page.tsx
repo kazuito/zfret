@@ -44,7 +44,6 @@ const Page = async ({ params }: Props) => {
     title: song.title,
     artistName: song.artist.name,
     link: `/song/${id}`,
-    timestamp: Date.now(),
   };
 
   const favItem = {
@@ -52,7 +51,6 @@ const Page = async ({ params }: Props) => {
     title: song.title,
     artistName: song.artist.name,
     link: `/song/${id}`,
-    timestamp: Date.now(),
   };
 
   return (

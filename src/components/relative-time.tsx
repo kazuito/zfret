@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 dayjs.extend(relativeTime);
 
@@ -15,17 +15,18 @@ const RelativeTime = (
     interval: 1000,
   }
 ) => {
-  const from = dayjs(props.from);
-  const to = dayjs(props.to);
+  const from = useMemo(() => dayjs(props.from), [props.from]);
+  const to = useMemo(() => dayjs(props.to), [props.to]);
+  const intervalMs = props.interval ?? 1000;
 
   const [text, setText] = useState(from.to(to));
 
   useEffect(() => {
     const interval = setInterval(() => {
       setText(from.to(to));
-    }, props.interval);
+    }, intervalMs);
     return () => clearInterval(interval);
-  }, [from, to]);
+  }, [from, intervalMs, to]);
 
   return <>{text}</>;
 };

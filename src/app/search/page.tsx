@@ -26,15 +26,26 @@ const Page = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setUrlQuery(query.trim());
+    const trimmed = query.trim();
+    setQuery(trimmed);
+    if (trimmed.length === 0) {
+      await setUrlQuery(null);
+      startTransition(() => setResults(undefined));
+      return;
+    }
+    await setUrlQuery(trimmed);
   };
 
   useEffect(() => {
     const q = urlQuery?.trim();
-    if (!q) return;
-    setQuery(q);
-    startTransition(() => search(q).then(setResults));
-  }, [urlQuery]);
+    if (!q) {
+      startTransition(() => setResults(undefined));
+      return;
+    }
+    startTransition(() => {
+      search(q).then(setResults);
+    });
+  }, [startTransition, urlQuery]);
 
   return (
     <div className="p-6 max-w-3xl mx-auto">
