@@ -5,9 +5,6 @@ import { load } from "cheerio";
 export async function search(query: string) {
   const res = await fetch(
     `https://www.ufret.jp/search.php?key=${encodeURIComponent(query)}`,
-    {
-      next: { revalidate: 3600 * 24 * 3 }, // Cache for 3 days
-    },
   );
   const $ = load(await res.text());
 

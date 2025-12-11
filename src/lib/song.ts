@@ -88,9 +88,7 @@ export async function fetchArtistSongs(
 ) {
   const encodedArtistName = encodeURIComponent(artistName);
   const url = `https://www.ufret.jp/artist.php?data=${encodedArtistName}`;
-  const res = await fetch(url, {
-    next: { revalidate: 3600 * 24 * 3 }, // 3 days
-  });
+  const res = await fetch(url);
   const html = await res.text();
   const $ = load(html);
 
@@ -163,9 +161,7 @@ export async function fetchTopSongs(
   },
 ) {
   const url = "https://www.ufret.jp/rank.php";
-  const res = await fetch(url, {
-    next: { revalidate: 3600 * 24 }, // 24 hours
-  });
+  const res = await fetch(url);
   const html = await res.text();
   const $ = load(html);
 
@@ -203,9 +199,7 @@ export async function fetchTopArtists(
   options: FetchTopArtistsOptions = { limit: 10 },
 ) {
   const url = "https://www.ufret.jp/rank_artist.php";
-  const res = await fetch(url, {
-    next: { revalidate: 3600 * 24 }, // 24 hours
-  });
+  const res = await fetch(url);
   const html = await res.text();
   const $ = load(html);
 
