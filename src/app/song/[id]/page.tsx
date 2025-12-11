@@ -7,11 +7,9 @@ import Player from "@/components/player";
 import { fetchRelatedSongs, fetchSong } from "@/lib/song";
 import { cn } from "@/lib/utils";
 import { ArrowRightIcon } from "lucide-react";
+import { cacheLife } from "next/cache";
 import { Metadata } from "next";
 import Link from "next/link";
-
-export const dynamic = "force-static";
-export const revalidate = 2592000; // 30 days
 
 type Props = {
   params: Promise<{
@@ -32,6 +30,9 @@ export const generateMetadata = async ({
 };
 
 const Page = async ({ params }: Props) => {
+  "use cache";
+  cacheLife("max");
+
   const { id } = await params;
 
   const song = await fetchSong(id);

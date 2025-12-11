@@ -6,12 +6,13 @@ import {
   MicVocalIcon,
   TargetIcon,
 } from "lucide-react";
+import { cacheLife } from "next/cache";
 import Link from "next/link";
 
-export const dynamic = "force-static";
-export const revalidate = 86400; // 1 day
-
 export default async function Home() {
+  "use cache";
+  cacheLife("days");
+
   const topSongs = await fetchTopSongs();
   const topArtists = await fetchTopArtists();
 

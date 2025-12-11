@@ -3,10 +3,8 @@ import { ClientOnly } from "@/components/client-only";
 import { List } from "@/components/list";
 import PageHeading from "@/components/page-heading";
 import { fetchArtistSongs } from "@/lib/song";
+import { cacheLife } from "next/cache";
 import { Metadata } from "next";
-
-export const dynamic = "force-static";
-export const revalidate = 259200; // 3 days
 
 type Props = {
   params: Promise<{
@@ -24,6 +22,9 @@ export const generateMetadata = async ({
 };
 
 const Page = async ({ params }: Props) => {
+  "use cache";
+  cacheLife("days");
+
   const { name } = await params;
   const decodedName = decodeURIComponent(name);
   const songs = await fetchArtistSongs(decodedName);

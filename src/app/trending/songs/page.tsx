@@ -1,12 +1,13 @@
 import { List } from "@/components/list";
 import PageHeading from "@/components/page-heading";
 import { fetchTopSongs } from "@/lib/song";
+import { cacheLife } from "next/cache";
 import { AudioLinesIcon } from "lucide-react";
 
-export const dynamic = "force-static";
-export const revalidate = 86400; // 1 day
-
 const Page = async () => {
+  "use cache";
+  cacheLife("days");
+  
   const songs = await fetchTopSongs({ limit: 100 });
 
   return (
