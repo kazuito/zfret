@@ -15,7 +15,7 @@ import {
 import { FavoriteItem, useFavorites } from "@/hooks/use-favorites";
 import { cn } from "@/lib/utils";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { FavouriteIcon, FilterIcon } from "@hugeicons/core-free-icons";
+import { FavouriteIcon, Sorting02Icon } from "@hugeicons/core-free-icons";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
@@ -76,7 +76,7 @@ const Page = () => {
               title="Toggle sort order"
             >
               <HugeiconsIcon
-                icon={FilterIcon}
+                icon={Sorting02Icon}
                 size={20}
                 className={cn(
                   "transition-all duration-140 ease-out",
