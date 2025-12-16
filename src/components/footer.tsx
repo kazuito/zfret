@@ -6,7 +6,7 @@ import { ThemeToggle } from "./theme-toggle";
 const Footer = () => {
   return (
     <div className="bg-secondary/20 border-t">
-      <div className="mx-auto flex min-h-40 max-w-3xl items-center p-6">
+      <div className="mx-auto flex min-h-40 max-w-5xl items-center p-6">
         <div>
           <Link href="/" className="font-semibold">
             Z-FRET
