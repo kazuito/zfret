@@ -73,7 +73,11 @@ const Page = () => {
             className="text-foreground/60 my-20 flex justify-center"
           >
             <div className="flex animate-bounce items-center gap-1">
-              <HugeiconsIcon icon={Loading01Icon} size={16} className="animate-spin" />
+              <HugeiconsIcon
+                icon={Loading01Icon}
+                size={16}
+                className="animate-spin"
+              />
               Searching...
             </div>
           </div>
