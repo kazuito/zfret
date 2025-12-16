@@ -27,7 +27,7 @@ export default async function Home() {
         <p className="text-lg">
           Explore chords and lyrics from iconic Japan Hits
         </p>
-        <div className="flex gap-4">
+        <div className="flex gap-3">
           <Button asChild>
             <Link href="/trending/songs">
               <HugeiconsIcon icon={MusicNote02Icon} size={20} />
