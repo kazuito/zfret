@@ -5,8 +5,6 @@ import {
   AudioLinesIcon,
   MicVocalIcon,
   SearchIcon,
-  TargetIcon,
-  TrophyIcon,
 } from "lucide-react";
 import { cacheLife } from "next/cache";
 import Link from "next/link";
@@ -20,7 +18,7 @@ export default async function Home() {
   const topArtists = await fetchTopArtists();
 
   return (
-    <div className="mx-auto flex max-w-3xl flex-col p-6 pt-0">
+    <div className="mx-auto flex max-w-5xl flex-col p-6 pt-0">
       <section className="flex flex-col items-center gap-6 py-32">
         <div className="text-center text-3xl font-semibold tracking-tight md:text-4xl/6">
           The Chord Library for Music Lovers
@@ -43,8 +41,8 @@ export default async function Home() {
           </Button>
         </div>
       </section>
-      <div className="flex flex-col gap-6">
-        <List.Wrapper>
+      <section className="flex flex-col gap-6 md:flex-row pb-16">
+        <List.Wrapper className="flex-1">
           <List.Header asChild>
             <Link href="/trending/songs" className="w-fit">
               <AudioLinesIcon />
@@ -70,7 +68,7 @@ export default async function Home() {
             </List.FooterLink>
           </List.Footer>
         </List.Wrapper>
-        <List.Wrapper>
+        <List.Wrapper className="flex-1">
           <List.Header asChild>
             <Link href="/trending/artists" className="w-fit">
               <MicVocalIcon />
@@ -95,7 +93,7 @@ export default async function Home() {
             </List.FooterLink>
           </List.Footer>
         </List.Wrapper>
-      </div>
+      </section>
     </div>
   );
 }

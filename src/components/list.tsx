@@ -3,15 +3,15 @@ import { Slot } from "@radix-ui/react-slot";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
-type ListWrapperProps = {
-  children?: React.ReactNode;
-};
-
-const ListWrapper = ({ children }: ListWrapperProps) => {
+const ListWrapper = ({ className, ...props }: React.ComponentProps<"div">) => {
   return (
-    <div className="bg-secondary/40 dark:bg-secondary/20 border-border/60 rounded-lg border">
-      {children}
-    </div>
+    <div
+      className={cn(
+        "bg-secondary/40 dark:bg-secondary/20 border-border/60 rounded-lg border",
+        className,
+      )}
+      {...props}
+    />
   );
 };
 
