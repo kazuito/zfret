@@ -4,10 +4,13 @@ import {
   ArrowRightIcon,
   AudioLinesIcon,
   MicVocalIcon,
+  SearchIcon,
   TargetIcon,
+  TrophyIcon,
 } from "lucide-react";
 import { cacheLife } from "next/cache";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default async function Home() {
   "use cache";
@@ -18,15 +21,28 @@ export default async function Home() {
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col p-6 pt-0">
-      <div className="relative flex h-60 items-center justify-center overflow-clip sm:h-100">
-        <TargetIcon className="absolute top-1/2 left-1/2 -z-1 h-auto w-[min(768px,100vw)] -translate-1/2 opacity-2 dark:opacity-3" />
-        <div className="flex flex-col items-start gap-2 sm:items-center">
-          <div className="text-4xl font-medium sm:text-5xl">
-            The Place for Chords
-          </div>
-          <div>A chord library of Japan Hits</div>
+      <section className="flex flex-col items-center gap-6 py-32">
+        <div className="text-center text-3xl font-semibold tracking-tight md:text-4xl/6">
+          The Chord Library for Music Lovers
         </div>
-      </div>
+        <p className="text-lg">
+          Explore chords and lyrics from iconic Japan Hits
+        </p>
+        <div className="flex gap-4">
+          <Button asChild>
+            <Link href="/trending/songs">
+              <AudioLinesIcon />
+              Top Songs
+            </Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link href="/search">
+              <SearchIcon />
+              Search
+            </Link>
+          </Button>
+        </div>
+      </section>
       <div className="flex flex-col gap-6">
         <List.Wrapper>
           <List.Header asChild>
