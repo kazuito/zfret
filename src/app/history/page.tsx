@@ -1,6 +1,6 @@
 "use client";
 
-import { List } from "@/components/list";
+import { List } from "@/components/ui/list";
 import PageHeading from "@/components/page-heading";
 import RelativeTime from "@/components/relative-time";
 import { Button } from "@/components/ui/button";
@@ -11,13 +11,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useBrowsingHistory } from "@/hooks/use-browsing-history";
+import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  AudioLinesIcon,
-  EllipsisIcon,
-  HistoryIcon,
-  MicVocalIcon,
-  TrashIcon,
-} from "lucide-react";
+  MusicNote01Icon,
+  MoreHorizontalIcon,
+  WorkHistoryIcon,
+  Mic01Icon,
+  Delete02Icon,
+} from "@hugeicons/core-free-icons";
 import Link from "next/link";
 import { toast } from "sonner";
 
@@ -29,7 +30,7 @@ const Page = () => {
   return (
     <div className="mx-auto max-w-3xl p-6 pt-0">
       <PageHeading endContent={<HeaderContent />}>
-        <HistoryIcon />
+        <HugeiconsIcon icon={WorkHistoryIcon} size={20} />
         History
       </PageHeading>
       {computedHistory.length === 0 ? (
@@ -49,7 +50,13 @@ const Page = () => {
                     key={i}
                     href={item.link}
                     description={item.artistName}
-                    prefix={<AudioLinesIcon className="text-foreground/50" />}
+                    prefix={
+                      <HugeiconsIcon
+                        icon={MusicNote01Icon}
+                        size={20}
+                        className="text-foreground/50"
+                      />
+                    }
                     suffix={<RelativeTime to={item.timestamp} />}
                   >
                     {item.title}
@@ -60,7 +67,13 @@ const Page = () => {
                   <List.Item
                     key={i}
                     href={item.link}
-                    prefix={<MicVocalIcon className="text-foreground/50" />}
+                    prefix={
+                      <HugeiconsIcon
+                        icon={Mic01Icon}
+                        size={20}
+                        className="text-foreground/50"
+                      />
+                    }
                     suffix={<RelativeTime to={item.timestamp} />}
                   >
                     {item.name}
@@ -99,12 +112,12 @@ const HeaderContent = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon">
-          <EllipsisIcon />
+          <HugeiconsIcon icon={MoreHorizontalIcon} size={20} />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem variant="destructive" onClick={handleClear}>
-          <TrashIcon />
+          <HugeiconsIcon icon={Delete02Icon} size={20} />
           Clear All History
         </DropdownMenuItem>
       </DropdownMenuContent>

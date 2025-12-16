@@ -1,12 +1,13 @@
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
 import FavButton from "@/components/fav-button";
-import { List } from "@/components/list";
+import { List } from "@/components/ui/list";
 import PageHeading from "@/components/page-heading";
 import Player from "@/components/player";
 import { fetchRelatedSongs, fetchSong } from "@/lib/song";
 import { cn } from "@/lib/utils";
-import { ArrowRightIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { cacheLife } from "next/cache";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -136,7 +137,7 @@ const Page = async ({ params }: Props) => {
             <List.Footer>
               <List.FooterLink href={`/artist/${song.artist.name}`}>
                 View more songs by {song.artist.name}
-                <ArrowRightIcon />
+                <HugeiconsIcon icon={ArrowRight01Icon} size={20} />
               </List.FooterLink>
             </List.Footer>
           </List.Wrapper>

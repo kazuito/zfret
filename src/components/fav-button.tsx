@@ -2,7 +2,8 @@
 
 import { FavoriteItemInput, useFavorites } from "@/hooks/use-favorites";
 import { cn } from "@/lib/utils";
-import { HeartIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { FavouriteIcon } from "@hugeicons/core-free-icons";
 import { Button } from "./ui/button";
 
 type Props = {
@@ -27,11 +28,11 @@ const FavButton = ({ item }: Props) => {
       )}
       title="Toggle favorite"
     >
-      {isFavorite ? (
-        <HeartIcon className="text-red-500" fill="currentColor" />
-      ) : (
-        <HeartIcon />
-      )}
+      <HugeiconsIcon
+        icon={FavouriteIcon}
+        size={24}
+        className={isFavorite ? "text-red-500" : ""}
+      />
       <span className="sr-only">Toggle favorite</span>
     </Button>
   );

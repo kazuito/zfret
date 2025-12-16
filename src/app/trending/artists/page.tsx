@@ -1,19 +1,20 @@
-import { List } from "@/components/list";
+import { List } from "@/components/ui/list";
 import PageHeading from "@/components/page-heading";
 import { fetchTopArtists } from "@/lib/song";
 import { cacheLife } from "next/cache";
-import { MicVocalIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Mic01Icon } from "@hugeicons/core-free-icons";
 
 const Page = async () => {
   "use cache";
   cacheLife("days");
-  
+
   const artists = await fetchTopArtists({ limit: 100 });
 
   return (
     <>
       <PageHeading>
-        <MicVocalIcon />
+        <HugeiconsIcon icon={Mic01Icon} size={20} />
         TOP ARTISTS
       </PageHeading>
       <List.Wrapper>

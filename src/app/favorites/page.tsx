@@ -1,6 +1,6 @@
 "use client";
 
-import { List } from "@/components/list";
+import { List } from "@/components/ui/list";
 import PageHeading from "@/components/page-heading";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,7 +14,8 @@ import {
 } from "@/components/ui/select";
 import { FavoriteItem, useFavorites } from "@/hooks/use-favorites";
 import { cn } from "@/lib/utils";
-import { HeartIcon, ListFilterIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { FavouriteIcon, FilterIcon } from "@hugeicons/core-free-icons";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
@@ -74,7 +75,9 @@ const Page = () => {
               className="rounded-e-none border-e-0"
               title="Toggle sort order"
             >
-              <ListFilterIcon
+              <HugeiconsIcon
+                icon={FilterIcon}
+                size={20}
                 className={cn(
                   "transition-all duration-140 ease-out",
                   isAsc && "rotate-x-180",
@@ -100,7 +103,7 @@ const Page = () => {
           </div>
         }
       >
-        <HeartIcon />
+        <HugeiconsIcon icon={FavouriteIcon} size={20} />
         Favorites
       </PageHeading>
       {computedFavorites.length === 0 ? (

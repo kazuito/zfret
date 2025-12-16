@@ -1,4 +1,9 @@
-import { HeartIcon, HistoryIcon, SearchIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  Clock02Icon,
+  FavouriteIcon,
+  SearchIcon,
+} from "@hugeicons/core-free-icons";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
@@ -12,19 +17,19 @@ const Header = () => {
         <div className="ml-auto">
           <Button size="icon" variant="ghost" asChild>
             <Link href="/search" title="Search">
-              <SearchIcon />
+              <HugeiconsIcon icon={SearchIcon} />
               <span className="sr-only">Search</span>
             </Link>
           </Button>
           <Button size="icon" variant="ghost" asChild>
             <Link href="/favorites" title="Favorites">
-              <HeartIcon />
+              <HugeiconsIcon icon={FavouriteIcon} />
               <span className="sr-only">Favorites</span>
             </Link>
           </Button>
           <Button size="icon" variant="ghost" asChild>
             <Link href="/history" title="History">
-              <HistoryIcon />
+              <HugeiconsIcon icon={Clock02Icon} />
               <span className="sr-only">History</span>
             </Link>
           </Button>

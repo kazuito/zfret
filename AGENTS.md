@@ -79,7 +79,3 @@ src/
 - **Aggressive caching**: Reduces load, songs cached max, others daily
 - **Client/Server**: `ClientOnly` for localStorage features, watch hydration mismatches
 - **Env**: `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` required (validated via @t3-oss/env-nextjs)
-
-## Scripts
-
-`pnpm dev` | `pnpm build` | `pnpm start` | `pnpm lint` | `pnpm format` | `pnpm type-check`

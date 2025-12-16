@@ -1,11 +1,12 @@
-import { List } from "@/components/list";
+import { List } from "@/components/ui/list";
 import { fetchTopArtists, fetchTopSongs } from "@/lib/song";
+import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  ArrowRightIcon,
-  AudioLinesIcon,
-  MicVocalIcon,
-  SearchIcon,
-} from "lucide-react";
+  ArrowRight01Icon,
+  MusicNote01Icon,
+  Mic01Icon,
+  Search01Icon,
+} from "@hugeicons/core-free-icons";
 import { cacheLife } from "next/cache";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -29,23 +30,23 @@ export default async function Home() {
         <div className="flex gap-4">
           <Button asChild>
             <Link href="/trending/songs">
-              <AudioLinesIcon />
+              <HugeiconsIcon icon={MusicNote01Icon} size={20} />
               Top Songs
             </Link>
           </Button>
           <Button variant="outline" asChild>
             <Link href="/search">
-              <SearchIcon />
+              <HugeiconsIcon icon={Search01Icon} size={20} />
               Search
             </Link>
           </Button>
         </div>
       </section>
-      <section className="flex flex-col gap-6 md:flex-row pb-16">
+      <section className="flex flex-col gap-6 pb-16 md:flex-row">
         <List.Wrapper className="flex-1">
           <List.Header asChild>
             <Link href="/trending/songs" className="w-fit">
-              <AudioLinesIcon />
+              <HugeiconsIcon icon={MusicNote01Icon} size={20} />
               TOP SONGS
             </Link>
           </List.Header>
@@ -64,14 +65,14 @@ export default async function Home() {
           <List.Footer>
             <List.FooterLink href="/trending/songs">
               View more top songs
-              <ArrowRightIcon />
+              <HugeiconsIcon icon={ArrowRight01Icon} size={20} />
             </List.FooterLink>
           </List.Footer>
         </List.Wrapper>
         <List.Wrapper className="flex-1">
           <List.Header asChild>
             <Link href="/trending/artists" className="w-fit">
-              <MicVocalIcon />
+              <HugeiconsIcon icon={Mic01Icon} size={20} />
               TOP ARTISTS
             </Link>
           </List.Header>
@@ -89,7 +90,7 @@ export default async function Home() {
           <List.Footer>
             <List.FooterLink href="/trending/artists">
               View more top artists
-              <ArrowRightIcon />
+              <HugeiconsIcon icon={ArrowRight01Icon} size={20} />
             </List.FooterLink>
           </List.Footer>
         </List.Wrapper>

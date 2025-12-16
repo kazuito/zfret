@@ -1,6 +1,7 @@
 "use client";
 
-import { PlayIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { PlayIcon } from "@hugeicons/core-free-icons";
 import Image from "next/image";
 import { useState } from "react";
 import ReactPlayer from "react-player";
@@ -36,9 +37,10 @@ const Player = ({ youtubeVideoId }: Props) => {
           >
             <div className="bg-background/80 absolute inset-0 z-10 grid place-content-center backdrop-blur-xs">
               <div className="flex flex-col items-center gap-4">
-                <PlayIcon
-                  className="size-8 transition group-hover/player:scale-120 group-active/player:scale-90"
-                  fill="currentColor"
+                <HugeiconsIcon
+                  icon={PlayIcon}
+                  size={32}
+                  className="transition group-hover/player:scale-120 group-active/player:scale-90"
                 />
               </div>
             </div>

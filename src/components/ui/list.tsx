@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
-import { Slot } from "@radix-ui/react-slot";
+import { Slot } from "radix-ui";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 
 const ListWrapper = ({ className, ...props }: React.ComponentProps<"div">) => {
   return (
@@ -20,7 +20,7 @@ type ListHeaderProps = React.ComponentProps<"div"> & {
 };
 
 const ListHeader = ({ asChild = false, ...props }: ListHeaderProps) => {
-  const Comp = asChild ? Slot : "div";
+  const Comp = asChild ? Slot.Root : "div";
 
   return (
     <Comp

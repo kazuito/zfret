@@ -4,7 +4,8 @@ import { List } from "@/components/list";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { search, SearchResult } from "@/lib/search";
-import { LoaderIcon, SearchIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Loading01Icon, Search01Icon } from "@hugeicons/core-free-icons";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
 import { useEffect, useState, useTransition } from "react";
@@ -61,7 +62,7 @@ const Page = () => {
           autoFocus
         />
         <Button type="submit" size="icon" disabled={isPending}>
-          <SearchIcon />
+          <HugeiconsIcon icon={Search01Icon} size={20} />
         </Button>
       </form>
       <div>
@@ -72,7 +73,7 @@ const Page = () => {
             className="text-foreground/60 my-20 flex justify-center"
           >
             <div className="flex animate-bounce items-center gap-1">
-              <LoaderIcon className="size-4 animate-spin" />
+              <HugeiconsIcon icon={Loading01Icon} size={16} className="animate-spin" />
               Searching...
             </div>
           </div>
