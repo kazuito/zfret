@@ -3,7 +3,7 @@ import { fetchTopArtists, fetchTopSongs } from "@/lib/song";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   ArrowRight01Icon,
-  MusicNote01Icon,
+  MusicNote02Icon,
   Mic01Icon,
   Search01Icon,
 } from "@hugeicons/core-free-icons";
@@ -30,7 +30,7 @@ export default async function Home() {
         <div className="flex gap-4">
           <Button asChild>
             <Link href="/trending/songs">
-              <HugeiconsIcon icon={MusicNote01Icon} size={20} />
+              <HugeiconsIcon icon={MusicNote02Icon} size={20} />
               Top Songs
             </Link>
           </Button>
@@ -46,7 +46,7 @@ export default async function Home() {
         <List.Wrapper className="flex-1">
           <List.Header asChild>
             <Link href="/trending/songs" className="w-fit">
-              <HugeiconsIcon icon={MusicNote01Icon} size={20} />
+              <HugeiconsIcon icon={MusicNote02Icon} size={20} />
               TOP SONGS
             </Link>
           </List.Header>

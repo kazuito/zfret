@@ -1,6 +1,6 @@
 "use client";
 
-import { List } from "@/components/list";
+import { List } from "@/components/ui/list";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { search, SearchResult } from "@/lib/search";

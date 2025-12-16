@@ -1,6 +1,6 @@
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
-import { List } from "@/components/list";
+import { List } from "@/components/ui/list";
 import PageHeading from "@/components/page-heading";
 import { fetchArtistSongs } from "@/lib/song";
 import { cacheLife } from "next/cache";
