@@ -115,7 +115,7 @@ const HeaderContent = () => {
           <HugeiconsIcon icon={MoreHorizontalIcon} size={20} />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="w-38">
         <DropdownMenuItem variant="destructive" onClick={handleClear}>
           <HugeiconsIcon icon={Delete02Icon} size={20} />
           Clear All History

@@ -21,10 +21,10 @@ export default async function Home() {
   return (
     <div className="mx-auto flex max-w-5xl flex-col p-6 pt-0">
       <section className="flex flex-col items-center gap-6 py-32">
-        <div className="text-center text-3xl font-semibold tracking-tight md:text-4xl/6">
+        <div className="text-center text-3xl font-semibold tracking-tight text-balance md:text-4xl/6">
           The Chord Library for Music Lovers
         </div>
-        <p className="text-lg">
+        <p className="text-center text-base md:text-lg text-balance">
           Explore chords and lyrics from iconic Japan Hits
         </p>
         <div className="flex gap-3">
