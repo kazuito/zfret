@@ -23,7 +23,7 @@ export const generateMetadata = async ({
 
 const Page = async ({ params }: Props) => {
   "use cache";
-  cacheLife("days");
+  cacheLife("weeks");
 
   const { name } = await params;
   const decodedName = decodeURIComponent(name);

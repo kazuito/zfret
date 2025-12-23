@@ -1,12 +1,15 @@
 "use server";
 
 import { load } from "cheerio";
-import { cache } from "react";
 import { z } from "zod";
+import { cacheLife } from "next/cache";
 
 const chordsDataSchema = z.array(z.string());
 
-export const fetchSong = cache(async (id: string) => {
+export async function fetchSong (id: string)  {
+  "use cache";
+  cacheLife("max");
+
   const url = `https://www.ufret.jp/song.php?data=${id}`;
   const res = await fetch(url);
   const html = await res.text();
@@ -74,7 +77,7 @@ export const fetchSong = cache(async (id: string) => {
     youtubeVideoId,
     tags,
   };
-});
+}
 
 type FetchArtistSongsOptions = {
   limit?: number;
@@ -86,6 +89,9 @@ export async function fetchArtistSongs(
     limit: -1,
   },
 ) {
+  "use cache";
+  cacheLife("weeks");
+  
   const encodedArtistName = encodeURIComponent(artistName);
   const url = `https://www.ufret.jp/artist.php?data=${encodedArtistName}`;
   const res = await fetch(url);
@@ -138,6 +144,9 @@ export async function fetchRelatedSongs(
     limit: 20,
   },
 ) {
+  "use cache";
+  cacheLife("weeks");
+
   const artistSongs = await fetchArtistSongs(artistName);
   const selfIndex = artistSongs.findIndex((song) => song.id === songId);
 
@@ -160,6 +169,9 @@ export async function fetchTopSongs(
     limit: 10,
   },
 ) {
+  "use cache";
+  cacheLife("days");
+  
   const url = "https://www.ufret.jp/rank.php";
   const res = await fetch(url);
   const html = await res.text();
@@ -198,6 +210,9 @@ type FetchTopArtistsOptions = {
 export async function fetchTopArtists(
   options: FetchTopArtistsOptions = { limit: 10 },
 ) {
+  "use cache";
+  cacheLife("days");
+  
   const url = "https://www.ufret.jp/rank_artist.php";
   const res = await fetch(url);
   const html = await res.text();
