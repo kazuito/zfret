@@ -24,7 +24,7 @@ export default async function Home() {
         <div className="text-center text-3xl font-semibold tracking-tight text-balance md:text-4xl/6">
           The Chord Library for Music Lovers
         </div>
-        <p className="text-center text-base md:text-lg text-balance">
+        <p className="text-center text-base text-balance md:text-lg">
           Explore chords and lyrics from iconic Japan Hits
         </p>
         <div className="flex gap-3">

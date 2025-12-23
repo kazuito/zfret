@@ -6,7 +6,7 @@ import { cacheLife } from "next/cache";
 
 const chordsDataSchema = z.array(z.string());
 
-export async function fetchSong (id: string)  {
+export async function fetchSong(id: string) {
   "use cache";
   cacheLife("max");
 
@@ -91,7 +91,7 @@ export async function fetchArtistSongs(
 ) {
   "use cache";
   cacheLife("weeks");
-  
+
   const encodedArtistName = encodeURIComponent(artistName);
   const url = `https://www.ufret.jp/artist.php?data=${encodedArtistName}`;
   const res = await fetch(url);
@@ -171,7 +171,7 @@ export async function fetchTopSongs(
 ) {
   "use cache";
   cacheLife("days");
-  
+
   const url = "https://www.ufret.jp/rank.php";
   const res = await fetch(url);
   const html = await res.text();
@@ -212,7 +212,7 @@ export async function fetchTopArtists(
 ) {
   "use cache";
   cacheLife("days");
-  
+
   const url = "https://www.ufret.jp/rank_artist.php";
   const res = await fetch(url);
   const html = await res.text();
