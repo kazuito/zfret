@@ -1,3 +1,5 @@
+"use cache";
+
 import { List } from "@/components/ui/list";
 import { fetchTopArtists, fetchTopSongs } from "@/lib/song";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -12,7 +14,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default async function Home() {
-  "use cache";
   cacheLife("days");
 
   const topSongs = await fetchTopSongs();

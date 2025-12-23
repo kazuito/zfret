@@ -1,3 +1,5 @@
+"use cache";
+
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
 import FavButton from "@/components/fav-button";
@@ -31,7 +33,6 @@ export const generateMetadata = async ({
 };
 
 const Page = async ({ params }: Props) => {
-  "use cache";
   cacheLife("max");
 
   const { id } = await params;

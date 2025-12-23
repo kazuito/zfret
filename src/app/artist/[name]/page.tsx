@@ -1,3 +1,5 @@
+"use cache";
+
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
 import { List } from "@/components/ui/list";
@@ -22,7 +24,6 @@ export const generateMetadata = async ({
 };
 
 const Page = async ({ params }: Props) => {
-  "use cache";
   cacheLife("weeks");
 
   const { name } = await params;

@@ -1,3 +1,5 @@
+"use cache";
+
 import { List } from "@/components/ui/list";
 import PageHeading from "@/components/page-heading";
 import { fetchTopSongs } from "@/lib/song";
@@ -6,7 +8,6 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { MusicNote01Icon } from "@hugeicons/core-free-icons";
 
 const Page = async () => {
-  "use cache";
   cacheLife("days");
 
   const songs = await fetchTopSongs({ limit: 100 });
