@@ -13,11 +13,11 @@ import {
 import { useBrowsingHistory } from "@/hooks/use-browsing-history";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  MusicNote01Icon,
+  Clock02Icon,
   MoreHorizontalIcon,
-  WorkHistoryIcon,
   Mic01Icon,
   Delete02Icon,
+  MusicNote02Icon,
 } from "@hugeicons/core-free-icons";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -30,7 +30,7 @@ const Page = () => {
   return (
     <div className="mx-auto max-w-3xl p-6 pt-0">
       <PageHeading endContent={<HeaderContent />}>
-        <HugeiconsIcon icon={WorkHistoryIcon} size={20} />
+        <HugeiconsIcon icon={Clock02Icon} size={20} />
         History
       </PageHeading>
       {computedHistory.length === 0 ? (
@@ -52,7 +52,7 @@ const Page = () => {
                     description={item.artistName}
                     prefix={
                       <HugeiconsIcon
-                        icon={MusicNote01Icon}
+                        icon={MusicNote02Icon}
                         size={20}
                         className="text-foreground/50"
                       />
