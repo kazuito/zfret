@@ -6,47 +6,55 @@ import { Input } from "@/components/ui/input";
 import { search, SearchResult } from "@/lib/search";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Loading01Icon, Search01Icon } from "@hugeicons/core-free-icons";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
-import { useEffect, useState, useTransition } from "react";
+import { useState } from "react";
 
 const Page = () => {
   const [urlQuery, setUrlQuery] = useQueryState("q", {
     history: "replace",
   });
   const [query, setQuery] = useState(urlQuery ?? "");
-  const [results, setResults] = useState<SearchResult>();
-  const [isPending, startTransition] = useTransition();
+
+  const trimmedUrlQuery = urlQuery?.trim() ?? "";
+  const isQueryEnabled = trimmedUrlQuery.length > 0;
+
+  const {
+    data: queryData,
+    isFetching,
+    isLoading,
+  } = useQuery<SearchResult>({
+    queryKey: ["search", trimmedUrlQuery],
+    queryFn: () => search(trimmedUrlQuery),
+    enabled: isQueryEnabled,
+  });
+
+  const results = isQueryEnabled ? queryData : undefined;
 
   const showEmptyMessage = !!(
-    urlQuery &&
-    !isPending &&
-    results?.artists.length === 0 &&
-    results?.songs.length === 0
+    isQueryEnabled &&
+    !isFetching &&
+    !isLoading &&
+    results &&
+    results.artists.length === 0 &&
+    results.songs.length === 0
   );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const trimmed = query.trim();
     setQuery(trimmed);
+
     if (trimmed.length === 0) {
       await setUrlQuery(null);
-      startTransition(() => setResults(undefined));
       return;
     }
+
     await setUrlQuery(trimmed);
   };
 
-  useEffect(() => {
-    const q = urlQuery?.trim();
-    if (!q) {
-      startTransition(() => setResults(undefined));
-      return;
-    }
-    startTransition(() => {
-      search(q).then(setResults);
-    });
-  }, [startTransition, urlQuery]);
+  const isPending = isFetching || isLoading;
 
   return (
     <div className="mx-auto max-w-3xl p-6">
@@ -91,21 +99,23 @@ const Page = () => {
           <div className="mt-6 flex flex-col gap-6">
             {results.artists.length > 0 && (
               <div className="flex flex-wrap gap-2">
-                {results.artists.map((artist) => (
-                  <Link
-                    key={artist.id}
-                    href={artist.link}
-                    className="bg-secondary/40 truncate rounded-full border px-4 py-2"
-                  >
-                    {artist.name}
-                  </Link>
-                ))}
+                {results.artists.map(
+                  (artist: SearchResult["artists"][number]) => (
+                    <Link
+                      key={artist.id}
+                      href={artist.link}
+                      className="bg-secondary/40 truncate rounded-full border px-4 py-2"
+                    >
+                      {artist.name}
+                    </Link>
+                  ),
+                )}
               </div>
             )}
             {results.songs.length > 0 && (
               <List.Wrapper>
                 <List.Content>
-                  {results.songs.map((song) => (
+                  {results.songs.map((song: SearchResult["songs"][number]) => (
                     <List.Item
                       key={song.id}
                       href={song.link}

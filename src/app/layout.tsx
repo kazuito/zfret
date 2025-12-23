@@ -1,5 +1,6 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { QueryProvider } from "@/components/query-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { env } from "@/lib/env";
@@ -38,12 +39,14 @@ export default function RootLayout({
       <body className={cn("antialiased", lexend.className, kosugi.variable)}>
         <NuqsAdapter>
           <ThemeProvider attribute="class" defaultTheme="system">
-            <div className="flex min-h-[100dvh] flex-col">
-              <Header />
-              <div className="grow">{children}</div>
-              <Footer />
-            </div>
-            <Toaster />
+            <QueryProvider>
+              <div className="flex min-h-[100dvh] flex-col">
+                <Header />
+                <div className="grow">{children}</div>
+                <Footer />
+              </div>
+              <Toaster />
+            </QueryProvider>
           </ThemeProvider>
         </NuqsAdapter>
       </body>
