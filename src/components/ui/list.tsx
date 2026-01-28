@@ -3,11 +3,11 @@ import { Slot } from "radix-ui";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-const ListWrapper = ({ className, ...props }: React.ComponentProps<"div">) => {
+const ListRoot = ({ className, ...props }: React.ComponentProps<"div">) => {
   return (
     <div
       className={cn(
-        "bg-secondary/40 dark:bg-secondary/20 border-border/60 min-w-0 rounded-lg border",
+        "bg-secondary/40 dark:bg-secondary/20 border-border/60 min-w-0 rounded-xl border",
         className,
       )}
       {...props}
@@ -56,7 +56,7 @@ const ListItem = ({
   return (
     <Link
       href={href}
-      className="bg-background dark:bg-secondary/20 border-border/60 flex min-w-0 items-center gap-3 rounded-md border px-4 py-3"
+      className="bg-background dark:bg-secondary/20 border-border/60 flex min-w-0 items-center gap-3 rounded-lg border px-4 py-3"
     >
       {prefix && (
         <div className="text-foreground/80 shrink-0 text-sm [&_svg]:size-4.5">
@@ -100,7 +100,7 @@ const ListFooterLink = ({ className, ...props }: ListFooterLinkProps) => {
 };
 
 const List = {
-  Wrapper: ListWrapper,
+  Root: ListRoot,
   Header: ListHeader,
   Content: ListContent,
   Item: ListItem,

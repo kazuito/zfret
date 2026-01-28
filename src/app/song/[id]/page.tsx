@@ -120,7 +120,7 @@ const Page = async ({ params }: Props) => {
           </div>
         </div>
         <div className="my-10">
-          <List.Wrapper>
+          <List.Root>
             <List.Header asChild>
               <Link href={`/artist/${song.artist.name}`} className="w-fit">
                 {song.artist.name}
@@ -141,7 +141,7 @@ const Page = async ({ params }: Props) => {
                 <HugeiconsIcon icon={ArrowRight01Icon} size={20} />
               </List.FooterLink>
             </List.Footer>
-          </List.Wrapper>
+          </List.Root>
         </div>
       </div>
     </div>

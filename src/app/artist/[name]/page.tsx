@@ -43,7 +43,7 @@ const Page = async ({ params }: Props) => {
       </ClientOnly>
       <PageHeading>{decodedName}</PageHeading>
       <div>
-        <List.Wrapper>
+        <List.Root>
           <List.Content>
             {songs.map((song) => {
               return (
@@ -53,7 +53,7 @@ const Page = async ({ params }: Props) => {
               );
             })}
           </List.Content>
-        </List.Wrapper>
+        </List.Root>
       </div>
     </div>
   );

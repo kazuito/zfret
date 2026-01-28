@@ -41,7 +41,7 @@ const Page = () => {
           </Link>
         </div>
       ) : (
-        <List.Wrapper>
+        <List.Root>
           <List.Content>
             {computedHistory.map((item, i) => {
               if (item.type === "song") {
@@ -82,7 +82,7 @@ const Page = () => {
               return null;
             })}
           </List.Content>
-        </List.Wrapper>
+        </List.Root>
       )}
     </div>
   );

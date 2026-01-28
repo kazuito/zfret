@@ -22,7 +22,7 @@ src/
 **`lib/search.ts`**: `search(query)` returns `{ artists, songs }`  
 **`hooks/use-favorites.ts`**: localStorage favorites (`addFavorite`, `removeFavorite`, `toggleFavorite`)  
 **`hooks/use-browsing-history.ts`**: localStorage history (`addHistoryItem`, `clearAllHistory`)  
-**`components/list.tsx`**: Compound component (`List.Wrapper`, `List.Header`, `List.Content`, `List.Item`, `List.Footer`)  
+**`components/list.tsx`**: Compound component (`List.Root`, `List.Header`, `List.Content`, `List.Item`, `List.Footer`)  
 **`components/player.tsx`**: YouTube player (lazy loads on click)
 
 ## Architecture

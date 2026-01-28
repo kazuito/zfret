@@ -18,7 +18,7 @@ const Page = async () => {
         <HugeiconsIcon icon={Mic01Icon} size={20} />
         TOP ARTISTS
       </PageHeading>
-      <List.Wrapper>
+      <List.Root>
         <List.Content>
           {artists.map((artist, i) => (
             <List.Item
@@ -30,7 +30,7 @@ const Page = async () => {
             </List.Item>
           ))}
         </List.Content>
-      </List.Wrapper>
+      </List.Root>
     </>
   );
 };

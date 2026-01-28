@@ -18,7 +18,7 @@ const Page = async () => {
         <HugeiconsIcon icon={MusicNote01Icon} size={20} />
         TOP SONGS
       </PageHeading>
-      <List.Wrapper>
+      <List.Root>
         <List.Content>
           {songs.map((song, i) => (
             <List.Item
@@ -31,7 +31,7 @@ const Page = async () => {
             </List.Item>
           ))}
         </List.Content>
-      </List.Wrapper>
+      </List.Root>
     </>
   );
 };

@@ -115,7 +115,7 @@ const Page = () => {
           ?
         </div>
       ) : (
-        <List.Wrapper>
+        <List.Root>
           <List.Content>
             {computedFavorites.map((item) => {
               return (
@@ -129,7 +129,7 @@ const Page = () => {
               );
             })}
           </List.Content>
-        </List.Wrapper>
+        </List.Root>
       )}
     </div>
   );

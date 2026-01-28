@@ -44,7 +44,7 @@ export default async function Home() {
         </div>
       </section>
       <section className="flex flex-col gap-6 pb-16 md:flex-row">
-        <List.Wrapper className="min-w-0 flex-1">
+        <List.Root className="min-w-0 flex-1">
           <List.Header asChild>
             <Link href="/trending/songs" className="w-fit">
               <HugeiconsIcon icon={MusicNote02Icon} size={20} />
@@ -69,8 +69,8 @@ export default async function Home() {
               <HugeiconsIcon icon={ArrowRight01Icon} size={20} />
             </List.FooterLink>
           </List.Footer>
-        </List.Wrapper>
-        <List.Wrapper className="min-w-0 flex-1">
+        </List.Root>
+        <List.Root className="min-w-0 flex-1">
           <List.Header asChild>
             <Link href="/trending/artists" className="w-fit">
               <HugeiconsIcon icon={Mic01Icon} size={20} />
@@ -94,7 +94,7 @@ export default async function Home() {
               <HugeiconsIcon icon={ArrowRight01Icon} size={20} />
             </List.FooterLink>
           </List.Footer>
-        </List.Wrapper>
+        </List.Root>
       </section>
     </div>
   );

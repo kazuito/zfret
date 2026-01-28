@@ -137,7 +137,7 @@ const Page = () => {
               </div>
             )}
             {results.songs.length > 0 && (
-              <List.Wrapper>
+              <List.Root>
                 <List.Content>
                   {results.songs.map((song: SearchResult["songs"][number]) => (
                     <List.Item
@@ -149,7 +149,7 @@ const Page = () => {
                     </List.Item>
                   ))}
                 </List.Content>
-              </List.Wrapper>
+              </List.Root>
             )}
           </div>
         )}
