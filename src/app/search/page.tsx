@@ -10,12 +10,16 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
 import { useState } from "react";
+import { SearchHistory } from "@/components/search-history";
+import { useSearchHistory } from "@/hooks/use-search-history";
 
 const Page = () => {
   const [urlQuery, setUrlQuery] = useQueryState("q", {
     history: "replace",
   });
   const [query, setQuery] = useState(urlQuery ?? "");
+  const [isInputFocused, setIsInputFocused] = useState(false);
+  const searchHistory = useSearchHistory();
 
   const trimmedUrlQuery = urlQuery?.trim() ?? "";
   const isQueryEnabled = trimmedUrlQuery.length > 0;
@@ -51,10 +55,22 @@ const Page = () => {
       return;
     }
 
+    searchHistory.add(trimmed);
     await setUrlQuery(trimmed);
   };
 
+  const handleHistorySelect = async (historyQuery: string) => {
+    setQuery(historyQuery);
+    searchHistory.add(historyQuery);
+    await setUrlQuery(historyQuery);
+  };
+
   const isPending = isFetching || isLoading;
+
+  const showSearchHistory =
+    !isPending &&
+    searchHistory.queries.length > 0 &&
+    (!results || (results && isInputFocused));
 
   return (
     <div className="mx-auto max-w-3xl p-6">
@@ -66,6 +82,8 @@ const Page = () => {
           placeholder="Search for songs or artists"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onFocus={() => setIsInputFocused(true)}
+          onBlur={() => setIsInputFocused(false)}
           disabled={isPending}
           autoFocus
         />
@@ -73,6 +91,14 @@ const Page = () => {
           <HugeiconsIcon icon={Search01Icon} size={20} />
         </Button>
       </form>
+      {showSearchHistory && searchHistory.queries.length > 0 && (
+        <SearchHistory
+          queries={searchHistory.queries}
+          onSelect={handleHistorySelect}
+          onRemove={searchHistory.remove}
+          onClear={searchHistory.clear}
+        />
+      )}
       <div>
         {isPending && (
           <div
