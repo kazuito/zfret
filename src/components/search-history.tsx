@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Cancel01Icon } from "@hugeicons/core-free-icons";
@@ -20,11 +21,30 @@ export const SearchHistory = ({
   if (queries.length === 0) return null;
 
   return (
-    <div
-      className="mt-3 flex flex-col gap-2 transition ease-out starting:scale-95"
+    <motion.div
+      className="flex flex-col gap-2"
       onMouseDown={(e) => e.preventDefault()}
+      initial={{
+        scale: 0.9,
+        height: 0,
+        opacity: 0,
+      }}
+      animate={{
+        scale: 1,
+        height: "auto",
+        opacity: 1,
+      }}
+      exit={{
+        scale: 0.9,
+        height: 0,
+        opacity: 0,
+      }}
+      transition={{
+        ease: "easeOut",
+        duration: 0.2,
+      }}
     >
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between pt-3">
         <span className="text-foreground/60 text-xs">Recent searches</span>
         <Button variant="ghost" size="xs" onClick={onClear}>
           Clear
@@ -57,6 +77,6 @@ export const SearchHistory = ({
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };

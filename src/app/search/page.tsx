@@ -5,13 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { search, SearchResult } from "@/lib/search";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Loading01Icon, Search01Icon } from "@hugeicons/core-free-icons";
+import { Search01Icon } from "@hugeicons/core-free-icons";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
 import { useState } from "react";
 import { SearchHistory } from "@/components/search-history";
 import { useSearchHistory } from "@/hooks/use-search-history";
+import { AnimatePresence } from "motion/react";
 
 const Page = () => {
   const [urlQuery, setUrlQuery] = useQueryState("q", {
@@ -91,14 +92,16 @@ const Page = () => {
           <HugeiconsIcon icon={Search01Icon} size={20} />
         </Button>
       </form>
-      {showSearchHistory && searchHistory.queries.length > 0 && (
-        <SearchHistory
-          queries={searchHistory.queries}
-          onSelect={handleHistorySelect}
-          onRemove={searchHistory.remove}
-          onClear={searchHistory.clear}
-        />
-      )}
+      <AnimatePresence>
+        {showSearchHistory && searchHistory.queries.length > 0 && (
+          <SearchHistory
+            queries={searchHistory.queries}
+            onSelect={handleHistorySelect}
+            onRemove={searchHistory.remove}
+            onClear={searchHistory.clear}
+          />
+        )}
+      </AnimatePresence>
       <div>
         {isPending && (
           <div
@@ -107,11 +110,6 @@ const Page = () => {
             className="text-foreground/60 my-20 flex justify-center"
           >
             <div className="flex animate-bounce items-center gap-1">
-              <HugeiconsIcon
-                icon={Loading01Icon}
-                size={16}
-                className="animate-spin"
-              />
               Searching...
             </div>
           </div>
