@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Cancel01Icon } from "@hugeicons/core-free-icons";
@@ -25,7 +25,7 @@ export const RecentSearches = ({
       className="flex flex-col gap-2"
       onMouseDown={(e) => e.preventDefault()}
       initial={{
-        scale: 0.95,
+        scale: 0.96,
         height: 0,
         opacity: 0,
       }}
@@ -35,7 +35,7 @@ export const RecentSearches = ({
         opacity: 1,
       }}
       exit={{
-        scale: 0.95,
+        scale: 0.96,
         height: 0,
         opacity: 0,
       }}
@@ -47,30 +47,53 @@ export const RecentSearches = ({
     >
       <div className="p-2">
         <div className="flex flex-col">
-          {queries.slice(0, 5).map((query) => (
-            <div key={query} className="border-b py-0.5 last:border-none">
-              <div className="flex items-center justify-between gap-0.5">
-                <button
-                  type="button"
-                  onClick={() => onSelect(query)}
-                  className="hover:bg-accent/20 grow truncate rounded-md px-3 py-2 text-start text-sm"
-                >
-                  {query}
-                </button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="transition-opacity"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onRemove(query);
-                  }}
-                >
-                  <HugeiconsIcon icon={Cancel01Icon} size={12} />
-                </Button>
-              </div>
-            </div>
-          ))}
+          <AnimatePresence mode="popLayout" initial={false}>
+            {queries.slice(0, 3).map((query) => (
+              <motion.div
+                layout
+                key={query}
+                className="border-b py-0.5 last:border-none"
+                initial={{
+                  opacity: 0,
+                  scale: 0.96,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.96,
+                }}
+                transition={{
+                  type: "spring",
+                  damping: 46,
+                  stiffness: 660,
+                }}
+              >
+                <div className="flex items-center justify-between gap-0.5">
+                  <button
+                    type="button"
+                    onClick={() => onSelect(query)}
+                    className="hover:bg-accent/20 grow truncate rounded-md px-3 py-2 text-start text-sm"
+                  >
+                    {query}
+                  </button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="transition-opacity"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onRemove(query);
+                    }}
+                  >
+                    <HugeiconsIcon icon={Cancel01Icon} size={12} />
+                  </Button>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </div>
     </motion.div>
