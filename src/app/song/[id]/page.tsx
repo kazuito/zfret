@@ -1,18 +1,18 @@
 "use cache";
 
+import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Metadata } from "next";
+import { cacheLife } from "next/cache";
+import Link from "next/link";
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
 import FavButton from "@/components/fav-button";
-import { List } from "@/components/ui/list";
 import PageHeading from "@/components/page-heading";
 import Player from "@/components/player";
+import { List } from "@/components/ui/list";
 import { fetchRelatedSongs, fetchSong } from "@/lib/song";
 import { cn } from "@/lib/utils";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
-import { cacheLife } from "next/cache";
-import { Metadata } from "next";
-import Link from "next/link";
 
 type Props = {
   params: Promise<{
