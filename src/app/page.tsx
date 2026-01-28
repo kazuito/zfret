@@ -33,13 +33,13 @@ export default async function Home() {
         <div className="flex gap-3">
           <Button asChild>
             <Link href="/trending/songs">
-              <HugeiconsIcon icon={MusicNote02Icon} size={20} />
-              Top Songs
+              <HugeiconsIcon icon={MusicNote02Icon} strokeWidth={2.4} />
+              Explore Songs
             </Link>
           </Button>
           <Button variant="outline" asChild>
             <Link href="/search">
-              <HugeiconsIcon icon={Search01Icon} size={20} />
+              <HugeiconsIcon icon={Search01Icon} strokeWidth={2.4} />
               Search
             </Link>
           </Button>
