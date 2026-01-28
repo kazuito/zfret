@@ -40,8 +40,9 @@ export const SearchHistory = ({
         opacity: 0,
       }}
       transition={{
-        ease: "easeOut",
-        duration: 0.2,
+        type: "spring",
+        damping: 38,
+        stiffness: 460,
       }}
     >
       <div className="flex items-center justify-between pt-3">
