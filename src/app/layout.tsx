@@ -43,9 +43,9 @@ export default function RootLayout({
             <QueryProvider>
               <div className="flex">
                 <Sidebar />
-                <div className="flex min-h-[100dvh] grow flex-col">
+                <div className="flex min-h-[100dvh] min-w-0 grow flex-col">
                   <Header />
-                  <div className="grow">{children}</div>
+                  <div className="min-w-0 grow">{children}</div>
                   <Footer />
                 </div>
               </div>

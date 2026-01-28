@@ -7,7 +7,7 @@ const ListWrapper = ({ className, ...props }: React.ComponentProps<"div">) => {
   return (
     <div
       className={cn(
-        "bg-secondary/40 dark:bg-secondary/20 border-border/60 rounded-lg border",
+        "bg-secondary/40 dark:bg-secondary/20 border-border/60 min-w-0 rounded-lg border",
         className,
       )}
       {...props}
@@ -56,21 +56,23 @@ const ListItem = ({
   return (
     <Link
       href={href}
-      className="bg-background dark:bg-secondary/20 border-border/60 flex items-center gap-3 rounded-md border px-4 py-3"
+      className="bg-background dark:bg-secondary/20 border-border/60 flex min-w-0 items-center gap-3 rounded-md border px-4 py-3"
     >
       {prefix && (
-        <div className="text-foreground/80 text-sm [&_svg]:size-4.5">
+        <div className="text-foreground/80 shrink-0 text-sm [&_svg]:size-4.5">
           {prefix}
         </div>
       )}
-      <div className="truncate">{children}</div>
-      {description && (
-        <div className="text-foreground/60 truncate text-sm">{description}</div>
-      )}
+      <div className="flex min-w-0 flex-1 items-center gap-3">
+        <div className="min-w-0 shrink truncate">{children}</div>
+        {description && (
+          <div className="text-foreground/60 shrink-0 text-sm">
+            {description}
+          </div>
+        )}
+      </div>
       {suffix && (
-        <div className="text-foreground/40 ml-auto text-sm text-nowrap">
-          {suffix}
-        </div>
+        <div className="text-foreground/40 shrink-0 text-sm">{suffix}</div>
       )}
     </Link>
   );
