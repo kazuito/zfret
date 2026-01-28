@@ -45,7 +45,7 @@ export const RecentSearches = ({
         stiffness: 660,
       }}
     >
-      <div className="p-2">
+      <div className="pt-2">
         <div className="flex flex-col">
           <AnimatePresence mode="popLayout" initial={false}>
             {queries.slice(0, 3).map((query) => (
