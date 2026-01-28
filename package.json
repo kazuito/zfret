@@ -59,7 +59,10 @@
       "@types/react-dom": "19.2.2"
     },
     "onlyBuiltDependencies": [
-      "msw"
+      "@tailwindcss/oxide",
+      "msw",
+      "sharp",
+      "unrs-resolver"
     ]
   }
 }
