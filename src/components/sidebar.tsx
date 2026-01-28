@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import {
   Clock02Icon,
   FavouriteIcon,
+  HomeIcon,
   SearchIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -51,6 +52,10 @@ export const SidebarContent = ({
         </Link>
       </div>
       <div className="mt-3 flex flex-col">
+        <SidebarItem href="/">
+          <HugeiconsIcon icon={HomeIcon} />
+          Home
+        </SidebarItem>
         <SidebarItem href="/search">
           <HugeiconsIcon icon={SearchIcon} />
           Search

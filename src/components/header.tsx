@@ -11,7 +11,7 @@ const Header = () => {
   const { open, setOpen } = useSidebar();
 
   return (
-    <div className="flex h-12 items-center border-b px-6 lg:hidden">
+    <div className="flex h-12 items-center border-b ps-6 pe-4 lg:hidden">
       <Link
         href="/"
         className={cn(
@@ -22,8 +22,8 @@ const Header = () => {
         Z-FRET
       </Link>
       <div className="ml-auto">
-        <Button size="icon" variant="ghost" onClick={() => setOpen(true)}>
-          <HugeiconsIcon icon={MenuIcon} />
+        <Button size="icon-lg" variant="ghost" onClick={() => setOpen(true)}>
+          <HugeiconsIcon className="size-5" strokeWidth={2.2} icon={MenuIcon} />
         </Button>
       </div>
     </div>
