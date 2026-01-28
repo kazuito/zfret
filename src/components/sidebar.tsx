@@ -35,8 +35,8 @@ export const SidebarItem = ({
     <Link href={href} onClick={handleClick} className="group/item py-0.25">
       <div
         className={cn(
-          "group-hover/item:bg-accent/20 flex items-center gap-2 rounded-lg px-2.5 py-1.5 [&_svg]:size-4",
-          isActive ? "bg-accent/30!" : "",
+          "group-hover/item:bg-accent/80 dark:group-hover/item:bg-accent/20 flex items-center gap-2 rounded-lg px-2.5 py-1.5 [&_svg]:size-4",
+          isActive ? "bg-accent dark:bg-accent/30!" : "",
         )}
       >
         {children}
@@ -98,7 +98,7 @@ export const SidebarContent = ({
 export const FixedSidebar = () => {
   return (
     <div className="sticky top-0 hidden h-dvh w-64 shrink-0 p-2 lg:flex">
-      <SidebarContent className="bg-accent/10 rounded-2xl border shadow-sm" />
+      <SidebarContent className="bg-accent/10 rounded-2xl border shadow-xs" />
     </div>
   );
 };
