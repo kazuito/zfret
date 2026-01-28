@@ -11,6 +11,7 @@ import {
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Dialog } from "radix-ui";
 import { useEffect } from "react";
 
@@ -22,18 +23,23 @@ export const SidebarItem = ({
   href: string;
 }) => {
   const { setOpen } = useSidebar();
+  const pathname = usePathname();
+  const isActive = pathname === href;
 
   const handleClick = () => {
     setOpen(false);
   };
 
   return (
-    <Link
-      href={href}
-      onClick={handleClick}
-      className="hover:bg-accent/50 flex items-center gap-2 rounded-lg px-2 py-1.5 [&_svg]:size-4"
-    >
-      {children}
+    <Link href={href} onClick={handleClick} className="group/item py-0.25">
+      <div
+        className={cn(
+          "group-hover/item:bg-accent/30 flex items-center gap-2 rounded-lg px-2 py-1.5 [&_svg]:size-4",
+          isActive ? "bg-accent/50!" : "",
+        )}
+      >
+        {children}
+      </div>
     </Link>
   );
 };
