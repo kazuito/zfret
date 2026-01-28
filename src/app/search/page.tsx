@@ -95,7 +95,7 @@ const Page = () => {
           <HugeiconsIcon icon={Search01Icon} size={20} />
         </Button>
       </form>
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {showSearchHistory && searchHistory.queries.length > 0 && (
           <RecentSearches
             queries={searchHistory.queries}
