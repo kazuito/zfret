@@ -11,20 +11,31 @@ const Header = () => {
   const { open, setOpen } = useSidebar();
 
   return (
-    <div className="flex h-12 items-center border-b ps-6 pe-4 lg:hidden">
-      <Link
-        href="/"
-        className={cn(
-          "text-sm font-medium transition duration-300",
-          open && "opacity-0",
-        )}
-      >
-        Z-FRET
-      </Link>
-      <div className="ml-auto">
-        <Button size="icon-lg" variant="ghost" onClick={() => setOpen(true)}>
-          <HugeiconsIcon className="size-5" strokeWidth={2.2} icon={MenuIcon} />
-        </Button>
+    <div className="fixed top-0 right-0 left-0 p-3">
+      <div className="bg-background/80 z-100 mx-auto flex h-12 max-w-lg items-center rounded-full border ps-5 pe-3 shadow-lg backdrop-blur-sm lg:hidden">
+        <Link
+          href="/"
+          className={cn(
+            "text-sm font-medium transition duration-300",
+            open && "opacity-0",
+          )}
+        >
+          Z-FRET
+        </Link>
+        <div className="ml-auto">
+          <Button
+            size="icon-lg"
+            variant="ghost"
+            className="rounded-full"
+            onClick={() => setOpen(true)}
+          >
+            <HugeiconsIcon
+              className="size-5"
+              strokeWidth={2.2}
+              icon={MenuIcon}
+            />
+          </Button>
+        </div>
       </div>
     </div>
   );

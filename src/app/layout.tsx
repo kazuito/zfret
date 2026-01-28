@@ -45,7 +45,7 @@ export default function RootLayout({
                 <Sidebar />
                 <div className="flex min-h-[100dvh] min-w-0 grow flex-col">
                   <Header />
-                  <div className="min-w-0 grow">{children}</div>
+                  <div className="min-w-0 grow pt-18 lg:pt-0">{children}</div>
                   <Footer />
                 </div>
               </div>
