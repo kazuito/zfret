@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Kosugi, Lexend } from "next/font/google";
+import { Suspense } from "react";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import "./globals.css";
 import { Sidebar } from "@/components/sidebar";
@@ -42,7 +43,9 @@ export default function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="system">
             <QueryProvider>
               <div className="flex">
-                <Sidebar />
+                <Suspense>
+                  <Sidebar />
+                </Suspense>
                 <div className="flex min-h-[100dvh] min-w-0 grow flex-col">
                   <Header />
                   <div className="min-w-0 grow pt-18 lg:pt-0">{children}</div>

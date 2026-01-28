@@ -128,9 +128,9 @@ export const FloatingSidebar = () => {
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Portal>
-        <Dialog.Overlay className="data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out fixed inset-0 bg-black/20 backdrop-blur-xs duration-300" />
+        <Dialog.Overlay className="z-100 data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out fixed inset-0 bg-black/20 backdrop-blur-xs duration-300" />
         <Dialog.Content asChild>
-          <div className="data-[state=open]:animate-in data-[state=open]:slide-in-from-right data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right fixed top-0 right-0 flex h-dvh w-80 shrink-0 flex-col p-2 duration-300 ease-out">
+          <div className="z-100 data-[state=open]:animate-in data-[state=open]:slide-in-from-right data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right fixed top-0 right-0 flex h-dvh w-80 shrink-0 flex-col p-2 duration-300 ease-out">
             <Dialog.Title className="sr-only">Sidebar</Dialog.Title>
             <SidebarContent className="rounded-3xl border shadow-xl" />
           </div>
