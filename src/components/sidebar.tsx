@@ -39,7 +39,7 @@ export const SidebarItem = ({
       <div
         className={cn(
           "group-hover/item:bg-accent/30 flex items-center gap-2 rounded-lg px-2 py-1.5 [&_svg]:size-4",
-          isActive ? "bg-accent/50!" : "",
+          isActive ? "bg-accent/40!" : "",
         )}
       >
         {children}
