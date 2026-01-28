@@ -10,6 +10,7 @@ import type { Metadata } from "next";
 import { Kosugi, Lexend } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import "./globals.css";
+import { Sidebar } from "@/components/sidebar";
 
 const lexend = Lexend({
   variable: "--font-lexend",
@@ -40,10 +41,13 @@ export default function RootLayout({
         <NuqsAdapter>
           <ThemeProvider attribute="class" defaultTheme="system">
             <QueryProvider>
-              <div className="flex min-h-[100dvh] flex-col">
-                <Header />
-                <div className="grow">{children}</div>
-                <Footer />
+              <div className="flex">
+                <Sidebar />
+                <div className="flex min-h-[100dvh] grow flex-col">
+                  <Header />
+                  <div className="grow">{children}</div>
+                  <Footer />
+                </div>
               </div>
               <Toaster />
             </QueryProvider>

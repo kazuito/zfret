@@ -1,41 +1,31 @@
+"use client";
+
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Clock02Icon,
   FavouriteIcon,
+  MenuIcon,
   SearchIcon,
 } from "@hugeicons/core-free-icons";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { useSidebar } from "@/hooks/use-sidebar";
+import { cn } from "@/lib/utils";
 
 const Header = () => {
+  const { open,setOpen } = useSidebar();
+
   return (
-    <header className="bg-background sticky top-0 z-20 border-b">
-      <div className="mx-auto flex h-12 max-w-5xl items-center px-6">
-        <Link href="/" className="text-sm font-semibold">
-          Z-FRET
-        </Link>
-        <div className="ml-auto">
-          <Button size="icon" variant="ghost" asChild>
-            <Link href="/search" title="Search">
-              <HugeiconsIcon icon={SearchIcon} />
-              <span className="sr-only">Search</span>
-            </Link>
-          </Button>
-          <Button size="icon" variant="ghost" asChild>
-            <Link href="/favorites" title="Favorites">
-              <HugeiconsIcon icon={FavouriteIcon} />
-              <span className="sr-only">Favorites</span>
-            </Link>
-          </Button>
-          <Button size="icon" variant="ghost" asChild>
-            <Link href="/history" title="History">
-              <HugeiconsIcon icon={Clock02Icon} />
-              <span className="sr-only">History</span>
-            </Link>
-          </Button>
-        </div>
+    <div className="flex h-12 items-center border-b px-6 lg:hidden">
+      <Link href="/" className={cn("text-sm font-medium transition duration-300", open && "opacity-0")}>
+        Z-FRET
+      </Link>
+      <div className="ml-auto">
+        <Button size="icon" variant="ghost" onClick={() => setOpen(true)}>
+          <HugeiconsIcon icon={MenuIcon} />
+        </Button>
       </div>
-    </header>
+    </div>
   );
 };
 
