@@ -13,11 +13,17 @@ import { useSidebar } from "@/hooks/use-sidebar";
 import { cn } from "@/lib/utils";
 
 const Header = () => {
-  const { open,setOpen } = useSidebar();
+  const { open, setOpen } = useSidebar();
 
   return (
     <div className="flex h-12 items-center border-b px-6 lg:hidden">
-      <Link href="/" className={cn("text-sm font-medium transition duration-300", open && "opacity-0")}>
+      <Link
+        href="/"
+        className={cn(
+          "text-sm font-medium transition duration-300",
+          open && "opacity-0",
+        )}
+      >
         Z-FRET
       </Link>
       <div className="ml-auto">
