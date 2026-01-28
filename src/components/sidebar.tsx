@@ -59,7 +59,7 @@ export const SidebarContent = ({
       className={cn("bg-background flex grow flex-col p-3", className)}
       {...props}
     >
-      <div className="lg:mt-2 flex items-center ps-2 pe-1">
+      <div className="flex items-center ps-2 pe-1 lg:mt-2">
         <Link href="/" className="text-sm font-medium">
           Z-FRET
         </Link>
@@ -76,7 +76,7 @@ export const SidebarContent = ({
           />
         </Button>
       </div>
-      <div className="mt-2 lg:mt-4 flex flex-col">
+      <div className="mt-2 flex flex-col lg:mt-4">
         <SidebarItem href="/">
           <HugeiconsIcon strokeWidth={2.2} icon={Home07Icon} />
           Home
@@ -100,8 +100,8 @@ export const SidebarContent = ({
 
 export const FixedSidebar = () => {
   return (
-    <div className="sticky top-0 hidden h-dvh w-60 shrink-0 border-e lg:flex">
-      <SidebarContent />
+    <div className="sticky top-0 hidden h-dvh w-64 shrink-0 p-2 lg:flex">
+      <SidebarContent className="bg-accent/10 rounded-2xl border shadow-sm" />
     </div>
   );
 };
@@ -128,11 +128,11 @@ export const FloatingSidebar = () => {
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Portal>
-        <Dialog.Overlay className="z-100 data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out fixed inset-0 bg-black/20 backdrop-blur-xs duration-300" />
+        <Dialog.Overlay className="data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out fixed inset-0 z-100 bg-black/20 backdrop-blur-xs duration-300" />
         <Dialog.Content asChild>
-          <div className="z-100 data-[state=open]:animate-in data-[state=open]:slide-in-from-right data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right fixed top-0 right-0 flex h-dvh w-80 shrink-0 flex-col p-2 duration-300 ease-out">
+          <div className="data-[state=open]:animate-in data-[state=open]:slide-in-from-right data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right fixed top-0 right-0 z-100 flex h-dvh w-80 shrink-0 flex-col p-2 duration-300 ease-out">
             <Dialog.Title className="sr-only">Sidebar</Dialog.Title>
-            <SidebarContent className="rounded-3xl border shadow-xl" />
+            <SidebarContent className="bg-background rounded-2xl border shadow-xl" />
           </div>
         </Dialog.Content>
       </Dialog.Portal>
