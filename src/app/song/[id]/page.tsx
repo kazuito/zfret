@@ -137,7 +137,7 @@ const Page = async ({ params }: Props) => {
             </List.Content>
             <List.Footer>
               <List.FooterLink href={`/artist/${song.artist.name}`}>
-                View more songs by {song.artist.name}
+                {song.artist.name}
                 <HugeiconsIcon icon={ArrowRight01Icon} size={20} />
               </List.FooterLink>
             </List.Footer>

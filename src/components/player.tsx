@@ -1,7 +1,11 @@
 "use client";
 
 import { HugeiconsIcon } from "@hugeicons/react";
-import { PlayIcon } from "@hugeicons/core-free-icons";
+import {
+  PlayCircle02Icon,
+  PlayIcon,
+  Tap07Icon,
+} from "@hugeicons/core-free-icons";
 import Image from "next/image";
 import { useState } from "react";
 import ReactPlayer from "react-player";
@@ -15,8 +19,8 @@ const Player = ({ youtubeVideoId }: Props) => {
   const [playing, setPlaying] = useState(false);
 
   return (
-    <div className="border-border/60 bg-secondary/30 w-full rounded-md border p-1 sm:w-fit">
-      <div className="group/player flex aspect-video w-full items-center overflow-clip rounded-sm sm:w-lg">
+    <div className="border-border/60 bg-secondary/30 w-full rounded-xl border p-1 sm:w-fit">
+      <div className="flex aspect-video w-full items-center overflow-clip rounded-lg sm:w-lg">
         {showPlayer ? (
           <ReactPlayer
             src={`https://www.youtube.com/watch?v=${youtubeVideoId}`}
@@ -35,13 +39,12 @@ const Player = ({ youtubeVideoId }: Props) => {
               setPlaying(true);
             }}
           >
-            <div className="absolute inset-0 z-10 grid place-content-center bg-black/50 backdrop-blur-xs">
+            <div className="absolute inset-0 z-10 grid place-content-center bg-black/50 backdrop-blur-md">
               <div className="flex flex-col items-center gap-4">
-                <HugeiconsIcon
-                  icon={PlayIcon}
-                  size={32}
-                  className="text-white transition group-hover/player:scale-120 group-active/player:scale-90"
-                />
+                <div className="flex items-center gap-1.5 rounded-full bg-black/50 py-1 ps-2.5 pe-3 text-sm">
+                  <HugeiconsIcon icon={Tap07Icon} className="size-4.5" />
+                  Click to play
+                </div>
               </div>
             </div>
             <Image
