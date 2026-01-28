@@ -3,17 +3,21 @@
 import { useSidebar } from "@/hooks/use-sidebar";
 import { cn } from "@/lib/utils";
 import {
+  Cancel01Icon,
   Clock02Icon,
   FavouriteIcon,
   Home07Icon,
   HomeIcon,
   SearchIcon,
+  SidebarRight01Icon,
+  SidebarRightIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Dialog } from "radix-ui";
 import { useEffect } from "react";
+import { Button } from "./ui/button";
 
 export const SidebarItem = ({
   children,
@@ -48,17 +52,31 @@ export const SidebarContent = ({
   className,
   ...props
 }: React.ComponentProps<"div">) => {
+  const { setOpen } = useSidebar();
+
   return (
     <div
       className={cn("bg-background flex grow flex-col p-3", className)}
       {...props}
     >
-      <div className="mt-1 px-2">
+      <div className="lg:mt-2 flex items-center ps-2 pe-1">
         <Link href="/" className="text-sm font-medium">
           Z-FRET
         </Link>
+        <Button
+          variant="ghost"
+          size="icon-lg"
+          className="ml-auto rounded-full lg:hidden"
+          onClick={() => setOpen(false)}
+        >
+          <HugeiconsIcon
+            className="size-5"
+            strokeWidth={2.2}
+            icon={Cancel01Icon}
+          />
+        </Button>
       </div>
-      <div className="mt-3 flex flex-col">
+      <div className="mt-2 lg:mt-4 flex flex-col">
         <SidebarItem href="/">
           <HugeiconsIcon strokeWidth={2.2} icon={Home07Icon} />
           Home
@@ -114,7 +132,7 @@ export const FloatingSidebar = () => {
         <Dialog.Content asChild>
           <div className="data-[state=open]:animate-in data-[state=open]:slide-in-from-right data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right fixed top-0 right-0 flex h-dvh w-80 shrink-0 flex-col p-2 duration-300 ease-out">
             <Dialog.Title className="sr-only">Sidebar</Dialog.Title>
-            <SidebarContent className="rounded-2xl border" />
+            <SidebarContent className="rounded-3xl border shadow-xl" />
           </div>
         </Dialog.Content>
       </Dialog.Portal>
