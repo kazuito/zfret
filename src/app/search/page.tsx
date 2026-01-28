@@ -57,12 +57,14 @@ const Page = () => {
     }
 
     searchHistory.add(trimmed);
+    setIsInputFocused(false);
     await setUrlQuery(trimmed);
   };
 
   const handleHistorySelect = async (historyQuery: string) => {
     setQuery(historyQuery);
     searchHistory.add(historyQuery);
+    setIsInputFocused(false);
     await setUrlQuery(historyQuery);
   };
 
@@ -71,7 +73,7 @@ const Page = () => {
   const showSearchHistory =
     !isPending &&
     searchHistory.queries.length > 0 &&
-    (!results || (results && isInputFocused));
+    (!results || isInputFocused);
 
   return (
     <div className="mx-auto max-w-3xl p-6">
@@ -85,6 +87,7 @@ const Page = () => {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setIsInputFocused(true)}
           onBlur={() => setIsInputFocused(false)}
+          onClick={() => setIsInputFocused(true)}
           disabled={isPending}
           autoFocus
         />

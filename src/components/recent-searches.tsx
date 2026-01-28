@@ -47,7 +47,7 @@ export const RecentSearches = ({
     >
       <div className="p-2">
         <div className="flex flex-col">
-          {queries.map((query) => (
+          {queries.slice(0, 5).map((query) => (
             <div key={query} className="border-b py-0.5 last:border-none">
               <div className="flex items-center justify-between gap-0.5">
                 <button
