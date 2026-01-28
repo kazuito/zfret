@@ -7,10 +7,7 @@ import {
   Clock02Icon,
   FavouriteIcon,
   Home07Icon,
-  HomeIcon,
   SearchIcon,
-  SidebarRight01Icon,
-  SidebarRightIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
@@ -38,7 +35,7 @@ export const SidebarItem = ({
     <Link href={href} onClick={handleClick} className="group/item py-0.25">
       <div
         className={cn(
-          "group-hover/item:bg-accent/30 flex items-center gap-2 rounded-lg px-2 py-1.5 [&_svg]:size-4",
+          "group-hover/item:bg-accent/30 flex items-center gap-2 rounded-lg px-2.5 py-1.5 [&_svg]:size-4",
           isActive ? "bg-accent/40!" : "",
         )}
       >
@@ -56,10 +53,10 @@ export const SidebarContent = ({
 
   return (
     <div
-      className={cn("bg-background flex grow flex-col p-3", className)}
+      className={cn("bg-background flex grow flex-col px-1 py-3", className)}
       {...props}
     >
-      <div className="flex items-center ps-2 pe-1 lg:mt-2">
+      <div className="flex items-center ps-4 pe-1 lg:mt-2">
         <Link href="/" className="text-sm font-medium">
           Z-FRET
         </Link>
@@ -76,7 +73,7 @@ export const SidebarContent = ({
           />
         </Button>
       </div>
-      <div className="mt-2 flex flex-col lg:mt-4">
+      <div className="mt-2 flex flex-col px-1 lg:mt-4">
         <SidebarItem href="/">
           <HugeiconsIcon strokeWidth={2.2} icon={Home07Icon} />
           Home
@@ -130,7 +127,7 @@ export const FloatingSidebar = () => {
       <Dialog.Portal>
         <Dialog.Overlay className="data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out fixed inset-0 z-100 bg-black/20 backdrop-blur-xs duration-300" />
         <Dialog.Content asChild>
-          <div className="data-[state=open]:animate-in data-[state=open]:slide-in-from-right data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right fixed top-0 right-0 z-100 flex h-dvh w-80 shrink-0 flex-col p-2 duration-300 ease-out">
+          <div className="data-[state=open]:animate-in data-[state=open]:slide-in-from-right data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right fixed top-0 right-0 z-100 flex h-dvh w-70 shrink-0 flex-col p-2 duration-300 ease-out">
             <Dialog.Title className="sr-only">Sidebar</Dialog.Title>
             <SidebarContent className="bg-background rounded-2xl border shadow-xl" />
           </div>
