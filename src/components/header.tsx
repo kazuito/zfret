@@ -1,12 +1,7 @@
 "use client";
 
 import { HugeiconsIcon } from "@hugeicons/react";
-import {
-  Clock02Icon,
-  FavouriteIcon,
-  MenuIcon,
-  SearchIcon,
-} from "@hugeicons/core-free-icons";
+import { MenuIcon } from "@hugeicons/core-free-icons";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { useSidebar } from "@/hooks/use-sidebar";
