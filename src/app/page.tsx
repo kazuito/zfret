@@ -8,6 +8,8 @@ import {
   MusicNote02Icon,
   Mic01Icon,
   Search01Icon,
+  ArrowRightIcon,
+  ArrowRight02Icon,
 } from "@hugeicons/core-free-icons";
 import { cacheLife } from "next/cache";
 import Link from "next/link";
@@ -65,8 +67,8 @@ export default async function Home() {
           </List.Content>
           <List.Footer>
             <List.FooterLink href="/trending/songs">
-              View more top songs
-              <HugeiconsIcon icon={ArrowRight01Icon} size={20} />
+              Top Songs
+              <HugeiconsIcon icon={ArrowRightIcon} size={20} />
             </List.FooterLink>
           </List.Footer>
         </List.Root>
@@ -90,8 +92,8 @@ export default async function Home() {
           </List.Content>
           <List.Footer>
             <List.FooterLink href="/trending/artists">
-              View more top artists
-              <HugeiconsIcon icon={ArrowRight01Icon} size={20} />
+              Top Artists
+              <HugeiconsIcon icon={ArrowRightIcon} size={20} />
             </List.FooterLink>
           </List.Footer>
         </List.Root>

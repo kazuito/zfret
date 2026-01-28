@@ -5,7 +5,7 @@ import PageHeading from "@/components/page-heading";
 import { fetchTopSongs } from "@/lib/song";
 import { cacheLife } from "next/cache";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { MusicNote01Icon } from "@hugeicons/core-free-icons";
+import { MusicNote02Icon } from "@hugeicons/core-free-icons";
 
 const Page = async () => {
   cacheLife("days");
@@ -15,7 +15,7 @@ const Page = async () => {
   return (
     <>
       <PageHeading>
-        <HugeiconsIcon icon={MusicNote01Icon} size={20} />
+        <HugeiconsIcon icon={MusicNote02Icon} size={20} />
         TOP SONGS
       </PageHeading>
       <List.Root>
