@@ -10,7 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
 import { useState } from "react";
-import { SearchHistory } from "@/components/search-history";
+import { RecentSearches } from "@/components/recent-searches";
 import { useSearchHistory } from "@/hooks/use-search-history";
 import { AnimatePresence } from "motion/react";
 
@@ -94,7 +94,7 @@ const Page = () => {
       </form>
       <AnimatePresence>
         {showSearchHistory && searchHistory.queries.length > 0 && (
-          <SearchHistory
+          <RecentSearches
             queries={searchHistory.queries}
             onSelect={handleHistorySelect}
             onRemove={searchHistory.remove}
