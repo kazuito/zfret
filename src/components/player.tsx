@@ -35,12 +35,12 @@ const Player = ({ youtubeVideoId }: Props) => {
               setPlaying(true);
             }}
           >
-            <div className="bg-background/80 absolute inset-0 z-10 grid place-content-center backdrop-blur-xs">
+            <div className="absolute inset-0 z-10 grid place-content-center bg-black/50 backdrop-blur-xs">
               <div className="flex flex-col items-center gap-4">
                 <HugeiconsIcon
                   icon={PlayIcon}
                   size={32}
-                  className="transition group-hover/player:scale-120 group-active/player:scale-90"
+                  className="text-white transition group-hover/player:scale-120 group-active/player:scale-90"
                 />
               </div>
             </div>
