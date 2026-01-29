@@ -45,8 +45,12 @@ const Page = async ({ params }: Props) => {
       </ClientOnly>
       <PageHeading
         startContent={
-          <div className="bg-secondary/60 text-muted-foreground mr-3 sm:mr-4 grid sm:size-10 size-8 place-content-center rounded-full">
-            <HugeiconsIcon className="size-5 sm:size-6" icon={User03Icon} />
+          <div className="bg-secondary/60 text-muted-foreground mr-3 grid size-8 place-content-center rounded-full sm:mr-4 sm:size-10">
+            <HugeiconsIcon
+              className="size-5 sm:size-6"
+              icon={User03Icon}
+              fill="currentColor"
+            />
           </div>
         }
       >
