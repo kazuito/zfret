@@ -103,7 +103,7 @@ const Page = () => {
           </div>
         }
       >
-        <HugeiconsIcon icon={FavouriteIcon} size={20} />
+        <HugeiconsIcon icon={FavouriteIcon} size={20} strokeWidth={2.6} />
         Favorites
       </PageHeading>
       {computedFavorites.length === 0 ? (

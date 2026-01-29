@@ -15,7 +15,7 @@ const Page = async () => {
   return (
     <>
       <PageHeading>
-        <HugeiconsIcon icon={MusicNote02Icon} size={20} />
+        <HugeiconsIcon icon={MusicNote02Icon} size={20} strokeWidth={2.6} />
         TOP SONGS
       </PageHeading>
       <List.Root>

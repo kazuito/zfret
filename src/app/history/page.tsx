@@ -30,7 +30,7 @@ const Page = () => {
   return (
     <div className="mx-auto max-w-3xl p-6 pt-0">
       <PageHeading endContent={<HeaderContent />}>
-        <HugeiconsIcon icon={Clock02Icon} size={20} />
+        <HugeiconsIcon icon={Clock02Icon} size={20} strokeWidth={2.6} />
         History
       </PageHeading>
       {computedHistory.length === 0 ? (

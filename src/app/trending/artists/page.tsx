@@ -15,7 +15,7 @@ const Page = async () => {
   return (
     <>
       <PageHeading>
-        <HugeiconsIcon icon={Mic01Icon} size={20} />
+        <HugeiconsIcon icon={Mic01Icon} size={20} strokeWidth={2.6} />
         TOP ARTISTS
       </PageHeading>
       <List.Root>
