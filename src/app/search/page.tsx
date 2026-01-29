@@ -5,7 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { search, SearchResult } from "@/lib/search";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Search01Icon } from "@hugeicons/core-free-icons";
+import {
+  ArrowTurnBackwardIcon,
+  Search01Icon,
+} from "@hugeicons/core-free-icons";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
@@ -91,8 +94,13 @@ const Page = () => {
           disabled={isPending}
           autoFocus
         />
-        <Button type="submit" size="icon" disabled={isPending}>
-          <HugeiconsIcon icon={Search01Icon} size={20} />
+        <Button type="submit" disabled={isPending || query.trim().length === 0}>
+          Search
+          <HugeiconsIcon
+            icon={ArrowTurnBackwardIcon}
+            size={20}
+            strokeWidth={2.4}
+          />
         </Button>
       </form>
       <AnimatePresence initial={false}>
