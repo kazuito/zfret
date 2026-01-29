@@ -8,7 +8,7 @@ import { fetchArtistSongs } from "@/lib/song";
 import { cacheLife } from "next/cache";
 import { Metadata } from "next";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { User03Icon, UserIcon } from "@hugeicons/core-free-icons";
+import { User03Icon } from "@hugeicons/core-free-icons";
 
 type Props = {
   params: Promise<{
@@ -45,7 +45,7 @@ const Page = async ({ params }: Props) => {
       </ClientOnly>
       <PageHeading
         startContent={
-          <div className="bg-secondary/60 text-muted-foreground mr-3 grid size-8 place-content-center rounded-full sm:mr-4 sm:size-10">
+          <div className="bg-secondary dark:bg-secondary/50 text-muted-foreground mr-3 grid size-8 place-content-center rounded-full sm:mr-4 sm:size-10">
             <HugeiconsIcon
               className="size-5 sm:size-6"
               icon={User03Icon}
