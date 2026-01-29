@@ -72,6 +72,7 @@ const Page = async ({ params }: Props) => {
             <HugeiconsIcon
               icon={Vynil02Icon}
               className="text-muted-foreground size-7 sm:size-8"
+              strokeWidth={2}
             />
           </div>
         }
