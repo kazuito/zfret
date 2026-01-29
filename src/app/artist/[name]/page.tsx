@@ -7,6 +7,8 @@ import PageHeading from "@/components/page-heading";
 import { fetchArtistSongs } from "@/lib/song";
 import { cacheLife } from "next/cache";
 import { Metadata } from "next";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { User03Icon, UserIcon } from "@hugeicons/core-free-icons";
 
 type Props = {
   params: Promise<{
@@ -41,7 +43,15 @@ const Page = async ({ params }: Props) => {
       <ClientOnly>
         <AddHistory item={historyItem} />
       </ClientOnly>
-      <PageHeading>{decodedName}</PageHeading>
+      <PageHeading
+        startContent={
+          <div className="bg-secondary/60 text-muted-foreground mr-4 grid size-10 place-content-center rounded-full">
+            <HugeiconsIcon icon={User03Icon} />
+          </div>
+        }
+      >
+        {decodedName}
+      </PageHeading>
       <div>
         <List.Root>
           <List.Content>
