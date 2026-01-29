@@ -11,7 +11,7 @@ const Header = () => {
   const { open, setOpen } = useSidebar();
 
   return (
-    <div className="fixed top-0 right-0 left-0 z-20 p-3">
+    <div className="fixed top-0 right-0 left-0 z-20 p-3 pb-0">
       <div className="bg-background/80 z-10 mx-auto flex h-12 max-w-lg items-center rounded-full border ps-5 pe-3 shadow-lg backdrop-blur-sm lg:hidden">
         <Link
           href="/"
