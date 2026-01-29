@@ -3,12 +3,19 @@ import Link from "next/link";
 type Props = {
   children?: React.ReactNode;
   subtitle?: React.ReactNode;
+  startContent?: React.ReactNode;
   endContent?: React.ReactNode;
 };
 
-const PageHeading = ({ children, subtitle, endContent }: Props) => {
+const PageHeading = ({
+  children,
+  subtitle,
+  startContent,
+  endContent,
+}: Props) => {
   return (
-    <div className="my-10 flex px-2">
+    <div className="my-10 flex items-center">
+      {startContent && <div>{startContent}</div>}
       <div>
         <Link
           href=""

@@ -1,6 +1,10 @@
 "use cache";
 
-import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
+import {
+  ArrowRight01Icon,
+  Vynil01Icon,
+  Vynil02Icon,
+} from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Metadata } from "next";
 import { cacheLife } from "next/cache";
@@ -63,6 +67,14 @@ const Page = async ({ params }: Props) => {
       </ClientOnly>
       <PageHeading
         subtitle={<Link href={song.artist.url}>{song.artist.name}</Link>}
+        startContent={
+          <div className="bg-secondary/50 mr-4 grid size-13 place-content-center rounded-lg sm:size-15">
+            <HugeiconsIcon
+              icon={Vynil02Icon}
+              className="text-muted-foreground size-7 sm:size-8"
+            />
+          </div>
+        }
         endContent={
           <ClientOnly>
             <FavButton item={favItem} />
