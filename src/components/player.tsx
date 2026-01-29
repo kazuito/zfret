@@ -40,7 +40,7 @@ const Player = ({ youtubeVideoId }: Props) => {
             }}
           >
             <div className="absolute inset-0 z-10 grid place-content-center">
-              <div className="flex items-center gap-1.5 rounded-full bg-black/50 py-1 ps-2.5 pe-3 text-sm backdrop-blur-sm">
+              <div className="flex items-center gap-1.5 rounded-full bg-black/50 py-1 ps-2.5 pe-3 text-sm backdrop-blur-sm text-white">
                 <HugeiconsIcon icon={Tap07Icon} className="size-4.5" />
                 Click to play
               </div>
