@@ -33,18 +33,16 @@ const Player = ({ youtubeVideoId }: Props) => {
           />
         ) : (
           <button
-            className="relative h-full w-full cursor-pointer"
+            className="relative h-full w-full cursor-pointer overflow-clip"
             onClick={() => {
               setShowPlayer(true);
               setPlaying(true);
             }}
           >
-            <div className="absolute inset-0 z-10 grid place-content-center bg-black/50 backdrop-blur-md">
-              <div className="flex flex-col items-center gap-4">
-                <div className="flex items-center gap-1.5 rounded-full bg-black/50 py-1 ps-2.5 pe-3 text-sm">
-                  <HugeiconsIcon icon={Tap07Icon} className="size-4.5" />
-                  Click to play
-                </div>
+            <div className="absolute inset-0 z-10 grid place-content-center">
+              <div className="flex items-center gap-1.5 rounded-full bg-black/50 py-1 ps-2.5 pe-3 text-sm backdrop-blur-sm">
+                <HugeiconsIcon icon={Tap07Icon} className="size-4.5" />
+                Click to play
               </div>
             </div>
             <Image
@@ -52,7 +50,7 @@ const Player = ({ youtubeVideoId }: Props) => {
               src={`https://img.youtube.com/vi/${youtubeVideoId}/mqdefault.jpg`}
               fill
               sizes="(min-width: 640px) 640px, 100vw"
-              className="object-cover"
+              className="object-cover blur-xs brightness-75"
             />
           </button>
         )}
