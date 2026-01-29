@@ -8,6 +8,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import {
   ArrowTurnBackwardIcon,
   Search01Icon,
+  Search02Icon,
 } from "@hugeicons/core-free-icons";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -16,6 +17,7 @@ import { useState } from "react";
 import { RecentSearches } from "@/components/recent-searches";
 import { useSearchHistory } from "@/hooks/use-search-history";
 import { AnimatePresence } from "motion/react";
+import PageHeading from "@/components/page-heading";
 
 const Page = () => {
   const [urlQuery, setUrlQuery] = useQueryState("q", {
@@ -79,7 +81,13 @@ const Page = () => {
     (!results || isInputFocused);
 
   return (
-    <div className="mx-auto max-w-3xl p-6">
+    <div className="mx-auto max-w-3xl p-6 sm:pt-0">
+      <div className="hidden sm:block">
+        <PageHeading>
+          <HugeiconsIcon icon={Search01Icon} strokeWidth={2.6} />
+          Search
+        </PageHeading>
+      </div>
       <form className="flex gap-2" onSubmit={handleSubmit}>
         <Input
           type="search"
