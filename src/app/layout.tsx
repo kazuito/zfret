@@ -12,6 +12,7 @@ import { Suspense } from "react";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import "./globals.css";
 import { Sidebar } from "@/components/sidebar";
+import Providers from "@/components/providers";
 
 const lexend = Lexend({
   variable: "--font-lexend",
@@ -39,23 +40,19 @@ export default function RootLayout({
     <html lang="ja" suppressHydrationWarning>
       <head />
       <body className={cn("antialiased", lexend.className, kosugi.variable)}>
-        <NuqsAdapter>
-          <ThemeProvider attribute="class" defaultTheme="system">
-            <QueryProvider>
-              <div className="flex">
-                <Suspense>
-                  <Sidebar />
-                </Suspense>
-                <div className="flex min-h-[100dvh] min-w-0 grow flex-col">
-                  <Header />
-                  <div className="min-w-0 grow pt-15 lg:pt-0">{children}</div>
-                  <Footer />
-                </div>
-              </div>
-              <Toaster />
-            </QueryProvider>
-          </ThemeProvider>
-        </NuqsAdapter>
+        <Providers>
+          <div className="flex">
+            <Suspense>
+              <Sidebar />
+            </Suspense>
+            <div className="flex min-h-[100dvh] min-w-0 grow flex-col">
+              <Header />
+              <div className="min-w-0 grow pt-15 lg:pt-0">{children}</div>
+              <Footer />
+            </div>
+          </div>
+          <Toaster />
+        </Providers>
       </body>
       <GoogleAnalytics gaId={env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
     </html>
