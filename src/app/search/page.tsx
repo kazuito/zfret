@@ -133,9 +133,7 @@ const Page = () => {
             aria-live="polite"
             className="my-20 flex justify-center text-foreground/60"
           >
-            <div className="flex animate-bounce items-center">
-              Searching for &quot;<b>{urlQuery}</b>&quot;
-            </div>
+            <div className="flex animate-bounce items-center">Searching...</div>
           </div>
         )}
         {showEmptyMessage && (
