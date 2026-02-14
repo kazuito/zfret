@@ -6,7 +6,7 @@ export const HeadingRoot = ({
   ...props
 }: React.ComponentProps<"div">) => {
   return (
-    <div className={cn("flex items-center py-10", className)} {...props} />
+    <div className={cn("flex items-center py-8 sm:py-12", className)} {...props} />
   );
 };
 
