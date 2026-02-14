@@ -32,11 +32,11 @@ export const SidebarItem = ({
   };
 
   return (
-    <Link href={href} onClick={handleClick} className="group/item py-0.25">
+    <Link href={href} onClick={handleClick} className="group/item py-px">
       <div
         className={cn(
           "flex items-center gap-2 rounded-lg px-2.5 py-1.5 group-hover/item:bg-accent/80 dark:group-hover/item:bg-accent/20 [&_svg]:size-4",
-          isActive ? "bg-accent dark:bg-accent/30!" : "",
+          isActive && "bg-accent dark:bg-accent/30!",
         )}
       >
         {children}
@@ -73,14 +73,24 @@ export const SidebarContent = ({
           />
         </Button>
       </div>
+      <div className="mt-4 px-2">
+        <Button
+          className="w-full rounded-full"
+          variant="outline"
+          size="lg"
+          onClick={() => setOpen(false)}
+          asChild
+        >
+          <Link href="/search">
+            <HugeiconsIcon icon={SearchIcon} strokeWidth={2.2} />
+            Search
+          </Link>
+        </Button>
+      </div>
       <div className="mt-2 flex flex-col px-1 lg:mt-4">
         <SidebarItem href="/">
           <HugeiconsIcon strokeWidth={2.2} icon={Home07Icon} />
           Home
-        </SidebarItem>
-        <SidebarItem href="/search">
-          <HugeiconsIcon strokeWidth={2.2} icon={SearchIcon} />
-          Search
         </SidebarItem>
         <SidebarItem href="/favorites">
           <HugeiconsIcon strokeWidth={2.2} icon={FavouriteIcon} />
