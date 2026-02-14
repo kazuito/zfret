@@ -1,6 +1,6 @@
 "use client";
 
-import { MenuIcon } from "@hugeicons/core-free-icons";
+import { MenuIcon, SearchIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { useSidebar } from "@/hooks/use-sidebar";
@@ -22,7 +22,17 @@ const Header = () => {
         >
           Z-FRET
         </Link>
-        <div className="ml-auto">
+        <div className="ml-auto flex items-center gap-2">
+          <Button
+            asChild
+            variant="secondary"
+            className="rounded-full text-muted-foreground"
+          >
+            <Link href="/search">
+              <HugeiconsIcon icon={SearchIcon} strokeWidth={2.6} />
+              Search
+            </Link>
+          </Button>
           <Button
             size="icon-lg"
             variant="ghost"
