@@ -1,10 +1,10 @@
 "use client";
 
+import { useEffect } from "react";
 import {
-  BrowsingHistoryItemInput,
+  type BrowsingHistoryItemInput,
   useBrowsingHistory,
 } from "@/hooks/use-browsing-history";
-import { useEffect } from "react";
 
 type Props = {
   item: BrowsingHistoryItemInput;

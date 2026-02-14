@@ -1,8 +1,8 @@
 "use client";
 
-import { LS_KEYS } from "@/lib/constants";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useCallback } from "react";
+import { LS_KEYS } from "@/lib/constants";
 
 const MAX_HISTORY_SIZE = 10;
 

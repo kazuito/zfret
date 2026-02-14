@@ -1,18 +1,15 @@
-import Footer from "@/components/footer";
-import Header from "@/components/header";
-import { QueryProvider } from "@/components/query-provider";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
-import { env } from "@/lib/env";
-import { cn } from "@/lib/utils";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Kosugi, Lexend } from "next/font/google";
 import { Suspense } from "react";
-import { NuqsAdapter } from "nuqs/adapters/next/app";
+import Footer from "@/components/footer";
+import Header from "@/components/header";
+import { Toaster } from "@/components/ui/sonner";
+import { env } from "@/lib/env";
+import { cn } from "@/lib/utils";
 import "./globals.css";
-import { Sidebar } from "@/components/sidebar";
 import Providers from "@/components/providers";
+import { Sidebar } from "@/components/sidebar";
 
 const lexend = Lexend({
   variable: "--font-lexend",

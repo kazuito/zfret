@@ -1,9 +1,9 @@
 "use client";
 
+import { Cancel01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { AnimatePresence, motion } from "motion/react";
 import { Button } from "@/components/ui/button";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { Cancel01Icon } from "@hugeicons/core-free-icons";
 
 type RecentSearchesProps = {
   queries: string[];
@@ -75,7 +75,7 @@ export const RecentSearches = ({
                   <button
                     type="button"
                     onClick={() => onSelect(query)}
-                    className="hover:bg-accent/20 grow truncate rounded-md px-3 py-2 text-start text-sm"
+                    className="grow truncate rounded-md px-3 py-2 text-start text-sm hover:bg-accent/20"
                   >
                     {query}
                   </button>

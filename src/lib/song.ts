@@ -1,8 +1,8 @@
 "use server";
 
 import { load } from "cheerio";
-import { z } from "zod";
 import { cacheLife } from "next/cache";
+import { z } from "zod";
 
 const chordsDataSchema = z.array(z.string());
 

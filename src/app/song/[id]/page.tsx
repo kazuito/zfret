@@ -1,12 +1,8 @@
 "use cache";
 
-import {
-  ArrowRight01Icon,
-  Vynil01Icon,
-  Vynil02Icon,
-} from "@hugeicons/core-free-icons";
+import { ArrowRight01Icon, Vynil02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { cacheLife } from "next/cache";
 import Link from "next/link";
 import AddHistory from "@/components/add-history";
@@ -68,10 +64,10 @@ const Page = async ({ params }: Props) => {
       <PageHeading
         subtitle={<Link href={song.artist.url}>{song.artist.name}</Link>}
         startContent={
-          <div className="bg-secondary dark:bg-secondary/50 mr-4 grid size-13 place-content-center rounded-lg sm:size-15">
+          <div className="mr-4 grid size-13 place-content-center rounded-lg bg-secondary sm:size-15 dark:bg-secondary/50">
             <HugeiconsIcon
               icon={Vynil02Icon}
-              className="text-muted-foreground size-7 sm:size-8"
+              className="size-7 text-muted-foreground sm:size-8"
               strokeWidth={2}
             />
           </div>
@@ -99,7 +95,7 @@ const Page = async ({ params }: Props) => {
                           <div className="text-sm">{part.chord}</div>
                         )}
                         {lineHasLyric && (
-                          <div className="from-foreground/60 to-foreground/20 h-6 bg-gradient-to-b bg-clip-text text-nowrap text-transparent">
+                          <div className="h-6 text-nowrap bg-gradient-to-b from-foreground/60 to-foreground/20 bg-clip-text text-transparent">
                             {part.lyric}
                           </div>
                         )}
@@ -114,7 +110,7 @@ const Page = async ({ params }: Props) => {
             <div className="flex shrink-0 flex-wrap items-center gap-2">
               <Link href={`/song/${id}`}>{song.title}</Link>
               <div className="flex items-center gap-2">
-                <hr className="bg-foreground/60 h-px w-4" />
+                <hr className="h-px w-4 bg-foreground/60" />
                 <Link href={song.artist.url}>{song.artist.name}</Link>
               </div>
             </div>

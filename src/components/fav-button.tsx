@@ -1,11 +1,11 @@
 "use client";
 
-import { FavoriteItemInput, useFavorites } from "@/hooks/use-favorites";
-import { cn } from "@/lib/utils";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { FavouriteIcon } from "@hugeicons/core-free-icons";
-import { Button } from "./ui/button";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { motion } from "motion/react";
+import { type FavoriteItemInput, useFavorites } from "@/hooks/use-favorites";
+import { cn } from "@/lib/utils";
+import { Button } from "./ui/button";
 
 type Props = {
   item: FavoriteItemInput;
@@ -22,7 +22,7 @@ const FavButton = ({ item }: Props) => {
       variant="secondary"
       onClick={() => toggleFavorite(item)}
       className={cn(
-        "rounded-full transition duration-300 ease-out starting:scale-95 starting:opacity-0",
+        "starting:scale-95 rounded-full starting:opacity-0 transition duration-300 ease-out",
         isFavorite
           ? "bg-red-500/20! text-red-500"
           : "opacity-50 hover:opacity-100",

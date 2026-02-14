@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   children: React.ReactNode;

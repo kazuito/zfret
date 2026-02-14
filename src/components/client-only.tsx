@@ -9,5 +9,5 @@ type Props = {
 export const ClientOnly: React.FC<Props> = ({ children }) => {
   const isClient = useIsClient();
 
-  return isClient ? <>{children}</> : null;
+  return isClient ? children : null;
 };

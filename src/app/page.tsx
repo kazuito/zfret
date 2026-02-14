@@ -1,19 +1,17 @@
 "use cache";
 
-import { List } from "@/components/ui/list";
-import { fetchTopArtists, fetchTopSongs } from "@/lib/song";
-import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  ArrowRight01Icon,
-  MusicNote02Icon,
-  Mic01Icon,
-  Search01Icon,
   ArrowRightIcon,
-  ArrowRight02Icon,
+  Mic01Icon,
+  MusicNote02Icon,
+  Search01Icon,
 } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { cacheLife } from "next/cache";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { List } from "@/components/ui/list";
+import { fetchTopArtists, fetchTopSongs } from "@/lib/song";
 
 export default async function Home() {
   cacheLife("days");
@@ -24,10 +22,10 @@ export default async function Home() {
   return (
     <div className="mx-auto flex max-w-5xl flex-col p-6 pt-0">
       <section className="flex flex-col items-center gap-6 py-20 lg:py-28">
-        <div className="text-center text-3xl font-semibold tracking-tight text-balance lg:text-4xl/6">
+        <div className="text-balance text-center font-semibold text-3xl tracking-tight lg:text-4xl/6">
           The Chord Library for Music Lovers
         </div>
-        <p className="text-center text-base text-balance lg:text-lg">
+        <p className="text-balance text-center text-base lg:text-lg">
           Explore chords and lyrics from iconic Japan Hits
         </p>
         <div className="flex gap-3">

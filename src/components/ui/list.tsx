@@ -1,13 +1,13 @@
-import { cn } from "@/lib/utils";
-import { Slot } from "radix-ui";
 import Link from "next/link";
+import { Slot } from "radix-ui";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const ListRoot = ({ className, ...props }: React.ComponentProps<"div">) => {
   return (
     <div
       className={cn(
-        "bg-secondary/40 dark:bg-secondary/20 border-border/60 min-w-0 rounded-xl border",
+        "min-w-0 rounded-xl border border-border/60 bg-secondary/40 dark:bg-secondary/20",
         className,
       )}
       {...props}
@@ -56,23 +56,23 @@ const ListItem = ({
   return (
     <Link
       href={href}
-      className="bg-background dark:bg-secondary/20 border-border/60 flex min-w-0 items-center gap-3 rounded-lg border px-4 py-3"
+      className="flex min-w-0 items-center gap-3 rounded-lg border border-border/60 bg-background px-4 py-3 dark:bg-secondary/20"
     >
       {prefix && (
-        <div className="text-foreground/80 shrink-0 text-sm [&_svg]:size-4.5">
+        <div className="shrink-0 text-foreground/80 text-sm [&_svg]:size-4.5">
           {prefix}
         </div>
       )}
       <div className="flex min-w-0 flex-1 items-center gap-3">
         <div className="min-w-0 shrink truncate">{children}</div>
         {description && (
-          <div className="text-foreground/60 shrink-0 text-sm">
+          <div className="shrink-0 text-foreground/60 text-sm">
             {description}
           </div>
         )}
       </div>
       {suffix && (
-        <div className="text-foreground/40 shrink-0 text-sm">{suffix}</div>
+        <div className="shrink-0 text-foreground/40 text-sm">{suffix}</div>
       )}
     </Link>
   );
@@ -92,7 +92,7 @@ const ListFooterLink = ({ className, ...props }: ListFooterLinkProps) => {
   return (
     <Button asChild variant="ghost">
       <Link
-        className={cn("text-foreground/60 flex items-center", className)}
+        className={cn("flex items-center text-foreground/60", className)}
         {...props}
       ></Link>
     </Button>

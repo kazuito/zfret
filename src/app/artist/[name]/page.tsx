@@ -1,14 +1,14 @@
 "use cache";
 
+import { User03Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import type { Metadata } from "next";
+import { cacheLife } from "next/cache";
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
-import { List } from "@/components/ui/list";
 import PageHeading from "@/components/page-heading";
+import { List } from "@/components/ui/list";
 import { fetchArtistSongs } from "@/lib/song";
-import { cacheLife } from "next/cache";
-import { Metadata } from "next";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { User03Icon } from "@hugeicons/core-free-icons";
 
 type Props = {
   params: Promise<{
@@ -45,7 +45,7 @@ const Page = async ({ params }: Props) => {
       </ClientOnly>
       <PageHeading
         startContent={
-          <div className="bg-secondary dark:bg-secondary/50 text-muted-foreground mr-3 grid size-8 place-content-center rounded-full sm:mr-4 sm:size-10">
+          <div className="mr-3 grid size-8 place-content-center rounded-full bg-secondary text-muted-foreground sm:mr-4 sm:size-10 dark:bg-secondary/50">
             <HugeiconsIcon
               className="size-5 sm:size-6"
               icon={User03Icon}

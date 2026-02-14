@@ -1,8 +1,12 @@
 "use client";
 
-import { List } from "@/components/ui/list";
+import { FavouriteIcon, Sorting02Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import Link from "next/link";
+import { useMemo, useState } from "react";
 import PageHeading from "@/components/page-heading";
 import { Button } from "@/components/ui/button";
+import { List } from "@/components/ui/list";
 import {
   Select,
   SelectContent,
@@ -12,12 +16,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { FavoriteItem, useFavorites } from "@/hooks/use-favorites";
+import { type FavoriteItem, useFavorites } from "@/hooks/use-favorites";
 import { cn } from "@/lib/utils";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { FavouriteIcon, Sorting02Icon } from "@hugeicons/core-free-icons";
-import Link from "next/link";
-import { useMemo, useState } from "react";
 
 const sortBy = {
   timestamp: {

@@ -1,23 +1,22 @@
 "use client";
 
-import { List } from "@/components/ui/list";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { search, SearchResult } from "@/lib/search";
-import { HugeiconsIcon } from "@hugeicons/react";
 import {
   ArrowTurnBackwardIcon,
   Search01Icon,
-  Search02Icon,
 } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useQuery } from "@tanstack/react-query";
+import { AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
 import { useState } from "react";
-import { RecentSearches } from "@/components/recent-searches";
-import { useSearchHistory } from "@/hooks/use-search-history";
-import { AnimatePresence } from "motion/react";
 import PageHeading from "@/components/page-heading";
+import { RecentSearches } from "@/components/recent-searches";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { List } from "@/components/ui/list";
+import { useSearchHistory } from "@/hooks/use-search-history";
+import { type SearchResult, search } from "@/lib/search";
 
 const Page = () => {
   const [urlQuery, setUrlQuery] = useQueryState("q", {
@@ -126,7 +125,7 @@ const Page = () => {
           <div
             role="status"
             aria-live="polite"
-            className="text-foreground/60 my-20 flex justify-center"
+            className="my-20 flex justify-center text-foreground/60"
           >
             <div className="flex animate-bounce items-center gap-1">
               Searching...
@@ -134,7 +133,7 @@ const Page = () => {
           </div>
         )}
         {showEmptyMessage && (
-          <div className="text-foreground/60 my-20 text-center">
+          <div className="my-20 text-center text-foreground/60">
             No results found for &quot;<b>{urlQuery}</b>&quot;.
           </div>
         )}
@@ -147,7 +146,7 @@ const Page = () => {
                     <Link
                       key={artist.id}
                       href={artist.link}
-                      className="bg-secondary/40 truncate rounded-full border px-4 py-2"
+                      className="truncate rounded-full border bg-secondary/40 px-4 py-2"
                     >
                       {artist.name}
                     </Link>

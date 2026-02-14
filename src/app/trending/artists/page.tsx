@@ -1,11 +1,11 @@
 "use cache";
 
-import { List } from "@/components/ui/list";
-import PageHeading from "@/components/page-heading";
-import { fetchTopArtists } from "@/lib/song";
-import { cacheLife } from "next/cache";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { Mic01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { cacheLife } from "next/cache";
+import PageHeading from "@/components/page-heading";
+import { List } from "@/components/ui/list";
+import { fetchTopArtists } from "@/lib/song";
 
 const Page = async () => {
   cacheLife("days");

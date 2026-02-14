@@ -1,6 +1,15 @@
 "use client";
 
-import { List } from "@/components/ui/list";
+import {
+  Clock02Icon,
+  Delete02Icon,
+  Mic01Icon,
+  MoreHorizontalIcon,
+  MusicNote02Icon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import Link from "next/link";
+import { toast } from "sonner";
 import PageHeading from "@/components/page-heading";
 import RelativeTime from "@/components/relative-time";
 import { Button } from "@/components/ui/button";
@@ -10,17 +19,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { List } from "@/components/ui/list";
 import { useBrowsingHistory } from "@/hooks/use-browsing-history";
-import { HugeiconsIcon } from "@hugeicons/react";
-import {
-  Clock02Icon,
-  MoreHorizontalIcon,
-  Mic01Icon,
-  Delete02Icon,
-  MusicNote02Icon,
-} from "@hugeicons/core-free-icons";
-import Link from "next/link";
-import { toast } from "sonner";
 
 const Page = () => {
   const { historyItems } = useBrowsingHistory();
