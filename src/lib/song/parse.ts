@@ -7,7 +7,7 @@ const chordsDataSchema = z.array(z.string());
 export function parseChords(html: string) {
   const chordsRawData = html.match(/var ufret_chord_datas = (\[.*?\]);/)?.[1];
   if (!chordsRawData) {
-    throw new Error("Chords data not found in the HTML");
+    return null;
   }
 
   const chordsData = chordsDataSchema.parse(JSON.parse(chordsRawData));

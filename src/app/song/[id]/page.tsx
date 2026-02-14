@@ -1,6 +1,7 @@
 import { ArrowRight01Icon, Vynil02Icon } from "@hugeicons/core-free-icons";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
 import FavButton from "@/components/fav-button";
@@ -63,6 +64,10 @@ const Page = async ({ params }: Props) => {
     artistName: song.artist.name,
     link: `/song/${id}`,
   };
+
+  if (!song.lines) {
+    return notFound();
+  }
 
   return (
     <div className="mx-auto max-w-3xl p-6 pt-0">
