@@ -1,6 +1,10 @@
-import Link from "next/link";
+"use client";
+
+import Link, { useLinkStatus } from "next/link";
 import { Slot } from "radix-ui";
 import { cn } from "@/lib/utils";
+import { OnLinkPending } from "../on-link-pending";
+import { Spinner } from "./spinner";
 
 export const ListRoot = ({
   className,
@@ -70,11 +74,17 @@ export const ListItem = ({
 };
 
 export const ListItemLink = ({
+  children,
   ...props
 }: React.ComponentProps<typeof Link>) => {
   return (
-    <ListItem asChild>
-      <Link prefetch={false} {...props} />
+    <ListItem asChild className="relative">
+      <Link prefetch={false} {...props}>
+        {children}
+        <OnLinkPending>
+          <Spinner className="absolute right-4 text-muted-foreground" />
+        </OnLinkPending>
+      </Link>
     </ListItem>
   );
 };
