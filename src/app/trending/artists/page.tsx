@@ -5,12 +5,12 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { cacheLife } from "next/cache";
 import PageHeading from "@/components/page-heading";
 import { List } from "@/components/ui/list";
-import { fetchTopArtists } from "@/lib/song";
+import { getTopArtists } from "@/lib/song/actions";
 
 const Page = async () => {
   cacheLife("days");
 
-  const artists = await fetchTopArtists({ limit: 100 });
+  const artists = await getTopArtists({ limit: 100 });
 
   return (
     <>

@@ -11,13 +11,13 @@ import { cacheLife } from "next/cache";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { List } from "@/components/ui/list";
-import { fetchTopArtists, fetchTopSongs } from "@/lib/song";
+import { getTopArtists, getTopSongs } from "@/lib/song/actions";
 
 export default async function Home() {
   cacheLife("days");
 
-  const topSongs = await fetchTopSongs();
-  const topArtists = await fetchTopArtists();
+  const topSongs = await getTopSongs({ limit: 10 });
+  const topArtists = await getTopArtists({ limit: 10 });
 
   return (
     <div className="mx-auto flex max-w-5xl flex-col p-6 pt-0">
@@ -54,7 +54,7 @@ export default async function Home() {
           <List.Content>
             {topSongs.map((song, i) => (
               <List.Item
-                key={i}
+                key={song.id}
                 href={`/song/${song.id}`}
                 prefix={<div className="min-w-4">{i + 1}</div>}
                 description={song.artistName}
@@ -80,7 +80,7 @@ export default async function Home() {
           <List.Content>
             {topArtists.map((artist, i) => (
               <List.Item
-                key={i}
+                key={artist.name}
                 href={artist.url}
                 prefix={<div className="w-6">{i + 1}</div>}
               >

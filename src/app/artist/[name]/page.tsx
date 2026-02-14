@@ -8,7 +8,7 @@ import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
 import PageHeading from "@/components/page-heading";
 import { List } from "@/components/ui/list";
-import { fetchArtistSongs } from "@/lib/song";
+import { getArtistSongs } from "@/lib/song/actions";
 
 type Props = {
   params: Promise<{
@@ -30,7 +30,9 @@ const Page = async ({ params }: Props) => {
 
   const { name } = await params;
   const decodedName = decodeURIComponent(name);
-  const songs = await fetchArtistSongs(decodedName);
+  const songs = await getArtistSongs({
+    name: decodedName,
+  });
 
   const historyItem = {
     type: "artist" as const,

@@ -11,7 +11,7 @@ import FavButton from "@/components/fav-button";
 import PageHeading from "@/components/page-heading";
 import Player from "@/components/player";
 import { List } from "@/components/ui/list";
-import { fetchRelatedSongs, fetchSong } from "@/lib/song";
+import { getRelatedSongs, getSong } from "@/lib/song/actions";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -24,7 +24,7 @@ export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
   const { id } = await params;
-  const song = await fetchSong(id);
+  const song = await getSong(id);
   return {
     title: `${decodeURIComponent(song.title)} - ${decodeURIComponent(
       song.artist.name,
@@ -37,8 +37,10 @@ const Page = async ({ params }: Props) => {
 
   const { id } = await params;
 
-  const song = await fetchSong(id);
-  const artistSongs = await fetchRelatedSongs(song.id, song.artist.name, {
+  const song = await getSong(id);
+  const artistSongs = await getRelatedSongs({
+    artistName: song.artist.name,
+    songId: id,
     limit: 10,
   });
 
@@ -95,7 +97,7 @@ const Page = async ({ params }: Props) => {
                           <div className="text-sm">{part.chord}</div>
                         )}
                         {lineHasLyric && (
-                          <div className="h-6 text-nowrap bg-gradient-to-b from-foreground/60 to-foreground/20 bg-clip-text text-transparent">
+                          <div className="h-6 text-nowrap bg-linear-to-b from-foreground/60 to-foreground/20 bg-clip-text text-transparent">
                             {part.lyric}
                           </div>
                         )}

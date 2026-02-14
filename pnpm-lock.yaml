@@ -112,6 +112,9 @@ importers:
       '@types/react-dom':
         specifier: 19.2.2
         version: 19.2.2(@types/react@19.2.2)
+      domhandler:
+        specifier: ^5.0.3
+        version: 5.0.3
       husky:
         specifier: ^9.1.7
         version: 9.1.7
