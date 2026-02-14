@@ -4,12 +4,12 @@ import {
   ArrowTurnBackwardIcon,
   Search01Icon,
 } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { useQuery } from "@tanstack/react-query";
 import { AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
 import { useState } from "react";
+import { Icon } from "@/components/icon";
 import PageHeading from "@/components/page-heading";
 import { RecentSearches } from "@/components/recent-searches";
 import { Button } from "@/components/ui/button";
@@ -89,7 +89,7 @@ const Page = () => {
     <div className="mx-auto max-w-3xl p-6 sm:pt-0">
       <div className="hidden sm:block">
         <PageHeading>
-          <HugeiconsIcon icon={Search01Icon} strokeWidth={2.6} />
+          <Icon icon={Search01Icon} strokeWidth={2.6} />
           Search
         </PageHeading>
       </div>
@@ -114,7 +114,7 @@ const Page = () => {
           disabled={isPending || query.trim().length === 0}
         >
           Search
-          <HugeiconsIcon
+          <Icon
             icon={ArrowTurnBackwardIcon}
             size={20}
             strokeWidth={2.6}

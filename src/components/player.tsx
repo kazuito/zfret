@@ -1,10 +1,10 @@
 "use client";
 
 import { Tap07Icon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import Image from "next/image";
 import { useState } from "react";
 import ReactPlayer from "react-player";
+import { Icon } from "@/components/icon";
 
 type Props = {
   youtubeVideoId: string;
@@ -37,7 +37,7 @@ const Player = ({ youtubeVideoId }: Props) => {
           >
             <div className="absolute inset-0 z-10 grid place-content-center">
               <div className="flex items-center gap-1.5 rounded-full bg-black/50 py-1 ps-2.5 pe-3 text-sm text-white backdrop-blur-sm">
-                <HugeiconsIcon icon={Tap07Icon} className="size-4.5" />
+                <Icon icon={Tap07Icon} className="size-4.5" />
                 Click to play
               </div>
             </div>

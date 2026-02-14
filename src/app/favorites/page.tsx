@@ -1,9 +1,9 @@
 "use client";
 
 import { FavouriteIcon, Sorting02Icon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { Icon } from "@/components/icon";
 import PageHeading from "@/components/page-heading";
 import { Button } from "@/components/ui/button";
 import {
@@ -81,7 +81,7 @@ const Page = () => {
               className="rounded-e-none border-e-0"
               title="Toggle sort order"
             >
-              <HugeiconsIcon
+              <Icon
                 icon={Sorting02Icon}
                 size={20}
                 className={cn(
@@ -109,7 +109,7 @@ const Page = () => {
           </div>
         }
       >
-        <HugeiconsIcon icon={FavouriteIcon} size={20} strokeWidth={2.6} />
+        <Icon icon={FavouriteIcon} size={20} strokeWidth={2.6} />
         Favorites
       </PageHeading>
       {computedFavorites.length === 0 ? (

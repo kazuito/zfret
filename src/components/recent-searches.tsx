@@ -1,8 +1,8 @@
 "use client";
 
 import { Cancel01Icon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { AnimatePresence, motion } from "motion/react";
+import { Icon } from "@/components/icon";
 import { Button } from "@/components/ui/button";
 
 type RecentSearchesProps = {
@@ -60,7 +60,7 @@ export const RecentSearches = ({
                       onRemove(query);
                     }}
                   >
-                    <HugeiconsIcon icon={Cancel01Icon} size={12} />
+                    <Icon icon={Cancel01Icon} size={12} />
                   </Button>
                 </div>
               </motion.div>

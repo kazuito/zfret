@@ -1,5 +1,5 @@
 import { MusicNote02Icon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
+import { Icon } from "@/components/icon";
 import PageHeading from "@/components/page-heading";
 import {
   ListContent,
@@ -16,7 +16,7 @@ const Page = async () => {
   return (
     <>
       <PageHeading>
-        <HugeiconsIcon icon={MusicNote02Icon} size={20} strokeWidth={2.6} />
+        <Icon icon={MusicNote02Icon} size={20} strokeWidth={2.6} />
         TOP SONGS
       </PageHeading>
       <ListRoot>

@@ -1,6 +1,6 @@
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
+import { Icon } from "@/components/icon";
 import { Button } from "@/components/ui/button";
 
 type Props = {
@@ -14,7 +14,7 @@ const Layout = ({ children }: Props) => {
       <div className="mt-6 flex justify-center">
         <Button variant="ghost" asChild>
           <Link href="/">
-            <HugeiconsIcon icon={ArrowLeft01Icon} size={20} />
+            <Icon icon={ArrowLeft01Icon} size={20} />
             Back
           </Link>
         </Button>

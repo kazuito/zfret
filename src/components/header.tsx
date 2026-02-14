@@ -1,8 +1,8 @@
 "use client";
 
 import { MenuIcon, SearchIcon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
+import { Icon } from "@/components/icon";
 import { useSidebar } from "@/hooks/use-sidebar";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
@@ -29,7 +29,7 @@ const Header = () => {
             className="rounded-full text-muted-foreground"
           >
             <Link href="/search">
-              <HugeiconsIcon icon={SearchIcon} strokeWidth={2.6} />
+              <Icon icon={SearchIcon} strokeWidth={2.6} />
               Search
             </Link>
           </Button>
@@ -39,11 +39,7 @@ const Header = () => {
             className="rounded-full"
             onClick={() => setOpen(true)}
           >
-            <HugeiconsIcon
-              className="size-5"
-              strokeWidth={2.2}
-              icon={MenuIcon}
-            />
+            <Icon className="size-5" strokeWidth={2.2} icon={MenuIcon} />
           </Button>
         </div>
       </div>

@@ -1,10 +1,10 @@
 import { ArrowRight01Icon, Vynil02Icon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
 import FavButton from "@/components/fav-button";
+import { Icon } from "@/components/icon";
 import PageHeading from "@/components/page-heading";
 import Player from "@/components/player";
 import {
@@ -73,7 +73,7 @@ const Page = async ({ params }: Props) => {
         subtitle={<Link href={song.artist.url}>{song.artist.name}</Link>}
         startContent={
           <div className="mr-4 grid size-13 place-content-center rounded-lg bg-secondary sm:size-15 dark:bg-secondary/50">
-            <HugeiconsIcon
+            <Icon
               icon={Vynil02Icon}
               className="size-7 text-muted-foreground sm:size-8"
               strokeWidth={2}
@@ -142,7 +142,7 @@ const Page = async ({ params }: Props) => {
               <ListTitle asChild>
                 <Link href={`/artist/${song.artist.name}`} className="w-fit">
                   {song.artist.name}
-                  <HugeiconsIcon icon={ArrowRight01Icon} />
+                  <Icon icon={ArrowRight01Icon} />
                 </Link>
               </ListTitle>
             </ListHeader>

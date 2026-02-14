@@ -7,11 +7,11 @@ import {
   Home07Icon,
   SearchIcon,
 } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Dialog } from "radix-ui";
 import { useEffect } from "react";
+import { Icon } from "@/components/icon";
 import { useSidebar } from "@/hooks/use-sidebar";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
@@ -66,11 +66,7 @@ export const SidebarContent = ({
           className="ml-auto rounded-full lg:hidden"
           onClick={() => setOpen(false)}
         >
-          <HugeiconsIcon
-            className="size-5"
-            strokeWidth={2.2}
-            icon={Cancel01Icon}
-          />
+          <Icon className="size-5" strokeWidth={2.2} icon={Cancel01Icon} />
         </Button>
       </div>
       <div className="mt-4 px-2">
@@ -82,22 +78,22 @@ export const SidebarContent = ({
           asChild
         >
           <Link href="/search">
-            <HugeiconsIcon icon={SearchIcon} strokeWidth={2.2} />
+            <Icon icon={SearchIcon} strokeWidth={2.2} />
             Search
           </Link>
         </Button>
       </div>
       <div className="mt-2 flex flex-col px-1 lg:mt-4">
         <SidebarItem href="/">
-          <HugeiconsIcon strokeWidth={2.2} icon={Home07Icon} />
+          <Icon strokeWidth={2.2} icon={Home07Icon} />
           Home
         </SidebarItem>
         <SidebarItem href="/favorites">
-          <HugeiconsIcon strokeWidth={2.2} icon={FavouriteIcon} />
+          <Icon strokeWidth={2.2} icon={FavouriteIcon} />
           Favorites
         </SidebarItem>
         <SidebarItem href="/history">
-          <HugeiconsIcon strokeWidth={2.2} icon={Clock02Icon} />
+          <Icon strokeWidth={2.2} icon={Clock02Icon} />
           History
         </SidebarItem>
       </div>

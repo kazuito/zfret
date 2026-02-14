@@ -1,8 +1,8 @@
 "use client";
 
 import { FavouriteIcon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { motion } from "motion/react";
+import { Icon } from "@/components/icon";
 import { type FavoriteItemInput, useFavorites } from "@/hooks/use-favorites";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
@@ -39,7 +39,7 @@ const FavButton = ({ item }: Props) => {
           damping: 15,
         }}
       >
-        <HugeiconsIcon
+        <Icon
           icon={FavouriteIcon}
           size={24}
           fill={isFavorite ? "red" : "none"}

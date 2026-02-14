@@ -5,9 +5,9 @@ import {
   MusicNote02Icon,
   Search01Icon,
 } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { cacheLife } from "next/cache";
 import Link from "next/link";
+import { Icon } from "@/components/icon";
 import { Button } from "@/components/ui/button";
 import {
   ListContent,
@@ -38,13 +38,13 @@ export default async function Home() {
         <div className="flex gap-3">
           <Button asChild>
             <Link href="/trending/songs">
-              <HugeiconsIcon icon={MusicNote02Icon} strokeWidth={2.4} />
+              <Icon icon={MusicNote02Icon} strokeWidth={2.4} />
               Explore Songs
             </Link>
           </Button>
           <Button variant="outline" asChild>
             <Link href="/search">
-              <HugeiconsIcon icon={Search01Icon} strokeWidth={2.4} />
+              <Icon icon={Search01Icon} strokeWidth={2.4} />
               Search
             </Link>
           </Button>
@@ -56,7 +56,7 @@ export default async function Home() {
             <ListTitle asChild>
               <Link href="/trending/songs">
                 TOP SONGS
-                <HugeiconsIcon icon={ArrowRight01Icon} strokeWidth={2.4} />
+                <Icon icon={ArrowRight01Icon} strokeWidth={2.4} />
               </Link>
             </ListTitle>
           </ListHeader>
@@ -77,7 +77,7 @@ export default async function Home() {
             <ListTitle asChild>
               <Link href="/trending/artists">
                 TOP ARTISTS
-                <HugeiconsIcon icon={ArrowRight01Icon} strokeWidth={2.4} />
+                <Icon icon={ArrowRight01Icon} strokeWidth={2.4} />
               </Link>
             </ListTitle>
           </ListHeader>

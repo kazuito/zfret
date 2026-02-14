@@ -1,8 +1,8 @@
 import { User03Icon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import type { Metadata } from "next";
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
+import { Icon } from "@/components/icon";
 import PageHeading from "@/components/page-heading";
 import {
   ListContent,
@@ -52,7 +52,7 @@ const Page = async ({ params }: Props) => {
       <PageHeading
         startContent={
           <div className="mr-3 grid size-8 place-content-center rounded-full bg-secondary text-muted-foreground sm:mr-4 sm:size-10 dark:bg-secondary/50">
-            <HugeiconsIcon
+            <Icon
               className="size-5 sm:size-6"
               icon={User03Icon}
               fill="currentColor"

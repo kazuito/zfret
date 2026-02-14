@@ -6,9 +6,9 @@ import {
   Tick02Icon,
   UnfoldMoreIcon,
 } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { Select as SelectPrimitive } from "radix-ui";
 import type * as React from "react";
+import { Icon } from "@/components/icon";
 import { cn } from "@/lib/utils";
 
 function Select({
@@ -56,7 +56,7 @@ function SelectTrigger({
     >
       {children}
       <SelectPrimitive.Icon asChild>
-        <HugeiconsIcon
+        <Icon
           icon={UnfoldMoreIcon}
           strokeWidth={2}
           className="pointer-events-none size-4 text-muted-foreground"
@@ -132,7 +132,7 @@ function SelectItem({
     >
       <span className="pointer-events-none absolute right-2 flex size-4 items-center justify-center">
         <SelectPrimitive.ItemIndicator>
-          <HugeiconsIcon
+          <Icon
             icon={Tick02Icon}
             strokeWidth={2}
             className="pointer-events-none"
@@ -170,7 +170,7 @@ function SelectScrollUpButton({
       )}
       {...props}
     >
-      <HugeiconsIcon icon={ArrowUp01Icon} strokeWidth={2} />
+      <Icon icon={ArrowUp01Icon} strokeWidth={2} />
     </SelectPrimitive.ScrollUpButton>
   );
 }
@@ -188,7 +188,7 @@ function SelectScrollDownButton({
       )}
       {...props}
     >
-      <HugeiconsIcon icon={ArrowDown01Icon} strokeWidth={2} />
+      <Icon icon={ArrowDown01Icon} strokeWidth={2} />
     </SelectPrimitive.ScrollDownButton>
   );
 }

@@ -6,9 +6,9 @@ import {
   MoreHorizontalIcon,
   UserCircleIcon,
 } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import { toast } from "sonner";
+import { Icon } from "@/components/icon";
 import PageHeading from "@/components/page-heading";
 import RelativeTime from "@/components/relative-time";
 import { Button } from "@/components/ui/button";
@@ -35,7 +35,7 @@ const Page = () => {
   return (
     <div className="mx-auto max-w-3xl p-6 pt-0">
       <PageHeading endContent={<HeaderContent />}>
-        <HugeiconsIcon icon={Clock02Icon} size={20} strokeWidth={2.6} />
+        <Icon icon={Clock02Icon} size={20} strokeWidth={2.6} />
         History
       </PageHeading>
       {computedHistory.length === 0 ? (
@@ -62,7 +62,7 @@ const Page = () => {
               } else if (item.type === "artist")
                 return (
                   <ListItemLink key={item.timestamp} href={item.link}>
-                    <HugeiconsIcon
+                    <Icon
                       icon={UserCircleIcon}
                       size={20}
                       className="text-foreground/50"
@@ -106,12 +106,12 @@ const HeaderContent = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon">
-          <HugeiconsIcon icon={MoreHorizontalIcon} size={20} />
+          <Icon icon={MoreHorizontalIcon} size={20} />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-38">
         <DropdownMenuItem variant="destructive" onClick={handleClear}>
-          <HugeiconsIcon icon={Delete02Icon} size={20} />
+          <Icon icon={Delete02Icon} size={20} />
           Clear All History
         </DropdownMenuItem>
       </DropdownMenuContent>
