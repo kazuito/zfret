@@ -61,31 +61,22 @@ const Page = () => {
         <ListRoot>
           <ListContent>
             {computedHistory.map((item) => {
-              if (item.type === "song") {
-                return (
-                  <ListItemLink key={item.timestamp} href={item.link}>
-                    <ListItemTitle>{item.title}</ListItemTitle>
-                    <ListItemSubtitle>{item.artistName}</ListItemSubtitle>
-                    <span className="ml-auto">
-                      <RelativeTime to={item.timestamp} />
-                    </span>
-                  </ListItemLink>
-                );
-              } else if (item.type === "artist")
-                return (
-                  <ListItemLink key={item.timestamp} href={item.link}>
-                    <Icon
-                      icon={UserCircleIcon}
-                      size={20}
-                      className="text-foreground/50"
-                    />
+              return (
+                <ListItemLink key={item.timestamp} href={item.link}>
+                  {item.type === "song" && (
+                    <>
+                      <ListItemTitle>{item.title}</ListItemTitle>
+                      <ListItemSubtitle>{item.artistName}</ListItemSubtitle>
+                    </>
+                  )}
+                  {item.type === "artist" && (
                     <ListItemTitle>{item.name}</ListItemTitle>
-                    <span className="ml-auto">
-                      <RelativeTime to={item.timestamp} />
-                    </span>
-                  </ListItemLink>
-                );
-              return null;
+                  )}
+                  <span className="ml-auto hidden text-muted-foreground text-sm sm:inline">
+                    <RelativeTime to={item.timestamp} />
+                  </span>
+                </ListItemLink>
+              );
             })}
           </ListContent>
         </ListRoot>
