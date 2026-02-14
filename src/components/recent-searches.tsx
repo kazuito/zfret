@@ -74,7 +74,7 @@ export const RecentSearches = ({
                   <button
                     type="button"
                     onClick={() => onSelect(query)}
-                    className="grow truncate rounded-md px-3 py-2 text-start text-sm hover:bg-accent/20"
+                    className="grow truncate rounded-lg px-3 py-2 text-start text-base hover:bg-accent/20"
                   >
                     {query}
                   </button>
