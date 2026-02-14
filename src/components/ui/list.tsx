@@ -65,7 +65,7 @@ export const ListItem = ({
   return (
     <Comp
       className={cn(
-        "flex min-w-0 items-center gap-3 rounded-lg border border-border/60 bg-background px-4 py-3 dark:bg-secondary/20",
+        "flex min-w-0 items-center gap-3 rounded-lg border border-border/60 bg-background px-4 py-3 hover:bg-accent/20! active:bg-accent/15! dark:bg-secondary/20",
         className,
       )}
       {...props}
