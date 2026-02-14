@@ -57,6 +57,7 @@ const ListItem = ({
     <Link
       href={href}
       className="flex min-w-0 items-center gap-3 rounded-lg border border-border/60 bg-background px-4 py-3 dark:bg-secondary/20"
+      prefetch={false}
     >
       {prefix && (
         <div className="shrink-0 text-foreground/80 text-sm [&_svg]:size-4.5">

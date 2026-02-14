@@ -17,6 +17,10 @@ type Props = {
   }>;
 };
 
+export async function generateStaticParams() {
+  return [{ id: "44369" }];
+}
+
 export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
