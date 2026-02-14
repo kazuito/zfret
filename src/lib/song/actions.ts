@@ -3,6 +3,7 @@
 import { cacheLife } from "next/cache";
 import {
   scrapeArtistSongs,
+  scrapeSearchResults,
   scrapeSong,
   scrapeTopArtists,
   scrapeTopSongs,
@@ -70,3 +71,13 @@ export async function getRelatedSongs({
     .filter((song) => song.id !== songId)
     .slice(startIndex, endIndex);
 }
+
+export async function getSearchResults(query: string) {
+  "use cache";
+  cacheLife("hours");
+
+  const searchResults = await scrapeSearchResults(query);
+  return searchResults;
+}
+
+export type SearchResult = Awaited<ReturnType<typeof getSearchResults>>;

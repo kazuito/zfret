@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { List } from "@/components/ui/list";
 import { useSearchHistory } from "@/hooks/use-search-history";
-import { type SearchResult, search } from "@/lib/search";
+import { getSearchResults, type SearchResult } from "@/lib/song/actions";
 
 const Page = () => {
   const [urlQuery, setUrlQuery] = useQueryState("q", {
@@ -35,7 +35,7 @@ const Page = () => {
     isLoading,
   } = useQuery<SearchResult>({
     queryKey: ["search", trimmedUrlQuery],
-    queryFn: () => search(trimmedUrlQuery),
+    queryFn: () => getSearchResults(trimmedUrlQuery),
     enabled: isQueryEnabled,
   });
 
@@ -145,7 +145,7 @@ const Page = () => {
                   (artist: SearchResult["artists"][number]) => (
                     <Link
                       key={artist.id}
-                      href={artist.link}
+                      href={artist.url}
                       className="truncate rounded-full border bg-secondary/40 px-4 py-2"
                     >
                       {artist.name}
@@ -160,7 +160,7 @@ const Page = () => {
                   {results.songs.map((song: SearchResult["songs"][number]) => (
                     <List.Item
                       key={song.id}
-                      href={song.link}
+                      href={song.url}
                       description={song.artistName}
                     >
                       {song.title}

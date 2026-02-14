@@ -69,3 +69,27 @@ export async function scrapeTopArtists() {
 
   return topArtists;
 }
+
+export async function scrapeSearchResults(query: string) {
+  const url = `https://www.ufret.jp/search.php?key=${encodeURIComponent(query)}`;
+  const res = await fetch(url);
+  const $ = load(await res.text());
+
+  const artists = $("ul.c-card-artist .c-card-artist__artist")
+    .map((_, el) => {
+      const $el = $(el);
+      const name = $el.text().trim();
+      const url = `/artist/${encodeURIComponent(name)}`;
+      return { name, url, id: name };
+    })
+    .get();
+
+  const songs = $("ul.c-list > li.normal-chord")
+    .map((_, el) => parseSongItem($, el))
+    .get()
+
+  return {
+    artists,
+    songs,
+  };
+}
