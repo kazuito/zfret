@@ -23,26 +23,11 @@ export const RecentSearches = ({
     <motion.div
       className="flex flex-col gap-2"
       onMouseDown={(e) => e.preventDefault()}
-      initial={{
-        scale: 0.96,
-        height: 0,
-        opacity: 0,
-      }}
-      animate={{
-        scale: 1,
-        height: "auto",
-        opacity: 1,
-      }}
-      exit={{
-        scale: 0.96,
-        height: 0,
-        opacity: 0,
-      }}
-      transition={{
-        type: "spring",
-        damping: 46,
-        stiffness: 660,
-      }}
+      variants={{ hidden: { opacity: 0, scale: 0.96, height: 0 } }}
+      initial="hidden"
+      animate={{ scale: 1, height: "auto", opacity: 1 }}
+      exit="hidden"
+      transition={{ type: "spring", damping: 46, stiffness: 660 }}
     >
       <div className="pt-2">
         <div className="flex flex-col">
@@ -52,23 +37,11 @@ export const RecentSearches = ({
                 layout
                 key={query}
                 className="border-b py-0.5 last:border-none"
-                initial={{
-                  opacity: 0,
-                  scale: 0.96,
-                }}
-                animate={{
-                  opacity: 1,
-                  scale: 1,
-                }}
-                exit={{
-                  opacity: 0,
-                  scale: 0.96,
-                }}
-                transition={{
-                  type: "spring",
-                  damping: 46,
-                  stiffness: 660,
-                }}
+                variants={{ hidden: { opacity: 0, scale: 0.96 } }}
+                initial="hidden"
+                animate={{ opacity: 1, scale: 1 }}
+                exit="hidden"
+                transition={{ type: "spring", damping: 46, stiffness: 660 }}
               >
                 <div className="flex items-center justify-between gap-0.5">
                   <button
