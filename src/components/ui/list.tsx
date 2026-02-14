@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Slot } from "radix-ui";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { OnLinkPending } from "../on-link-pending";
+import { Spinner } from "./spinner";
 
 const ListRoot = ({ className, ...props }: React.ComponentProps<"div">) => {
   return (
@@ -59,6 +61,9 @@ const ListItem = ({
       className="flex min-w-0 items-center gap-3 rounded-lg border border-border/60 bg-background px-4 py-3 dark:bg-secondary/20"
       prefetch={false}
     >
+      <OnLinkPending>
+        <Spinner />
+      </OnLinkPending>
       {prefix && (
         <div className="shrink-0 text-foreground/80 text-sm [&_svg]:size-4.5">
           {prefix}
