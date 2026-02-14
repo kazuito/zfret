@@ -27,7 +27,7 @@ const Header = () => {
   });
 
   return (
-    <div className="fixed top-0 right-0 left-0 z-20 flex justify-end p-3 pb-0">
+    <div className="fixed top-0 right-0 left-0 z-20 flex justify-end p-3 pb-0 lg:hidden">
       <motion.div
         className="overflow-clip rounded-full border bg-background/70 backdrop-blur-xs"
         animate={{
