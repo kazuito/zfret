@@ -16,7 +16,6 @@ export const RecentSearches = ({
   queries,
   onSelect,
   onRemove,
-  onClear,
 }: RecentSearchesProps) => {
   if (queries.length === 0) return null;
 
