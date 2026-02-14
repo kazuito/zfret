@@ -82,6 +82,7 @@ const Page = async ({ params }: Props) => {
       </ClientOnly>
 
       <HeadingRoot>
+        <div className="mr-4 h-14 w-1.5 shrink-0 rounded-full bg-accent/50" />
         <HeadingContent>
           <HeadingTitle>{song.title}</HeadingTitle>
           <HeadingSubtitle asChild>
