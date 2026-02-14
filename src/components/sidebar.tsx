@@ -66,7 +66,7 @@ export const SidebarContent = ({
           className="ml-auto rounded-full lg:hidden"
           onClick={() => setOpen(false)}
         >
-          <Icon className="size-5" strokeWidth={2.2} icon={Cancel01Icon} />
+          <Icon className="size-5" icon={Cancel01Icon} />
         </Button>
       </div>
       <div className="mt-4 px-2">
@@ -78,22 +78,22 @@ export const SidebarContent = ({
           asChild
         >
           <Link href="/search">
-            <Icon icon={SearchIcon} strokeWidth={2.2} />
+            <Icon icon={SearchIcon} />
             Search
           </Link>
         </Button>
       </div>
       <div className="mt-2 flex flex-col px-1 lg:mt-4">
         <SidebarItem href="/">
-          <Icon strokeWidth={2.2} icon={Home07Icon} />
+          <Icon icon={Home07Icon} />
           Home
         </SidebarItem>
         <SidebarItem href="/favorites">
-          <Icon strokeWidth={2.2} icon={FavouriteIcon} />
+          <Icon icon={FavouriteIcon} />
           Favorites
         </SidebarItem>
         <SidebarItem href="/history">
-          <Icon strokeWidth={2.2} icon={Clock02Icon} />
+          <Icon icon={Clock02Icon} />
           History
         </SidebarItem>
       </div>
