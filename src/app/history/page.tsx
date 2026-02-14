@@ -4,7 +4,6 @@ import {
   Clock02Icon,
   Delete02Icon,
   MoreHorizontalIcon,
-  UserCircleIcon,
 } from "@hugeicons/core-free-icons";
 import Link from "next/link";
 import { toast } from "sonner";
