@@ -11,7 +11,6 @@ import { toast } from "sonner";
 import {
   HeadingContent,
   HeadingRoot,
-  HeadingSubtitle,
   HeadingSuffix,
   HeadingTitle,
 } from "@/components/heading";
