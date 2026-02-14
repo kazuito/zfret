@@ -13,7 +13,7 @@ export async function scrapeSong(id: string) {
   const artistName = $("a.p-detail-head__artist").first().text().trim();
   const encodedArtistName = encodeURIComponent(artistName);
 
-  const [writer, composer] = $("p-detail-head__lyrics > span");
+  const [writer, composer] = $(".p-detail-head__lyrics > span");
   const writerNames = $(writer).text().split(", ");
   const composerNames = $(composer).text().split(", ");
 
@@ -86,7 +86,7 @@ export async function scrapeSearchResults(query: string) {
 
   const songs = $("ul.c-list > li.normal-chord")
     .map((_, el) => parseSongItem($, el))
-    .get()
+    .get();
 
   return {
     artists,

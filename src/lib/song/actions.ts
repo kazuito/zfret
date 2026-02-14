@@ -27,7 +27,7 @@ export async function getArtistSongs({
   cacheLife("weeks");
 
   const artistSongs = await scrapeArtistSongs(name);
-  return artistSongs.slice(0, limit);
+  return artistSongs.filter((song) => song.tags.length === 0).slice(0, limit);
 }
 
 export async function getTopSongs({ limit = 100 }: { limit?: number } = {}) {
