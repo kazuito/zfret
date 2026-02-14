@@ -93,6 +93,7 @@ const Page = () => {
           name="q"
           aria-label="Search"
           placeholder="Search for songs or artists"
+          className="h-10 rounded-full px-4 text-base!"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setIsInputFocused(true)}
@@ -101,12 +102,17 @@ const Page = () => {
           disabled={isPending}
           autoFocus
         />
-        <Button type="submit" disabled={isPending || query.trim().length === 0}>
+        <Button
+          type="submit"
+          className="h-10 rounded-full px-4"
+          disabled={isPending || query.trim().length === 0}
+        >
           Search
           <HugeiconsIcon
             icon={ArrowTurnBackwardIcon}
             size={20}
-            strokeWidth={2.4}
+            strokeWidth={2.6}
+            className="text-muted-foreground"
           />
         </Button>
       </form>
