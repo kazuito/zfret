@@ -1,15 +1,10 @@
-"use cache";
-
 import { MusicNote02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { cacheLife } from "next/cache";
 import PageHeading from "@/components/page-heading";
 import { List } from "@/components/ui/list";
 import { getTopSongs } from "@/lib/song/actions";
 
 const Page = async () => {
-  cacheLife("days");
-
   const songs = await getTopSongs({ limit: 100 });
 
   return (

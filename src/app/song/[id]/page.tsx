@@ -1,9 +1,6 @@
-"use cache";
-
 import { ArrowRight01Icon, Vynil02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { Metadata } from "next";
-import { cacheLife } from "next/cache";
 import Link from "next/link";
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
@@ -33,8 +30,6 @@ export const generateMetadata = async ({
 };
 
 const Page = async ({ params }: Props) => {
-  cacheLife("max");
-
   const { id } = await params;
 
   const song = await getSong(id);

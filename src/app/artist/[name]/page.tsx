@@ -1,9 +1,6 @@
-"use cache";
-
 import { User03Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { Metadata } from "next";
-import { cacheLife } from "next/cache";
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
 import PageHeading from "@/components/page-heading";
@@ -26,8 +23,6 @@ export const generateMetadata = async ({
 };
 
 const Page = async ({ params }: Props) => {
-  cacheLife("weeks");
-
   const { name } = await params;
   const decodedName = decodeURIComponent(name);
   const songs = await getArtistSongs({

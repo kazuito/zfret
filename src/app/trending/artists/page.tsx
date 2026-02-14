@@ -1,15 +1,10 @@
-"use cache";
-
 import { Mic01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { cacheLife } from "next/cache";
 import PageHeading from "@/components/page-heading";
 import { List } from "@/components/ui/list";
 import { getTopArtists } from "@/lib/song/actions";
 
 const Page = async () => {
-  cacheLife("days");
-
   const artists = await getTopArtists({ limit: 100 });
 
   return (
