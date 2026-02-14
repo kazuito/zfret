@@ -7,7 +7,17 @@ import { ClientOnly } from "@/components/client-only";
 import FavButton from "@/components/fav-button";
 import PageHeading from "@/components/page-heading";
 import Player from "@/components/player";
-import { List } from "@/components/ui/list";
+import { Button } from "@/components/ui/button";
+import {
+  ListContent,
+  ListFooter,
+  ListHeader,
+  ListItem,
+  ListItemLink,
+  ListItemTitle,
+  ListRoot,
+  ListTitle,
+} from "@/components/ui/list";
 import { getRelatedSongs, getSong } from "@/lib/song/actions";
 import { cn } from "@/lib/utils";
 
@@ -130,28 +140,25 @@ const Page = async ({ params }: Props) => {
           </div>
         </div>
         <div className="my-10">
-          <List.Root>
-            <List.Header asChild>
-              <Link href={`/artist/${song.artist.name}`} className="w-fit">
-                {song.artist.name}
-              </Link>
-            </List.Header>
-            <List.Content>
+          <ListRoot>
+            <ListHeader>
+              <ListTitle asChild>
+                <Link href={`/artist/${song.artist.name}`} className="w-fit">
+                  {song.artist.name}
+                  <HugeiconsIcon icon={ArrowRight01Icon} />
+                </Link>
+              </ListTitle>
+            </ListHeader>
+            <ListContent>
               {artistSongs.map((artistSong) => {
                 return (
-                  <List.Item key={artistSong.id} href={artistSong.url}>
-                    {artistSong.title}
-                  </List.Item>
+                  <ListItemLink key={artistSong.id} href={artistSong.url}>
+                    <ListItemTitle>{artistSong.title}</ListItemTitle>
+                  </ListItemLink>
                 );
               })}
-            </List.Content>
-            <List.Footer>
-              <List.FooterLink href={`/artist/${song.artist.name}`}>
-                {song.artist.name}
-                <HugeiconsIcon icon={ArrowRight01Icon} size={20} />
-              </List.FooterLink>
-            </List.Footer>
-          </List.Root>
+            </ListContent>
+          </ListRoot>
         </div>
       </div>
     </div>

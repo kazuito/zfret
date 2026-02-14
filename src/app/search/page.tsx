@@ -14,7 +14,14 @@ import PageHeading from "@/components/page-heading";
 import { RecentSearches } from "@/components/recent-searches";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { List } from "@/components/ui/list";
+import {
+  ListContent,
+  ListItem,
+  ListItemLink,
+  ListItemSubtitle,
+  ListItemTitle,
+  ListRoot,
+} from "@/components/ui/list";
 import { useSearchHistory } from "@/hooks/use-search-history";
 import { getSearchResults, type SearchResult } from "@/lib/song/actions";
 
@@ -145,33 +152,28 @@ const Page = () => {
           <div className="mt-6 flex flex-col gap-6">
             {results.artists.length > 0 && (
               <div className="flex flex-wrap gap-2">
-                {results.artists.map(
-                  (artist: SearchResult["artists"][number]) => (
-                    <Link
-                      key={artist.id}
-                      href={artist.url}
-                      className="truncate rounded-full border bg-secondary/40 px-4 py-2"
-                    >
-                      {artist.name}
-                    </Link>
-                  ),
-                )}
+                {results.artists.map((artist) => (
+                  <Link
+                    key={artist.id}
+                    href={artist.url}
+                    className="truncate rounded-full border bg-secondary/40 px-4 py-2"
+                  >
+                    {artist.name}
+                  </Link>
+                ))}
               </div>
             )}
             {results.songs.length > 0 && (
-              <List.Root>
-                <List.Content>
+              <ListRoot>
+                <ListContent>
                   {results.songs.map((song: SearchResult["songs"][number]) => (
-                    <List.Item
-                      key={song.id}
-                      href={song.url}
-                      description={song.artistName}
-                    >
-                      {song.title}
-                    </List.Item>
+                    <ListItemLink key={song.id} href={song.url}>
+                      <ListItemTitle>{song.title}</ListItemTitle>
+                      <ListItemSubtitle>{song.artistName}</ListItemSubtitle>
+                    </ListItemLink>
                   ))}
-                </List.Content>
-              </List.Root>
+                </ListContent>
+              </ListRoot>
             )}
           </div>
         )}

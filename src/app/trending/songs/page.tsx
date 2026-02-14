@@ -1,7 +1,13 @@
 import { MusicNote02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import PageHeading from "@/components/page-heading";
-import { List } from "@/components/ui/list";
+import {
+  ListContent,
+  ListItemLink,
+  ListItemSubtitle,
+  ListItemTitle,
+  ListRoot,
+} from "@/components/ui/list";
 import { getTopSongs } from "@/lib/song/actions";
 
 const Page = async () => {
@@ -13,20 +19,19 @@ const Page = async () => {
         <HugeiconsIcon icon={MusicNote02Icon} size={20} strokeWidth={2.6} />
         TOP SONGS
       </PageHeading>
-      <List.Root>
-        <List.Content>
+      <ListRoot>
+        <ListContent>
           {songs.map((song, i) => (
-            <List.Item
-              key={song.id}
-              prefix={<div className="min-w-4">{i + 1}</div>}
-              href={song.url}
-              description={song.artistName}
-            >
-              {song.title}
-            </List.Item>
+            <ListItemLink key={song.id} href={song.url}>
+              <div className="-ml-2 w-8 text-center font-bold text-muted-foreground text-xl/0 italic">
+                {i + 1}
+              </div>
+              <ListItemTitle>{song.title}</ListItemTitle>
+              <ListItemSubtitle>{song.artistName}</ListItemSubtitle>
+            </ListItemLink>
           ))}
-        </List.Content>
-      </List.Root>
+        </ListContent>
+      </ListRoot>
     </>
   );
 };

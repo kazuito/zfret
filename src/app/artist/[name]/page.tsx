@@ -4,7 +4,12 @@ import type { Metadata } from "next";
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
 import PageHeading from "@/components/page-heading";
-import { List } from "@/components/ui/list";
+import {
+  ListContent,
+  ListItemLink,
+  ListItemTitle,
+  ListRoot,
+} from "@/components/ui/list";
 import { getArtistSongs } from "@/lib/song/actions";
 
 type Props = {
@@ -58,17 +63,17 @@ const Page = async ({ params }: Props) => {
         {decodedName}
       </PageHeading>
       <div>
-        <List.Root>
-          <List.Content>
+        <ListRoot>
+          <ListContent>
             {songs.map((song) => {
               return (
-                <List.Item href={song.url} key={song.id}>
-                  {song.title}
-                </List.Item>
+                <ListItemLink href={song.url} key={song.id}>
+                  <ListItemTitle>{song.title}</ListItemTitle>
+                </ListItemLink>
               );
             })}
-          </List.Content>
-        </List.Root>
+          </ListContent>
+        </ListRoot>
       </div>
     </div>
   );

@@ -6,7 +6,13 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import PageHeading from "@/components/page-heading";
 import { Button } from "@/components/ui/button";
-import { List } from "@/components/ui/list";
+import {
+  ListContent,
+  ListItemLink,
+  ListItemSubtitle,
+  ListItemTitle,
+  ListRoot,
+} from "@/components/ui/list";
 import {
   Select,
   SelectContent,
@@ -115,21 +121,18 @@ const Page = () => {
           ?
         </div>
       ) : (
-        <List.Root>
-          <List.Content>
+        <ListRoot>
+          <ListContent>
             {computedFavorites.map((item) => {
               return (
-                <List.Item
-                  key={item.link}
-                  href={item.link}
-                  description={item.artistName}
-                >
-                  {item.title}
-                </List.Item>
+                <ListItemLink key={item.link} href={item.link}>
+                  <ListItemTitle>{item.title}</ListItemTitle>
+                  <ListItemSubtitle>{item.artistName}</ListItemSubtitle>
+                </ListItemLink>
               );
             })}
-          </List.Content>
-        </List.Root>
+          </ListContent>
+        </ListRoot>
       )}
     </div>
   );

@@ -1,6 +1,7 @@
 "use cache";
 
 import {
+  ArrowRight01Icon,
   ArrowRightIcon,
   Mic01Icon,
   MusicNote02Icon,
@@ -10,7 +11,17 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { cacheLife } from "next/cache";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { List } from "@/components/ui/list";
+import {
+  ListContent,
+  ListFooter,
+  ListHeader,
+  ListItem,
+  ListItemLink,
+  ListItemSubtitle,
+  ListItemTitle,
+  ListRoot,
+  ListTitle,
+} from "@/components/ui/list";
 import { getTopArtists, getTopSongs } from "@/lib/song/actions";
 
 export default async function Home() {
@@ -44,57 +55,47 @@ export default async function Home() {
         </div>
       </section>
       <section className="flex flex-col gap-6 pb-16 md:flex-row">
-        <List.Root className="min-w-0 flex-1">
-          <List.Header asChild>
-            <Link href="/trending/songs" className="w-fit">
-              <HugeiconsIcon icon={MusicNote02Icon} size={20} />
-              TOP SONGS
-            </Link>
-          </List.Header>
-          <List.Content>
+        <ListRoot className="min-w-0 flex-1">
+          <ListHeader>
+            <ListTitle asChild>
+              <Link href="/trending/songs">
+                TOP SONGS
+                <HugeiconsIcon icon={ArrowRight01Icon} strokeWidth={2.4} />
+              </Link>
+            </ListTitle>
+          </ListHeader>
+          <ListContent>
             {topSongs.map((song, i) => (
-              <List.Item
-                key={song.id}
-                href={`/song/${song.id}`}
-                prefix={<div className="min-w-4">{i + 1}</div>}
-                description={song.artistName}
-              >
-                {song.title}
-              </List.Item>
+              <ListItemLink key={song.id} href={song.url}>
+                <div className="-ml-2 w-8 text-center font-bold text-muted-foreground text-xl/0 italic">
+                  {i + 1}
+                </div>
+                <ListItemTitle>{song.title}</ListItemTitle>
+                <ListItemSubtitle>{song.artistName}</ListItemSubtitle>
+              </ListItemLink>
             ))}
-          </List.Content>
-          <List.Footer>
-            <List.FooterLink href="/trending/songs">
-              Top Songs
-              <HugeiconsIcon icon={ArrowRightIcon} size={20} />
-            </List.FooterLink>
-          </List.Footer>
-        </List.Root>
-        <List.Root className="min-w-0 flex-1">
-          <List.Header asChild>
-            <Link href="/trending/artists" className="w-fit">
-              <HugeiconsIcon icon={Mic01Icon} size={20} />
-              TOP ARTISTS
-            </Link>
-          </List.Header>
-          <List.Content>
+          </ListContent>
+        </ListRoot>
+        <ListRoot className="min-w-0 flex-1">
+          <ListHeader>
+            <ListTitle asChild>
+              <Link href="/trending/artists">
+                TOP ARTISTS
+                <HugeiconsIcon icon={ArrowRight01Icon} strokeWidth={2.4} />
+              </Link>
+            </ListTitle>
+          </ListHeader>
+          <ListContent>
             {topArtists.map((artist, i) => (
-              <List.Item
-                key={artist.name}
-                href={artist.url}
-                prefix={<div className="w-6">{i + 1}</div>}
-              >
-                {artist.name}
-              </List.Item>
+              <ListItemLink key={artist.name} href={artist.url}>
+                <div className="-ml-2 w-8 text-center font-bold text-muted-foreground text-xl/0 italic">
+                  {i + 1}
+                </div>
+                <ListItemTitle>{artist.name}</ListItemTitle>
+              </ListItemLink>
             ))}
-          </List.Content>
-          <List.Footer>
-            <List.FooterLink href="/trending/artists">
-              Top Artists
-              <HugeiconsIcon icon={ArrowRightIcon} size={20} />
-            </List.FooterLink>
-          </List.Footer>
-        </List.Root>
+          </ListContent>
+        </ListRoot>
       </section>
     </div>
   );

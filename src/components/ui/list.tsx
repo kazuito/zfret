@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { Slot } from "radix-ui";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { OnLinkPending } from "../on-link-pending";
-import { Spinner } from "./spinner";
 
-const ListRoot = ({ className, ...props }: React.ComponentProps<"div">) => {
+export const ListRoot = ({
+  className,
+  ...props
+}: React.ComponentProps<"div">) => {
   return (
     <div
       className={cn(
@@ -17,101 +17,90 @@ const ListRoot = ({ className, ...props }: React.ComponentProps<"div">) => {
   );
 };
 
-type ListHeaderProps = React.ComponentProps<"div"> & {
-  asChild?: boolean;
+export const ListHeader = ({
+  className,
+  ...props
+}: React.ComponentProps<"div">) => {
+  return <div className={cn("px-6 py-4", className)} {...props} />;
 };
 
-const ListHeader = ({ asChild = false, ...props }: ListHeaderProps) => {
+export const ListTitle = ({
+  asChild = false,
+  ...props
+}: React.ComponentProps<"div"> & {
+  asChild?: boolean;
+}) => {
   const Comp = asChild ? Slot.Root : "div";
 
   return (
     <Comp
-      className="flex items-center gap-2.5 px-5.5 py-4 font-semibold [&_svg]:size-4.5"
+      className="flex w-fit items-center gap-2 *:[svg]:size-4 *:[svg]:text-muted-foreground"
       {...props}
     />
   );
 };
 
-type ListContentProps = {
-  children?: React.ReactNode;
-};
-
-const ListContent = ({ children }: ListContentProps) => {
-  return <div className="flex flex-col gap-1 p-1">{children}</div>;
-};
-
-type ListItemProps = {
-  children?: React.ReactNode;
-  description?: React.ReactNode;
-  href: string;
-  prefix?: React.ReactNode;
-  suffix?: React.ReactNode;
-};
-
-const ListItem = ({
-  children,
-  description,
-  href,
-  prefix,
-  suffix,
-}: ListItemProps) => {
+export const ListContent = ({
+  className,
+  ...props
+}: React.ComponentProps<"div">) => {
   return (
-    <Link
-      href={href}
-      className="flex min-w-0 items-center gap-3 rounded-lg border border-border/60 bg-background px-4 py-3 dark:bg-secondary/20"
-      prefetch={false}
-    >
-      <OnLinkPending>
-        <Spinner />
-      </OnLinkPending>
-      {prefix && (
-        <div className="shrink-0 text-foreground/80 text-sm [&_svg]:size-4.5">
-          {prefix}
-        </div>
-      )}
-      <div className="flex min-w-0 flex-1 items-center gap-3">
-        <div className="min-w-0 shrink truncate">{children}</div>
-        {description && (
-          <div className="shrink-0 text-foreground/60 text-sm">
-            {description}
-          </div>
-        )}
-      </div>
-      {suffix && (
-        <div className="shrink-0 text-foreground/40 text-sm">{suffix}</div>
-      )}
-    </Link>
+    <div className={cn("flex flex-col gap-1 p-1", className)} {...props} />
   );
 };
 
-type ListFooterProps = {
-  children?: React.ReactNode;
-};
+export const ListItem = ({
+  asChild,
+  className,
+  ...props
+}: React.ComponentProps<"button"> & {
+  asChild?: boolean;
+}) => {
+  const Comp = asChild ? Slot.Root : "button";
 
-const ListFooter = ({ children }: ListFooterProps) => {
-  return <div className="flex justify-end p-2 pt-1">{children}</div>;
-};
-
-type ListFooterLinkProps = React.ComponentProps<typeof Link>;
-
-const ListFooterLink = ({ className, ...props }: ListFooterLinkProps) => {
   return (
-    <Button asChild variant="ghost">
-      <Link
-        className={cn("flex items-center text-foreground/60", className)}
-        {...props}
-      ></Link>
-    </Button>
+    <Comp
+      className={cn(
+        "flex min-w-0 items-center gap-3 rounded-lg border border-border/60 bg-background px-4 py-3 dark:bg-secondary/20",
+        className,
+      )}
+      {...props}
+    />
   );
 };
 
-const List = {
-  Root: ListRoot,
-  Header: ListHeader,
-  Content: ListContent,
-  Item: ListItem,
-  Footer: ListFooter,
-  FooterLink: ListFooterLink,
+export const ListItemLink = ({
+  ...props
+}: React.ComponentProps<typeof Link>) => {
+  return (
+    <ListItem asChild>
+      <Link prefetch={false} {...props} />
+    </ListItem>
+  );
 };
 
-export { List };
+export const ListItemTitle = ({
+  className,
+  ...props
+}: React.ComponentProps<"div">) => {
+  return <div className={cn("truncate font-medium", className)} {...props} />;
+};
+
+export const ListItemSubtitle = ({
+  className,
+  ...props
+}: React.ComponentProps<"div">) => {
+  return (
+    <div
+      className={cn("truncate text-muted-foreground text-sm", className)}
+      {...props}
+    />
+  );
+};
+
+export const ListFooter = ({
+  className,
+  ...props
+}: React.ComponentProps<"div">) => {
+  return <div className={cn("flex justify-center py-4")} {...props} />;
+};

@@ -6,6 +6,8 @@ import {
   Mic01Icon,
   MoreHorizontalIcon,
   MusicNote02Icon,
+  UserCircleIcon,
+  UserIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
@@ -19,7 +21,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { List } from "@/components/ui/list";
+import {
+  ListContent,
+  ListItem,
+  ListItemLink,
+  ListItemSubtitle,
+  ListItemTitle,
+  ListRoot,
+} from "@/components/ui/list";
 import { useBrowsingHistory } from "@/hooks/use-browsing-history";
 
 const Page = () => {
@@ -41,48 +50,37 @@ const Page = () => {
           </Link>
         </div>
       ) : (
-        <List.Root>
-          <List.Content>
-            {computedHistory.map((item, i) => {
+        <ListRoot>
+          <ListContent>
+            {computedHistory.map((item) => {
               if (item.type === "song") {
                 return (
-                  <List.Item
-                    key={i}
-                    href={item.link}
-                    description={item.artistName}
-                    prefix={
-                      <HugeiconsIcon
-                        icon={MusicNote02Icon}
-                        size={20}
-                        className="text-foreground/50"
-                      />
-                    }
-                    suffix={<RelativeTime to={item.timestamp} />}
-                  >
-                    {item.title}
-                  </List.Item>
+                  <ListItemLink key={item.timestamp} href={item.link}>
+                    <ListItemTitle>{item.title}</ListItemTitle>
+                    <ListItemSubtitle>{item.artistName}</ListItemSubtitle>
+                    <span className="ml-auto">
+                      <RelativeTime to={item.timestamp} />
+                    </span>
+                  </ListItemLink>
                 );
               } else if (item.type === "artist")
                 return (
-                  <List.Item
-                    key={i}
-                    href={item.link}
-                    prefix={
-                      <HugeiconsIcon
-                        icon={Mic01Icon}
-                        size={20}
-                        className="text-foreground/50"
-                      />
-                    }
-                    suffix={<RelativeTime to={item.timestamp} />}
-                  >
-                    {item.name}
-                  </List.Item>
+                  <ListItemLink key={item.timestamp} href={item.link}>
+                    <HugeiconsIcon
+                      icon={UserCircleIcon}
+                      size={20}
+                      className="text-foreground/50"
+                    />
+                    <ListItemTitle>{item.name}</ListItemTitle>
+                    <span className="ml-auto">
+                      <RelativeTime to={item.timestamp} />
+                    </span>
+                  </ListItemLink>
                 );
               return null;
             })}
-          </List.Content>
-        </List.Root>
+          </ListContent>
+        </ListRoot>
       )}
     </div>
   );
