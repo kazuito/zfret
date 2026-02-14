@@ -2,8 +2,8 @@ import { User03Icon } from "@hugeicons/core-free-icons";
 import type { Metadata } from "next";
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
+import { HeadingRoot, HeadingTitle } from "@/components/heading";
 import { Icon } from "@/components/icon";
-import PageHeading from "@/components/page-heading";
 import {
   ListContent,
   ListItemLink,
@@ -49,19 +49,18 @@ const Page = async ({ params }: Props) => {
       <ClientOnly>
         <AddHistory item={historyItem} />
       </ClientOnly>
-      <PageHeading
-        startContent={
-          <div className="mr-3 grid size-8 place-content-center rounded-full bg-secondary text-muted-foreground sm:mr-4 sm:size-10 dark:bg-secondary/50">
+      <HeadingRoot>
+        <HeadingTitle>
+          <div className="mr-2 grid size-8 place-content-center rounded-full bg-secondary text-muted-foreground sm:size-10 dark:bg-secondary/50">
             <Icon
               className="size-5 sm:size-6"
               icon={User03Icon}
               fill="currentColor"
             />
           </div>
-        }
-      >
-        {decodedName}
-      </PageHeading>
+          {decodedName}
+        </HeadingTitle>
+      </HeadingRoot>
       <div>
         <ListRoot>
           <ListContent>

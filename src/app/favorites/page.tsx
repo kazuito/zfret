@@ -3,8 +3,13 @@
 import { FavouriteIcon, Sorting02Icon } from "@hugeicons/core-free-icons";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import {
+  HeadingContent,
+  HeadingRoot,
+  HeadingSuffix,
+  HeadingTitle,
+} from "@/components/heading";
 import { Icon } from "@/components/icon";
-import PageHeading from "@/components/page-heading";
 import { Button } from "@/components/ui/button";
 import {
   ListContent,
@@ -71,8 +76,14 @@ const Page = () => {
 
   return (
     <div className="mx-auto max-w-3xl p-6 pt-0">
-      <PageHeading
-        endContent={
+      <HeadingRoot>
+        <HeadingContent>
+          <HeadingTitle>
+            <Icon icon={FavouriteIcon} />
+            Favorites
+          </HeadingTitle>
+        </HeadingContent>
+        <HeadingSuffix>
           <div className="flex">
             <Button
               size="icon"
@@ -107,11 +118,8 @@ const Page = () => {
               </SelectContent>
             </Select>
           </div>
-        }
-      >
-        <Icon icon={FavouriteIcon} size={20} strokeWidth={2.6} />
-        Favorites
-      </PageHeading>
+        </HeadingSuffix>
+      </HeadingRoot>
       {computedFavorites.length === 0 ? (
         <div>
           No favorites yet. How about{" "}

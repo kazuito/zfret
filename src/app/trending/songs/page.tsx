@@ -1,6 +1,6 @@
 import { MusicNote02Icon } from "@hugeicons/core-free-icons";
+import { HeadingRoot, HeadingTitle } from "@/components/heading";
 import { Icon } from "@/components/icon";
-import PageHeading from "@/components/page-heading";
 import {
   ListContent,
   ListItemLink,
@@ -15,10 +15,12 @@ const Page = async () => {
 
   return (
     <>
-      <PageHeading>
-        <Icon icon={MusicNote02Icon} size={20} strokeWidth={2.6} />
-        TOP SONGS
-      </PageHeading>
+      <HeadingRoot>
+        <HeadingTitle>
+          <Icon icon={MusicNote02Icon} />
+          TOP SONGS
+        </HeadingTitle>
+      </HeadingRoot>
       <ListRoot>
         <ListContent>
           {songs.map((song, i) => (

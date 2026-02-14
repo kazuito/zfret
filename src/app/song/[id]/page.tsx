@@ -5,8 +5,14 @@ import { notFound } from "next/navigation";
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
 import FavButton from "@/components/fav-button";
+import {
+  HeadingContent,
+  HeadingRoot,
+  HeadingSubtitle,
+  HeadingSuffix,
+  HeadingTitle,
+} from "@/components/heading";
 import { Icon } from "@/components/icon";
-import PageHeading from "@/components/page-heading";
 import Player from "@/components/player";
 import {
   ListContent,
@@ -74,25 +80,20 @@ const Page = async ({ params }: Props) => {
       <ClientOnly>
         <AddHistory item={historyItem} />
       </ClientOnly>
-      <PageHeading
-        subtitle={<Link href={song.artist.url}>{song.artist.name}</Link>}
-        startContent={
-          <div className="mr-4 grid size-13 place-content-center rounded-lg bg-secondary sm:size-15 dark:bg-secondary/50">
-            <Icon
-              icon={Vynil02Icon}
-              className="size-7 text-muted-foreground sm:size-8"
-              strokeWidth={2}
-            />
-          </div>
-        }
-        endContent={
+
+      <HeadingRoot>
+        <HeadingContent>
+          <HeadingTitle>{song.title}</HeadingTitle>
+          <HeadingSubtitle asChild>
+            <Link href={song.artist.url}>{song.artist.name}</Link>
+          </HeadingSubtitle>
+        </HeadingContent>
+        <HeadingSuffix>
           <ClientOnly>
             <FavButton item={favItem} />
           </ClientOnly>
-        }
-      >
-        {song.title}
-      </PageHeading>
+        </HeadingSuffix>
+      </HeadingRoot>
       <div className="mx-auto max-w-3xl">
         {song.youtubeVideoId && <Player youtubeVideoId={song.youtubeVideoId} />}
         <div className="mt-10">

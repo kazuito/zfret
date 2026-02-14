@@ -9,8 +9,8 @@ import { AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
 import { useState } from "react";
+import { HeadingRoot, HeadingTitle } from "@/components/heading";
 import { Icon } from "@/components/icon";
-import PageHeading from "@/components/page-heading";
 import { RecentSearches } from "@/components/recent-searches";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -88,10 +88,12 @@ const Page = () => {
   return (
     <div className="mx-auto max-w-3xl p-6 sm:pt-0">
       <div className="hidden sm:block">
-        <PageHeading>
-          <Icon icon={Search01Icon} strokeWidth={2.6} />
-          Search
-        </PageHeading>
+        <HeadingRoot>
+          <HeadingTitle>
+            <Icon icon={Search01Icon} strokeWidth={2.6} />
+            Search
+          </HeadingTitle>
+        </HeadingRoot>
       </div>
       <form className="flex gap-2" onSubmit={handleSubmit}>
         <Input

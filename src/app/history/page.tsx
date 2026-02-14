@@ -8,8 +8,14 @@ import {
 } from "@hugeicons/core-free-icons";
 import Link from "next/link";
 import { toast } from "sonner";
+import {
+  HeadingContent,
+  HeadingRoot,
+  HeadingSubtitle,
+  HeadingSuffix,
+  HeadingTitle,
+} from "@/components/heading";
 import { Icon } from "@/components/icon";
-import PageHeading from "@/components/page-heading";
 import RelativeTime from "@/components/relative-time";
 import { Button } from "@/components/ui/button";
 import {
@@ -34,10 +40,17 @@ const Page = () => {
 
   return (
     <div className="mx-auto max-w-3xl p-6 pt-0">
-      <PageHeading endContent={<HeaderContent />}>
-        <Icon icon={Clock02Icon} size={20} strokeWidth={2.6} />
-        History
-      </PageHeading>
+      <HeadingRoot>
+        <HeadingContent>
+          <HeadingTitle>
+            <Icon icon={Clock02Icon} size={20} strokeWidth={2.6} />
+            History
+          </HeadingTitle>
+        </HeadingContent>
+        <HeadingSuffix>
+          <HistoryMenu />
+        </HeadingSuffix>
+      </HeadingRoot>
       {computedHistory.length === 0 ? (
         <div>
           No history yet.{" "}
@@ -82,7 +95,7 @@ const Page = () => {
   );
 };
 
-const HeaderContent = () => {
+const HistoryMenu = () => {
   const { clearAllHistory, historyItems, setHistoryItems } =
     useBrowsingHistory();
 

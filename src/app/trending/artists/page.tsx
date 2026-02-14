@@ -1,6 +1,6 @@
 import { Mic01Icon } from "@hugeicons/core-free-icons";
+import { HeadingRoot, HeadingTitle } from "@/components/heading";
 import { Icon } from "@/components/icon";
-import PageHeading from "@/components/page-heading";
 import { ListContent, ListItemLink, ListRoot } from "@/components/ui/list";
 import { getTopArtists } from "@/lib/song/actions";
 
@@ -9,10 +9,12 @@ const Page = async () => {
 
   return (
     <>
-      <PageHeading>
-        <Icon icon={Mic01Icon} size={20} strokeWidth={2.6} />
-        TOP ARTISTS
-      </PageHeading>
+      <HeadingRoot>
+        <HeadingTitle>
+          <Icon icon={Mic01Icon} size={20} strokeWidth={2.6} />
+          TOP ARTISTS
+        </HeadingTitle>
+      </HeadingRoot>
       <ListRoot>
         <ListContent>
           {artists.map((artist, i) => (
