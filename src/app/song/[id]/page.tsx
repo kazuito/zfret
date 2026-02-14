@@ -7,12 +7,9 @@ import { ClientOnly } from "@/components/client-only";
 import FavButton from "@/components/fav-button";
 import PageHeading from "@/components/page-heading";
 import Player from "@/components/player";
-import { Button } from "@/components/ui/button";
 import {
   ListContent,
-  ListFooter,
   ListHeader,
-  ListItem,
   ListItemLink,
   ListItemTitle,
   ListRoot,

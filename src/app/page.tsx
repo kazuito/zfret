@@ -2,8 +2,6 @@
 
 import {
   ArrowRight01Icon,
-  ArrowRightIcon,
-  Mic01Icon,
   MusicNote02Icon,
   Search01Icon,
 } from "@hugeicons/core-free-icons";
@@ -13,9 +11,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   ListContent,
-  ListFooter,
   ListHeader,
-  ListItem,
   ListItemLink,
   ListItemSubtitle,
   ListItemTitle,

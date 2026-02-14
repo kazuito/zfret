@@ -3,11 +3,8 @@
 import {
   Clock02Icon,
   Delete02Icon,
-  Mic01Icon,
   MoreHorizontalIcon,
-  MusicNote02Icon,
   UserCircleIcon,
-  UserIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
@@ -23,7 +20,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {
   ListContent,
-  ListItem,
   ListItemLink,
   ListItemSubtitle,
   ListItemTitle,
