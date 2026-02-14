@@ -18,7 +18,7 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  return [{ id: "44369" }];
+  return [{ id: "44369" }]; // マリーゴールド by あいみょん
 }
 
 export const generateMetadata = async ({
