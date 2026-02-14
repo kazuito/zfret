@@ -5,50 +5,79 @@ import {
   FavouriteIcon,
   SearchIcon,
 } from "@hugeicons/core-free-icons";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import Link from "next/link";
+import { useState } from "react";
 import { Icon } from "@/components/icon";
+import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 
 const Header = () => {
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (current) => {
+    const previous = scrollY.getPrevious() ?? 0;
+
+    if (current > previous && current > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
+
   return (
-    <div className="fixed top-0 right-0 left-0 z-20 p-3 pb-0">
-      <div className="ml-auto flex h-12 w-fit items-center gap-3 rounded-full border bg-background/80 ps-4 pe-2 shadow-lg backdrop-blur-sm lg:hidden">
-        <Link href="/" className="font-medium text-sm transition duration-300">
-          Z-FRET
-        </Link>
-        <div className="flex items-center gap-0.5">
-          <Button
-            asChild
-            size="icon-lg"
-            variant="ghost"
-            className="rounded-full"
+    <div className="fixed top-0 right-0 left-0 z-20 flex justify-end p-3 pb-0">
+      <motion.div
+        className="overflow-clip rounded-full border bg-background/70 backdrop-blur-xs"
+        animate={{
+          width: hidden ? 130 : "auto",
+        }}
+      >
+        <div className="flex h-12 items-center justify-end px-2">
+          <Link
+            href="/"
+            className={cn(
+              "text-nowrap px-3 font-medium text-sm transition duration-300",
+              hidden && "scale-95 opacity-0",
+            )}
           >
-            <Link href="/history">
-              <Icon icon={Clock02Icon} className="size-5" />
-            </Link>
-          </Button>
-          <Button
-            asChild
-            size="icon-lg"
-            variant="ghost"
-            className="rounded-full"
-          >
-            <Link href="/favorites">
-              <Icon icon={FavouriteIcon} className="size-5" />
-            </Link>
-          </Button>
-          <Button
-            asChild
-            size="icon-lg"
-            variant="ghost"
-            className="rounded-full"
-          >
-            <Link href="/search">
-              <Icon icon={SearchIcon} className="size-5" />
-            </Link>
-          </Button>
+            Z-FRET
+          </Link>
+          <div className="flex items-center gap-0.5">
+            <Button
+              asChild
+              size="icon-lg"
+              variant="ghost"
+              className="rounded-full"
+            >
+              <Link href="/history">
+                <Icon icon={Clock02Icon} className="size-5" />
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="icon-lg"
+              variant="ghost"
+              className="rounded-full"
+            >
+              <Link href="/favorites">
+                <Icon icon={FavouriteIcon} className="size-5" />
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="icon-lg"
+              variant="ghost"
+              className="rounded-full"
+            >
+              <Link href="/search">
+                <Icon icon={SearchIcon} className="size-5" />
+              </Link>
+            </Button>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
