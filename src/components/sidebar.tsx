@@ -109,45 +109,45 @@ export const FixedSidebar = () => {
   );
 };
 
-export const FloatingSidebar = () => {
-  const { open, setOpen } = useSidebar();
+// export const FloatingSidebar = () => {
+//   const { open, setOpen } = useSidebar();
 
-  useEffect(() => {
-    if (!open) return;
+//   useEffect(() => {
+//     if (!open) return;
 
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setOpen(false);
-      }
-    };
+//     const handleResize = () => {
+//       if (window.innerWidth >= 1024) {
+//         setOpen(false);
+//       }
+//     };
 
-    window.addEventListener("resize", handleResize);
+//     window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [open, setOpen]);
+//     return () => {
+//       window.removeEventListener("resize", handleResize);
+//     };
+//   }, [open, setOpen]);
 
-  return (
-    <Dialog.Root open={open} onOpenChange={setOpen}>
-      <Dialog.Portal>
-        <Dialog.Overlay className="data-[state=open]:fade-in data-[state=closed]:fade-out fixed inset-0 z-100 bg-black/20 backdrop-blur-xs duration-300 data-[state=closed]:animate-out data-[state=open]:animate-in" />
-        <Dialog.Content asChild>
-          <div className="data-[state=open]:slide-in-from-right data-[state=closed]:slide-out-to-right fixed top-0 right-0 z-100 flex h-dvh w-70 shrink-0 flex-col p-2 duration-300 ease-out data-[state=closed]:animate-out data-[state=open]:animate-in">
-            <Dialog.Title className="sr-only">Sidebar</Dialog.Title>
-            <SidebarContent className="rounded-2xl border bg-background shadow-xl" />
-          </div>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
-  );
-};
+//   return (
+//     <Dialog.Root open={open} onOpenChange={setOpen}>
+//       <Dialog.Portal>
+//         <Dialog.Overlay className="data-[state=open]:fade-in data-[state=closed]:fade-out fixed inset-0 z-100 bg-black/20 backdrop-blur-xs duration-300 data-[state=closed]:animate-out data-[state=open]:animate-in" />
+//         <Dialog.Content asChild>
+//           <div className="data-[state=open]:slide-in-from-right data-[state=closed]:slide-out-to-right fixed top-0 right-0 z-100 flex h-dvh w-70 shrink-0 flex-col p-2 duration-300 ease-out data-[state=closed]:animate-out data-[state=open]:animate-in">
+//             <Dialog.Title className="sr-only">Sidebar</Dialog.Title>
+//             <SidebarContent className="rounded-2xl border bg-background shadow-xl" />
+//           </div>
+//         </Dialog.Content>
+//       </Dialog.Portal>
+//     </Dialog.Root>
+//   );
+// };
 
 export const Sidebar = () => {
   return (
     <>
       <FixedSidebar />
-      <FloatingSidebar />
+      {/* <FloatingSidebar /> */}
     </>
   );
 };
