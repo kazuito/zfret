@@ -9,9 +9,10 @@ import { ClientOnly } from "@/components/client-only";
 import { getSong } from "@/features/song/actions";
 import { ChordLines } from "./_components/chord-lines";
 import { RelatedSongList } from "./_components/related-song-list";
+import { SongControls } from "./_components/song-controls";
 import { SongCredits } from "./_components/song-credits";
 import { SongHeading } from "./_components/song-heading";
-import { VideoPlayer } from "./_components/video-player";
+import { VideoPlayer, VideoPlayerProvider } from "./_components/video-player";
 
 type Props = {
   params: Promise<{
@@ -52,29 +53,34 @@ const Page = async ({ params }: Props) => {
   };
 
   return (
-    <div className="mx-auto max-w-3xl p-6 pt-0">
-      <ClientOnly>
-        <AddHistory item={historyItem} />
-      </ClientOnly>
+    <VideoPlayerProvider enabled={!!song.youtubeVideoId}>
+      <div className="mx-auto max-w-3xl p-6 pt-0">
+        <ClientOnly>
+          <AddHistory item={historyItem} />
+        </ClientOnly>
 
-      <SongHeading song={song} />
-      <div className="mx-auto max-w-3xl">
-        {song.youtubeVideoId && (
-          <VideoPlayer youtubeVideoId={song.youtubeVideoId} />
-        )}
-        <div className="mt-10 space-y-10">
-          <ChordLines lines={song.lines} />
-          <SongCredits song={song} />
+        <SongHeading song={song} />
+        <div className="mx-auto max-w-3xl">
+          {song.youtubeVideoId && (
+            <VideoPlayer youtubeVideoId={song.youtubeVideoId} />
+          )}
+          <div className="mt-10 space-y-10">
+            <ChordLines lines={song.lines} />
+            <SongCredits song={song} />
+          </div>
+          <div className="sticky right-0 bottom-4 left-0 flex justify-center">
+            <SongControls />
+          </div>
+          <Suspense>
+            <RelatedSongList
+              className="my-10"
+              artistName={song.artist.name}
+              songId={songId}
+            />
+          </Suspense>
         </div>
-        <Suspense>
-          <RelatedSongList
-            className="my-10"
-            artistName={song.artist.name}
-            songId={songId}
-          />
-        </Suspense>
       </div>
-    </div>
+    </VideoPlayerProvider>
   );
 };
 
