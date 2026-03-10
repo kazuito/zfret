@@ -19,14 +19,8 @@ export function parseChords(html: string) {
       .map((part) => {
         const tokens = part.split("]");
         return tokens.length > 1
-          ? {
-              chord: tokens[0],
-              lyric: tokens[1].trim(),
-            }
-          : {
-              chord: null,
-              lyric: part,
-            };
+          ? { chord: tokens[0], lyric: tokens[1].trim() }
+          : { chord: null, lyric: part };
       });
   });
 

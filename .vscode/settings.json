@@ -1,7 +1,3 @@
 {
-  "cSpell.words": ["Hugeicons"],
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  }
+  "cSpell.words": ["Hugeicons"]
 }

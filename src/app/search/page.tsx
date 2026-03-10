@@ -17,7 +17,10 @@ import {
   ListRoot,
 } from "@/components/ui/list";
 import { useSearchHistory } from "@/hooks/use-search-history";
-import { getSearchResults, type SearchResult } from "@/lib/song/actions";
+import {
+  getSearchResults,
+  type SearchResult,
+} from "../../features/song/actions";
 import {
   SearchForm,
   SearchInput,

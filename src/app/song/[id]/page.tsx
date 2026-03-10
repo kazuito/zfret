@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
-import { getSong } from "@/lib/song/actions";
+import { getSong } from "@/features/song/actions";
 import { ChordLines } from "./_components/chord-lines";
 import { RelatedSongList } from "./_components/related-song-list";
 import { SongCredits } from "./_components/song-credits";

@@ -9,7 +9,7 @@ import {
   ListRoot,
   ListTitle,
 } from "@/components/ui/list";
-import { getTopArtists } from "@/lib/song/actions";
+import { getTopArtists } from "../../features/song/actions";
 
 export const TopArtistList = async () => {
   const topArtists = await getTopArtists({ limit: 10 });
