@@ -48,26 +48,30 @@ export async function scrapeArtistSongs(name: string) {
 }
 
 export async function scrapeTopSongs() {
-  const res = await fetch("https://www.ufret.jp/rank.php");
-  const $ = load(await res.text());
+  try {
+    const res = await fetch("https://www.ufret.jp/rank.php");
+    const $ = load(await res.text());
 
-  const $items = $("ul.c-list--rank").first().find("li.normal-chord");
-  const topSongs = $items
-    .map((_, item) => parseSongItem($, item))
-    .get()
-    .filter((song) => !song.tags.includes("初心者ver"));
-
-  return topSongs;
+    const $items = $("ul.c-list--rank").first().find("li.normal-chord");
+    return $items
+      .map((_, item) => parseSongItem($, item))
+      .get()
+      .filter((song) => !song.tags.includes("初心者ver"));
+  } catch {
+    return [];
+  }
 }
 
 export async function scrapeTopArtists() {
-  const res = await fetch("https://www.ufret.jp/rank_artist.php");
-  const $ = load(await res.text());
+  try {
+    const res = await fetch("https://www.ufret.jp/rank_artist.php");
+    const $ = load(await res.text());
 
-  const artistItems = $("ul.c-list--rank").first().find("li");
-  const topArtists = artistItems.map((_, el) => parseArtistItem($, el)).get();
-
-  return topArtists;
+    const artistItems = $("ul.c-list--rank").first().find("li");
+    return artistItems.map((_, el) => parseArtistItem($, el)).get();
+  } catch {
+    return [];
+  }
 }
 
 export async function scrapeSearchResults(query: string) {

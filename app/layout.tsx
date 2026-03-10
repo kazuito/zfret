@@ -1,6 +1,6 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
-import { Kosugi, Lexend } from "next/font/google";
+import localFont from "next/font/local";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { Toaster } from "@/components/ui/sonner";
@@ -10,16 +10,26 @@ import "./globals.css";
 import { Sidebar } from "@/components/sidebar";
 import Providers from "./_components/providers";
 
-const lexend = Lexend({
+const lexend = localFont({
   variable: "--font-lexend",
-  subsets: ["latin"],
   fallback: ["var(--font-kosugi)"],
+  src: [
+    {
+      path: "../node_modules/@fontsource-variable/lexend/files/lexend-latin-wght-normal.woff2",
+      style: "normal",
+    },
+  ],
 });
 
-const kosugi = Kosugi({
+const kosugi = localFont({
   variable: "--font-kosugi",
-  subsets: ["latin"],
-  weight: "400",
+  src: [
+    {
+      path: "../node_modules/@fontsource/kosugi/files/kosugi-latin-400-normal.woff2",
+      weight: "400",
+      style: "normal",
+    },
+  ],
 });
 
 export const metadata: Metadata = {
