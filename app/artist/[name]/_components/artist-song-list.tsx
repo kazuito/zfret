@@ -3,8 +3,8 @@ import {
   ListItemLink,
   ListItemTitle,
   ListRoot,
-} from "../../../../components/ui/list";
-import { getArtistSongs } from "../../../../features/song/actions";
+} from "@/components/ui/list";
+import { getArtistSongs } from "@/features/song/actions";
 
 export const ArtistSongList = async ({
   artistName,

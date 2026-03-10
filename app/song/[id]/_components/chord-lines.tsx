@@ -1,6 +1,5 @@
-import { notFound } from "next/navigation";
-import type { Song } from "../../../../features/song/actions";
-import { cn } from "../../../../lib/utils";
+import type { Song } from "@/features/song/actions";
+import { cn } from "@/lib/utils";
 
 export const ChordLines = ({
   lines,

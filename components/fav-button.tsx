@@ -2,8 +2,8 @@
 
 import { FavouriteIcon } from "@hugeicons/core-free-icons";
 import { motion } from "motion/react";
+import { cn } from "@/lib/utils";
 import { type FavoriteItemInput, useFavorites } from "../hooks/use-favorites";
-import { cn } from "../lib/utils";
 import { Icon } from "./icon";
 import { Button } from "./ui/button";
 

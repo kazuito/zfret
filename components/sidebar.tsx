@@ -9,7 +9,7 @@ import {
 } from "@hugeicons/core-free-icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "../lib/utils";
+import { cn } from "@/lib/utils";
 import { Icon } from "./icon";
 import { Button } from "./ui/button";
 

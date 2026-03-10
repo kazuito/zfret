@@ -1,7 +1,7 @@
 import { MusicNote02Icon, Search01Icon } from "@hugeicons/core-free-icons";
 import Link from "next/link";
-import { Icon } from "../../components/icon";
-import { Button } from "../../components/ui/button";
+import { Icon } from "@/components/icon";
+import { Button } from "@/components/ui/button";
 
 export const HeroSection = () => {
   return (

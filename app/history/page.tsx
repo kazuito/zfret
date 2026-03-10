@@ -12,23 +12,23 @@ import {
   HeadingRoot,
   HeadingSuffix,
   HeadingTitle,
-} from "../../components/heading";
-import { Icon } from "../../components/icon";
-import { RelativeTime } from "../../components/relative-time";
-import { Button } from "../../components/ui/button";
+} from "@/components/heading";
+import { Icon } from "@/components/icon";
+import { RelativeTime } from "@/components/relative-time";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../../components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import {
   ListContent,
   ListItemLink,
   ListItemSubtitle,
   ListItemTitle,
   ListRoot,
-} from "../../components/ui/list";
+} from "@/components/ui/list";
 import { useBrowsingHistory } from "../../hooks/use-browsing-history";
 
 const Page = () => {

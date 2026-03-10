@@ -1,6 +1,6 @@
 import { User03Icon } from "@hugeicons/core-free-icons";
-import { HeadingRoot, HeadingTitle } from "../../../../components/heading";
-import { Icon } from "../../../../components/icon";
+import { HeadingRoot, HeadingTitle } from "@/components/heading";
+import { Icon } from "@/components/icon";
 
 export const ArtistHeading = ({ artistName }: { artistName: string }) => {
   return (

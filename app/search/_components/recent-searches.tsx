@@ -2,8 +2,8 @@
 
 import { Cancel01Icon } from "@hugeicons/core-free-icons";
 import { AnimatePresence, motion } from "motion/react";
-import { Icon } from "../../../components/icon";
-import { Button } from "../../../components/ui/button";
+import { Icon } from "@/components/icon";
+import { Button } from "@/components/ui/button";
 
 type RecentSearchesProps = {
   queries: string[];

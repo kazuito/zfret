@@ -6,19 +6,16 @@ import { AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
 import { useState } from "react";
-import { HeadingRoot, HeadingTitle } from "../../components/heading";
-import { Icon } from "../../components/icon";
+import { HeadingRoot, HeadingTitle } from "@/components/heading";
+import { Icon } from "@/components/icon";
 import {
   ListContent,
   ListItemLink,
   ListItemSubtitle,
   ListItemTitle,
   ListRoot,
-} from "../../components/ui/list";
-import {
-  getSearchResults,
-  type SearchResult,
-} from "../../features/song/actions";
+} from "@/components/ui/list";
+import { getSearchResults, type SearchResult } from "@/features/song/actions";
 import { useSearchHistory } from "../../hooks/use-search-history";
 import { RecentSearches } from "./_components/recent-searches";
 import {

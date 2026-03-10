@@ -1,6 +1,6 @@
 import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import Link from "next/link";
-import { Icon } from "../../components/icon";
+import { Icon } from "@/components/icon";
 import {
   ListContent,
   ListHeader,
@@ -8,8 +8,8 @@ import {
   ListItemTitle,
   ListRoot,
   ListTitle,
-} from "../../components/ui/list";
-import { getTopArtists } from "../../features/song/actions";
+} from "@/components/ui/list";
+import { getTopArtists } from "@/features/song/actions";
 
 export const TopArtistList = async () => {
   const topArtists = await getTopArtists({ limit: 10 });

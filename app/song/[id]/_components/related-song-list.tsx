@@ -3,7 +3,7 @@
 import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { cacheLife } from "next/cache";
 import Link from "next/link";
-import { Icon } from "../../../../components/icon";
+import { Icon } from "@/components/icon";
 import {
   ListContent,
   ListHeader,
@@ -11,8 +11,8 @@ import {
   ListItemTitle,
   ListRoot,
   ListTitle,
-} from "../../../../components/ui/list";
-import { getRelatedSongs } from "../../../../features/song/actions";
+} from "@/components/ui/list";
+import { getRelatedSongs } from "@/features/song/actions";
 
 export const RelatedSongList = async ({
   artistName,

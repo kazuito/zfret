@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { ClientOnly } from "../../../../components/client-only";
-import FavButton from "../../../../components/fav-button";
+import { ClientOnly } from "@/components/client-only";
+import FavButton from "@/components/fav-button";
 import {
   HeadingContent,
   HeadingRoot,
   HeadingSubtitle,
   HeadingSuffix,
   HeadingTitle,
-} from "../../../../components/heading";
-import type { Song } from "../../../../features/song/actions";
+} from "@/components/heading";
+import type { Song } from "@/features/song/actions";
 
 export const SongHeading = ({ song }: { song: Song }) => {
   const favItem = {

@@ -1,5 +1,5 @@
 import { Loading03Icon } from "@hugeicons/core-free-icons";
-import { cn } from "../../lib/utils";
+import { cn } from "@/lib/utils";
 import { Icon } from "../icon";
 
 function Spinner({

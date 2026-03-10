@@ -1,8 +1,8 @@
 import { ArrowTurnBackwardIcon } from "@hugeicons/core-free-icons";
-import { Icon } from "../../../components/icon";
-import { Button } from "../../../components/ui/button";
-import { Input } from "../../../components/ui/input";
-import { cn } from "../../../lib/utils";
+import { Icon } from "@/components/icon";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
 export const SearchForm = ({
   className,

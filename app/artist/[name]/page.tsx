@@ -2,8 +2,8 @@
 
 import type { Metadata } from "next";
 import { cacheLife } from "next/cache";
-import AddHistory from "../../../components/add-history";
-import { ClientOnly } from "../../../components/client-only";
+import AddHistory from "@/components/add-history";
+import { ClientOnly } from "@/components/client-only";
 import { ArtistHeading } from "./_components/artist-heading";
 import { ArtistSongList } from "./_components/artist-song-list";
 

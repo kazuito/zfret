@@ -4,7 +4,7 @@ import { Tap07Icon } from "@hugeicons/core-free-icons";
 import Image from "next/image";
 import { useState } from "react";
 import ReactPlayer from "react-player";
-import { Icon } from "../../../../components/icon";
+import { Icon } from "@/components/icon";
 
 export const VideoPlayer = ({ youtubeVideoId }: { youtubeVideoId: string }) => {
   const [showPlayer, setShowPlayer] = useState(false);

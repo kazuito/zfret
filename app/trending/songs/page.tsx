@@ -1,14 +1,14 @@
 import { MusicNote02Icon } from "@hugeicons/core-free-icons";
-import { HeadingRoot, HeadingTitle } from "../../../components/heading";
-import { Icon } from "../../../components/icon";
+import { HeadingRoot, HeadingTitle } from "@/components/heading";
+import { Icon } from "@/components/icon";
 import {
   ListContent,
   ListItemLink,
   ListItemSubtitle,
   ListItemTitle,
   ListRoot,
-} from "../../../components/ui/list";
-import { getTopSongs } from "../../../features/song/actions";
+} from "@/components/ui/list";
+import { getTopSongs } from "@/features/song/actions";
 
 const Page = async () => {
   const songs = await getTopSongs({ limit: 100 });

@@ -1,7 +1,7 @@
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import Link from "next/link";
-import { Icon } from "../../components/icon";
-import { Button } from "../../components/ui/button";
+import { Icon } from "@/components/icon";
+import { Button } from "@/components/ui/button";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (

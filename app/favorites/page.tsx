@@ -8,16 +8,16 @@ import {
   HeadingRoot,
   HeadingSuffix,
   HeadingTitle,
-} from "../../components/heading";
-import { Icon } from "../../components/icon";
-import { Button } from "../../components/ui/button";
+} from "@/components/heading";
+import { Icon } from "@/components/icon";
+import { Button } from "@/components/ui/button";
 import {
   ListContent,
   ListItemLink,
   ListItemSubtitle,
   ListItemTitle,
   ListRoot,
-} from "../../components/ui/list";
+} from "@/components/ui/list";
 import {
   Select,
   SelectContent,
@@ -26,9 +26,9 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "../../components/ui/select";
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 import { type FavoriteItem, useFavorites } from "../../hooks/use-favorites";
-import { cn } from "../../lib/utils";
 
 const sortBy = {
   timestamp: {

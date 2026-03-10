@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Slot } from "radix-ui";
-import { cn } from "../../lib/utils";
+import { cn } from "@/lib/utils";
 import { OnLinkPending } from "../on-link-pending";
 import { Spinner } from "./spinner";
 

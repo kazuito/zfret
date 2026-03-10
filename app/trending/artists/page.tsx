@@ -1,12 +1,8 @@
 import { Mic01Icon } from "@hugeicons/core-free-icons";
-import { HeadingRoot, HeadingTitle } from "../../../components/heading";
-import { Icon } from "../../../components/icon";
-import {
-  ListContent,
-  ListItemLink,
-  ListRoot,
-} from "../../../components/ui/list";
-import { getTopArtists } from "../../../features/song/actions";
+import { HeadingRoot, HeadingTitle } from "@/components/heading";
+import { Icon } from "@/components/icon";
+import { ListContent, ListItemLink, ListRoot } from "@/components/ui/list";
+import { getTopArtists } from "@/features/song/actions";
 
 const Page = async () => {
   const artists = await getTopArtists({ limit: 100 });

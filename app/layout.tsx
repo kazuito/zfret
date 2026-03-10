@@ -1,13 +1,13 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Kosugi, Lexend } from "next/font/google";
-import Footer from "../components/footer";
-import Header from "../components/header";
-import { Toaster } from "../components/ui/sonner";
-import { env } from "../lib/env";
-import { cn } from "../lib/utils";
+import Footer from "@/components/footer";
+import Header from "@/components/header";
+import { Toaster } from "@/components/ui/sonner";
+import { env } from "@/lib/env";
+import { cn } from "@/lib/utils";
 import "./globals.css";
-import { Sidebar } from "../components/sidebar";
+import { Sidebar } from "@/components/sidebar";
 import Providers from "./_components/providers";
 
 const lexend = Lexend({

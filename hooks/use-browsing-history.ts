@@ -1,5 +1,5 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { LS_KEYS } from "../lib/constants";
+import { LS_KEYS } from "@/lib/constants";
 
 export type BrowsingHistoryItem =
   | {
