@@ -52,7 +52,7 @@ export const ChordControls = ({
           <Icon icon={MinusSignIcon} size={14} />
           <span className="sr-only">Transpose down</span>
         </Button>
-        <span className="w-16 text-center font-mono font-medium tabular-nums">
+        <span className="w-16 text-center font-medium font-mono tabular-nums">
           {transposeLabel}
         </span>
         <Button
