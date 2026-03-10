@@ -1,19 +1,14 @@
 "use client";
 
-import {
-  ArrowTurnBackwardIcon,
-  Search01Icon,
-} from "@hugeicons/core-free-icons";
+import { Search01Icon } from "@hugeicons/core-free-icons";
 import { useQuery } from "@tanstack/react-query";
 import { AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
 import { useState } from "react";
+import { RecentSearches } from "@/app/search/_components/recent-searches";
 import { HeadingRoot, HeadingTitle } from "@/components/heading";
 import { Icon } from "@/components/icon";
-import { RecentSearches } from "@/components/recent-searches";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   ListContent,
   ListItemLink,
@@ -23,6 +18,11 @@ import {
 } from "@/components/ui/list";
 import { useSearchHistory } from "@/hooks/use-search-history";
 import { getSearchResults, type SearchResult } from "@/lib/song/actions";
+import {
+  SearchForm,
+  SearchInput,
+  SearchSubmit,
+} from "./_components/search-form";
 
 const Page = () => {
   const [urlQuery, setUrlQuery] = useQueryState("q", {
@@ -87,45 +87,27 @@ const Page = () => {
 
   return (
     <div className="mx-auto max-w-3xl p-6 sm:pt-0">
-      <div className="hidden sm:block">
-        <HeadingRoot>
-          <HeadingTitle>
-            <Icon icon={Search01Icon} strokeWidth={2.6} />
-            Search
-          </HeadingTitle>
-        </HeadingRoot>
-      </div>
-      <form className="flex gap-2" onSubmit={handleSubmit}>
-        <Input
-          type="search"
-          name="q"
-          aria-label="Search"
-          placeholder="Search for songs or artists"
-          className="h-10 rounded-full px-4 text-base!"
+      <HeadingRoot className="max-sm:hidden">
+        <HeadingTitle>
+          <Icon icon={Search01Icon} strokeWidth={2.6} />
+          Search
+        </HeadingTitle>
+      </HeadingRoot>
+
+      <SearchForm onSubmit={handleSubmit}>
+        <SearchInput
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setIsInputFocused(true)}
-          onBlur={() => setIsInputFocused(false)}
           onClick={() => setIsInputFocused(true)}
+          onBlur={() => setIsInputFocused(false)}
           disabled={isPending}
-          autoFocus
         />
-        <Button
-          type="submit"
-          className="h-10 rounded-full px-4"
-          disabled={isPending || query.trim().length === 0}
-        >
-          Search
-          <Icon
-            icon={ArrowTurnBackwardIcon}
-            size={20}
-            strokeWidth={2.6}
-            className="text-muted-foreground"
-          />
-        </Button>
-      </form>
+        <SearchSubmit disabled={isPending || query.trim().length === 0} />
+      </SearchForm>
+
       <AnimatePresence initial={false}>
-        {showSearchHistory && searchHistory.queries.length > 0 && (
+        {showSearchHistory && (
           <RecentSearches
             queries={searchHistory.queries}
             onSelect={handleHistorySelect}
@@ -134,6 +116,7 @@ const Page = () => {
           />
         )}
       </AnimatePresence>
+
       <div>
         {isPending && (
           <div
