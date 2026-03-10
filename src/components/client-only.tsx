@@ -2,12 +2,7 @@
 
 import { useIsClient } from "@uidotdev/usehooks";
 
-type Props = {
-  children: React.ReactNode;
-};
-
-export const ClientOnly: React.FC<Props> = ({ children }) => {
+export const ClientOnly = ({ children }: { children: React.ReactNode }) => {
   const isClient = useIsClient();
-
   return isClient ? children : null;
 };

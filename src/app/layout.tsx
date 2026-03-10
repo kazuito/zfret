@@ -1,7 +1,6 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Kosugi, Lexend } from "next/font/google";
-import { Suspense } from "react";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { Toaster } from "@/components/ui/sonner";
@@ -34,15 +33,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" suppressHydrationWarning>
-      <head />
+    <html lang="en" suppressHydrationWarning>
       <body className={cn("antialiased", lexend.className, kosugi.variable)}>
         <Providers>
           <div className="flex">
-            <Suspense>
-              <Sidebar />
-            </Suspense>
-            <div className="flex min-h-[100dvh] min-w-0 grow flex-col">
+            <Sidebar />
+            <div className="flex min-h-dvh min-w-0 grow flex-col">
               <Header />
               <div className="min-w-0 grow pt-15 lg:pt-0">{children}</div>
               <Footer />

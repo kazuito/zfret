@@ -3,17 +3,10 @@ import { useCallback, useEffect, useReducer } from "react";
 
 type DateInput = Date | number | string | undefined;
 
-type Props = {
-  from?: DateInput;
-  to?: DateInput;
-  interval?: number;
-};
-
 const parseDateInput = (value: DateInput): Date | null => {
   if (value instanceof Date) {
     return value;
   }
-
   if (value === undefined) {
     return null;
   }
@@ -22,7 +15,15 @@ const parseDateInput = (value: DateInput): Date | null => {
   return isValid(parsed) ? parsed : null;
 };
 
-const RelativeTime = ({ from, to, interval = 1000 }: Props) => {
+export const RelativeTime = ({
+  from,
+  to,
+  interval = 1000,
+}: {
+  from?: DateInput;
+  to?: DateInput;
+  interval?: number;
+}) => {
   const intervalMs = interval ?? 1000;
 
   const computeLabel = useCallback(() => {
@@ -50,5 +51,3 @@ const RelativeTime = ({ from, to, interval = 1000 }: Props) => {
 
   return <>{text}</>;
 };
-
-export default RelativeTime;

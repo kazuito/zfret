@@ -14,7 +14,7 @@ import {
   HeadingTitle,
 } from "@/components/heading";
 import { Icon } from "@/components/icon";
-import RelativeTime from "@/components/relative-time";
+import { RelativeTime } from "@/components/relative-time";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,

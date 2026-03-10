@@ -14,6 +14,7 @@ export const ArtistSongList = async ({
   const songs = await getArtistSongs({
     name: artistName,
   });
+
   return (
     <ListRoot>
       <ListContent>
