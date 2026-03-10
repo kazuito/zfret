@@ -1,16 +1,11 @@
-import { User03Icon } from "@hugeicons/core-free-icons";
+"use cache";
+
 import type { Metadata } from "next";
+import { cacheLife } from "next/cache";
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
-import { HeadingRoot, HeadingTitle } from "@/components/heading";
-import { Icon } from "@/components/icon";
-import {
-  ListContent,
-  ListItemLink,
-  ListItemTitle,
-  ListRoot,
-} from "@/components/ui/list";
-import { getArtistSongs } from "@/lib/song/actions";
+import { ArtistHeading } from "./_components/artist-heading";
+import { ArtistSongList } from "./_components/artist-song-list";
 
 type Props = {
   params: Promise<{
@@ -18,13 +13,11 @@ type Props = {
   }>;
 };
 
-export async function generateStaticParams() {
-  return [{ name: "あいみょん" }];
-}
-
 export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
+  cacheLife("weeks");
+
   const { name } = await params;
   return {
     title: `${decodeURIComponent(name)} | Z-FRET`,
@@ -32,11 +25,10 @@ export const generateMetadata = async ({
 };
 
 const Page = async ({ params }: Props) => {
+  cacheLife("weeks");
+
   const { name } = await params;
   const decodedName = decodeURIComponent(name);
-  const songs = await getArtistSongs({
-    name: decodedName,
-  });
 
   const historyItem = {
     type: "artist" as const,
@@ -49,31 +41,8 @@ const Page = async ({ params }: Props) => {
       <ClientOnly>
         <AddHistory item={historyItem} />
       </ClientOnly>
-      <HeadingRoot>
-        <HeadingTitle>
-          <div className="mr-2 grid size-8 place-content-center rounded-full bg-secondary text-muted-foreground sm:size-10 dark:bg-secondary/50">
-            <Icon
-              className="size-5 sm:size-6"
-              icon={User03Icon}
-              fill="currentColor"
-            />
-          </div>
-          {decodedName}
-        </HeadingTitle>
-      </HeadingRoot>
-      <div>
-        <ListRoot>
-          <ListContent>
-            {songs.map((song) => {
-              return (
-                <ListItemLink href={song.url} key={song.id}>
-                  <ListItemTitle>{song.title}</ListItemTitle>
-                </ListItemLink>
-              );
-            })}
-          </ListContent>
-        </ListRoot>
-      </div>
+      <ArtistHeading artistName={decodedName} />
+      <ArtistSongList artistName={decodedName} />
     </div>
   );
 };

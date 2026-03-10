@@ -8,7 +8,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { env } from "@/lib/env";
 import { cn } from "@/lib/utils";
 import "./globals.css";
-import Providers from "@/components/providers";
+import Providers from "@/app/_components/providers";
 import { Sidebar } from "@/components/sidebar";
 
 const lexend = Lexend({

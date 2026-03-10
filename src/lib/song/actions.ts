@@ -80,4 +80,5 @@ export async function getSearchResults(query: string) {
   return searchResults;
 }
 
+export type Song = Awaited<ReturnType<typeof getSong>>;
 export type SearchResult = Awaited<ReturnType<typeof getSearchResults>>;

@@ -6,11 +6,9 @@ import { useState } from "react";
 import ReactPlayer from "react-player";
 import { Icon } from "@/components/icon";
 
-type Props = {
+export const VideoPlayer = ({ youtubeVideoId }: {
   youtubeVideoId: string;
-};
-
-const Player = ({ youtubeVideoId }: Props) => {
+}) => {
   const [showPlayer, setShowPlayer] = useState(false);
   const [playing, setPlaying] = useState(false);
 
@@ -54,5 +52,3 @@ const Player = ({ youtubeVideoId }: Props) => {
     </div>
   );
 };
-
-export default Player;
