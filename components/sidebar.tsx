@@ -9,6 +9,7 @@ import {
 } from "@hugeicons/core-free-icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Suspense } from "react";
 import { cn } from "@/lib/utils";
 import { Icon } from "./icon";
 import { Button } from "./ui/button";
@@ -91,8 +92,10 @@ export const SidebarContent = ({
 
 export const Sidebar = () => {
   return (
-    <div className="sticky top-0 hidden h-dvh w-64 shrink-0 p-2 lg:flex">
-      <SidebarContent className="rounded-2xl border bg-accent/10 shadow-xs" />
-    </div>
+    <Suspense>
+      <div className="sticky top-0 hidden h-dvh w-64 shrink-0 p-2 lg:flex">
+        <SidebarContent className="rounded-2xl border bg-accent/10 shadow-xs" />
+      </div>
+    </Suspense>
   );
 };
