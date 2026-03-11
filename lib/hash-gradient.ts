@@ -7,11 +7,11 @@ function seg(hash: string, offset: number): number {
 export function hashLinearGradient(input: string): string {
   const hash = SHA256(input).toString();
 
-  // Derive hues spread across the color wheel for harmonious combos
+  // Derive hues close together for a near-monochromatic look
   const baseHue = (seg(hash, 0) * 360) / 255;
   const hue1 = baseHue;
-  const hue2 = (baseHue + 60 + (seg(hash, 2) % 60)) % 360;
-  const hue3 = (baseHue + 150 + (seg(hash, 4) % 60)) % 360;
+  const hue2 = (baseHue + 30 + (seg(hash, 2) % 60)) % 360;
+  const hue3 = (baseHue + 100 + (seg(hash, 4) % 60)) % 360;
 
   // Keep saturation high and lightness in a pleasing mid-range
   const sat1 = 70 + (seg(hash, 6) % 25);
