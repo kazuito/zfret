@@ -34,7 +34,7 @@ export const TopSongList = async () => {
                   className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-3xl bg-neutral-800/40"
                   style={bgHashGradient(song.id)}
                 >
-                  <div className="absolute inset-0 backdrop-blur-xl"></div>
+                  <div className="absolute inset-0 rounded-3xl backdrop-blur-xl"></div>
                 </div>
                 <CardHeader>
                   <CardAction>

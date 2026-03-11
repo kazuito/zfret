@@ -11,7 +11,6 @@ export function useScrollShadow() {
     setCanScrollLeft(el.scrollLeft > 0);
     setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
   }, []);
-
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
