@@ -1,4 +1,7 @@
+"use client";
+
 import { Slot } from "radix-ui";
+import { useScrollShadow } from "@/hooks/use-scroll-shadow";
 import { cn } from "@/lib/utils";
 
 export const ExhibitionRoot = ({
@@ -34,14 +37,30 @@ export const ExhibitionContent = ({
   ...props
 }: React.ComponentProps<"div"> & { asChild?: boolean }) => {
   const Comp = asChild ? Slot.Root : "div";
+  const { ref, canScrollLeft, canScrollRight } = useScrollShadow();
+
   return (
-    <Comp
-      className={cn(
-        "no-scrollbar mt-6 flex w-full min-w-0 snap-x snap-mandatory gap-4 overflow-x-auto",
-        className,
-      )}
-      {...props}
-    />
+    <div className={cn("relative", className)}>
+      <div
+        className={cn(
+          "pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-linear-to-r from-background to-transparent transition duration-400",
+          canScrollLeft ? "opacity-100" : "opacity-0",
+        )}
+      />
+      <div
+        className={cn(
+          "pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-linear-to-l from-background to-transparent transition duration-400",
+          canScrollRight ? "opacity-100" : "opacity-0",
+        )}
+      />
+      <Comp
+        ref={ref}
+        className={cn(
+          "no-scrollbar mt-6 flex w-full min-w-0 snap-x snap-mandatory gap-4 overflow-x-auto",
+        )}
+        {...props}
+      />
+    </div>
   );
 };
 
