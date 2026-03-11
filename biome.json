@@ -23,6 +23,9 @@
   "linter": {
     "enabled": true,
     "rules": {
+      "correctness": {
+        "useExhaustiveDependencies": "info"
+      },
       "recommended": true,
       "a11y": "off",
       "suspicious": {
