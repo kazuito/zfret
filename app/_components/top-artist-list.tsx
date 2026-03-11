@@ -1,39 +1,46 @@
-import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
-import Link from "next/link";
-import { Icon } from "@/components/icon";
-import {
-  ListContent,
-  ListHeader,
-  ListItemLink,
-  ListItemTitle,
-  ListRoot,
-  ListTitle,
-} from "@/components/ui/list";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardAction, CardHeader, CardTitle } from "@/components/ui/card";
 import { getTopArtists } from "@/features/song/actions";
+import { bgHashGradient } from "@/lib/hash-gradient";
+import {
+  ExhibitionContent,
+  ExhibitionHeader,
+  ExhibitionItem,
+  ExhibitionRoot,
+  ExhibitionTitle,
+} from "./exhibition";
+import Link from "next/link";
 
 export const TopArtistList = async () => {
   const topArtists = await getTopArtists({ limit: 10 });
 
   return (
-    <ListRoot className="min-w-0 flex-1">
-      <ListHeader>
-        <ListTitle asChild>
-          <Link href="/trending/artists">
-            TOP ARTISTS
-            <Icon icon={ArrowRight01Icon} strokeWidth={2.4} />
-          </Link>
-        </ListTitle>
-      </ListHeader>
-      <ListContent>
+    <ExhibitionRoot>
+      <ExhibitionHeader>
+        <ExhibitionTitle>Top Artists</ExhibitionTitle>
+      </ExhibitionHeader>
+      <ExhibitionContent>
         {topArtists.map((artist, i) => (
-          <ListItemLink key={artist.name} href={artist.url}>
-            <div className="-ml-2 w-8 text-center font-bold text-muted-foreground text-xl/0 italic">
-              {i + 1}
-            </div>
-            <ListItemTitle>{artist.name}</ListItemTitle>
-          </ListItemLink>
+          <ExhibitionItem key={artist.name} asChild>
+            <Link href={`/artist/${artist.name}`} prefetch={false}>
+            <Card className="w-70 pt-0">
+              <div
+                className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-3xl bg-neutral-800/40"
+                style={bgHashGradient(artist.name)}
+              >
+                <div className="absolute inset-0 backdrop-blur-xl"></div>
+              </div>
+              <CardHeader>
+                <CardAction>
+                  <Badge variant="secondary">No.{i + 1}</Badge>
+                </CardAction>
+                <CardTitle>{artist.name}</CardTitle>
+              </CardHeader>
+            </Card>
+            </Link>
+          </ExhibitionItem>
         ))}
-      </ListContent>
-    </ListRoot>
+      </ExhibitionContent>
+    </ExhibitionRoot>
   );
 };
