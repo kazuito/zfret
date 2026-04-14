@@ -12,12 +12,16 @@ import { cn } from "@/lib/utils";
 import { useVideoPlayer } from "./video-player";
 
 export const SongControls = () => {
-  const { playing, setPlaying, skip, enabled } = useVideoPlayer();
+  const { playing, setPlaying, skip, enabled, started } = useVideoPlayer();
+
+  if (!started) {
+    return null;
+  }
 
   return (
     <div
       className={cn(
-        "flex items-center gap-3 rounded-full border border-border/60 bg-background/40 p-3 backdrop-blur-sm",
+        "flex starting:scale-90 items-center gap-3 rounded-full border border-border/60 bg-background/40 p-3 starting:opacity-0 backdrop-blur-sm transition",
         !enabled && "hidden",
       )}
     >

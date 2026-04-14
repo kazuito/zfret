@@ -8,6 +8,7 @@ import { Icon } from "@/components/icon";
 
 type VideoPlayerState = {
   enabled: boolean;
+  started: boolean;
   playing: boolean;
   setPlaying: (playing: boolean) => void;
   skip: (sec: number) => void;
@@ -24,6 +25,7 @@ export const VideoPlayerProvider = ({
   children: React.ReactNode;
 }) => {
   const [playing, setIsPlaying] = useState(false);
+  const [started, setStarted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const skip = (sec: number) => {
@@ -31,9 +33,22 @@ export const VideoPlayerProvider = ({
     videoRef.current.currentTime += sec;
   };
 
+  useEffect(() => {
+    if (playing) {
+      setStarted(true);
+    }
+  }, [playing]);
+
   return (
     <videoPlayerContext.Provider
-      value={{ playing, setPlaying: setIsPlaying, videoRef, skip, enabled }}
+      value={{
+        playing,
+        setPlaying: setIsPlaying,
+        videoRef,
+        skip,
+        enabled,
+        started,
+      }}
     >
       {children}
     </videoPlayerContext.Provider>
