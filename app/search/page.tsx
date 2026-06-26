@@ -135,7 +135,7 @@ const Page = () => {
         {!isPending && results && (
           <div className="mt-6 flex flex-col gap-6">
             {results.artists.length > 0 && (
-              <div className="flex flex-wrap gap-2">
+              <div className="scroll-fade flex max-h-80 flex-wrap gap-2 overflow-y-auto">
                 {results.artists.map((artist) => (
                   <Link
                     key={artist.id}
