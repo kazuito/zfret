@@ -12,9 +12,9 @@ import { cn } from "@/lib/utils";
 import { useVideoPlayer } from "./video-player";
 
 export const SongControls = () => {
-  const { playing, setPlaying, skip, enabled, started } = useVideoPlayer();
+  const { state: { isPlaying, isStarted }, action: { setIsPlaying, skip } } = useVideoPlayer();
 
-  if (!started) {
+  if (!isStarted) {
     return null;
   }
 
@@ -22,7 +22,7 @@ export const SongControls = () => {
     <div
       className={cn(
         "flex starting:scale-90 items-center gap-3 rounded-full border border-border/60 bg-background/40 p-3 starting:opacity-0 backdrop-blur-sm transition",
-        !enabled && "hidden",
+        !isStarted && "hidden",
       )}
     >
       <Button
@@ -37,9 +37,9 @@ export const SongControls = () => {
         variant="ghost"
         size="icon-lg"
         className="active:scale-90"
-        onClick={() => setPlaying(!playing)}
+        onClick={() => setIsPlaying(!isPlaying)}
       >
-        {playing ? (
+        {isPlaying ? (
           <Icon
             icon={PauseIcon}
             fill="currentColor"

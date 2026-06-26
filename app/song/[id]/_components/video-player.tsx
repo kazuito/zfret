@@ -3,19 +3,25 @@
 import { Tap07Icon } from "@hugeicons/core-free-icons";
 import Image from "next/image";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import ReactPlayer from "react-player";
+import YouTube, { type YouTubePlayer } from "react-youtube";
 import { Icon } from "@/components/icon";
 
-type VideoPlayerState = {
-  enabled: boolean;
-  started: boolean;
-  playing: boolean;
-  setPlaying: (playing: boolean) => void;
-  skip: (sec: number) => void;
-  videoRef: React.RefObject<HTMLVideoElement | null>;
+type VideoPlayerContextValue = {
+  state: {
+    isEnabled: boolean;
+    isStarted: boolean;
+    isPlaying: boolean;
+  };
+  action: {
+    setIsPlaying: (playing: boolean) => void;
+    skip: (sec: number) => void;
+  };
+  meta: {
+    playerRef: React.RefObject<YouTubePlayer | null>;
+  };
 };
 
-const videoPlayerContext = createContext<VideoPlayerState | null>(null);
+const videoPlayerContext = createContext<VideoPlayerContextValue | null>(null);
 
 export const VideoPlayerProvider = ({
   enabled,
@@ -24,30 +30,41 @@ export const VideoPlayerProvider = ({
   enabled: boolean;
   children: React.ReactNode;
 }) => {
-  const [playing, setIsPlaying] = useState(false);
-  const [started, setStarted] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isStarted, setIsStarted] = useState(false);
+  const playerRef = useRef<YouTubePlayer | null>(null);
 
-  const skip = (sec: number) => {
-    if (!videoRef.current) return;
-    videoRef.current.currentTime += sec;
+  const skip = async (sec: number) => {
+    const player = playerRef.current;
+    if (!player) return;
+    const current = await player.getCurrentTime();
+    player.seekTo(current + sec, true);
   };
 
   useEffect(() => {
-    if (playing) {
-      setStarted(true);
+    if (isPlaying) {
+      setIsStarted(true);
+      playerRef.current?.playVideo();
+    } else {
+      playerRef.current?.pauseVideo();
     }
-  }, [playing]);
+  }, [isPlaying]);
 
   return (
     <videoPlayerContext.Provider
       value={{
-        playing,
-        setPlaying: setIsPlaying,
-        videoRef,
-        skip,
-        enabled,
-        started,
+        state: {
+          isEnabled: enabled,
+          isStarted,
+          isPlaying,
+        },
+        action: {
+          setIsPlaying,
+          skip,
+        },
+        meta: {
+          playerRef,
+        },
       }}
     >
       {children}
@@ -65,32 +82,41 @@ export const useVideoPlayer = () => {
 
 export const VideoPlayer = ({ youtubeVideoId }: { youtubeVideoId: string }) => {
   const [showPlayer, setShowPlayer] = useState(false);
-  const { playing, setPlaying, videoRef } = useVideoPlayer();
+  const {
+    state: { isPlaying },
+    action: { setIsPlaying },
+    meta: { playerRef },
+  } = useVideoPlayer();
 
   useEffect(() => {
-    if (playing) {
+    if (isPlaying) {
       setShowPlayer(true);
     }
-  }, [playing]);
+  }, [isPlaying]);
 
   return (
     <div className="w-full rounded-xl border border-border/60 bg-secondary/30 p-1 sm:w-fit">
       <div className="flex aspect-video w-full items-center overflow-clip rounded-lg sm:w-lg">
         {showPlayer ? (
-          <ReactPlayer
-            ref={videoRef}
-            src={`https://www.youtube.com/watch?v=${youtubeVideoId}`}
-            controls
-            className="h-full! w-full!"
-            autoPlay
-            playing={playing}
-            onPlaying={() => setPlaying(true)}
-            onPause={() => setPlaying(false)}
+          <YouTube
+            videoId={youtubeVideoId}
+            className="h-full w-full"
+            iframeClassName="h-full w-full"
+            opts={{
+              width: "100%",
+              height: "100%",
+              playerVars: { autoplay: 1, controls: 1 },
+            }}
+            onReady={(event) => {
+              playerRef.current = event.target;
+            }}
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
           />
         ) : (
           <button
             className="relative h-full w-full cursor-pointer overflow-clip"
-            onClick={() => setPlaying(true)}
+            onClick={() => setIsPlaying(true)}
           >
             <div className="absolute inset-0 z-10 grid place-content-center">
               <div className="flex items-center gap-1.5 rounded-full bg-black/60 py-1 ps-2.5 pe-3 text-sm text-white backdrop-blur-sm">
