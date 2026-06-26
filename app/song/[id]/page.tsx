@@ -5,7 +5,6 @@ import { cacheLife } from "next/cache";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import AddHistory from "@/components/add-history";
-import { ClientOnly } from "@/components/client-only";
 import { getSong } from "@/features/song/actions";
 import { ChordLines } from "./_components/chord-lines";
 import { RelatedSongList } from "./_components/related-song-list";
@@ -55,9 +54,7 @@ const Page = async ({ params }: Props) => {
   return (
     <VideoPlayerProvider enabled={!!song.youtubeVideoId}>
       <div className="mx-auto max-w-3xl p-6 pt-0">
-        <ClientOnly>
-          <AddHistory item={historyItem} />
-        </ClientOnly>
+        <AddHistory item={historyItem} />
 
         <SongHeading song={song} />
         <div className="mx-auto max-w-3xl">
