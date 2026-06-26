@@ -68,7 +68,7 @@ const Page = async ({ params }: Props) => {
             <ChordLines lines={song.lines} />
             <SongCredits song={song} />
           </div>
-          <div className="sticky right-0 bottom-4 left-0 flex justify-center">
+          <div className="sticky right-0 bottom-4 left-0 mt-8 flex justify-center">
             <SongControls />
           </div>
           <Suspense>

@@ -1,4 +1,7 @@
-import { useLocalStorage } from "@uidotdev/usehooks";
+"use client";
+
+import { useCallback } from "react";
+import { useLocalStorageState } from "@/hooks/use-local-storage-state";
 import { LS_KEYS } from "@/lib/constants";
 
 export type BrowsingHistoryItem =
@@ -22,31 +25,37 @@ export type BrowsingHistoryItemInput = Omit<
 > & { timestamp?: number };
 
 export function useBrowsingHistory() {
-  const [historyItems, saveHistoryItems] = useLocalStorage<
+  const [historyItems, saveHistoryItems] = useLocalStorageState<
     BrowsingHistoryItem[]
   >(LS_KEYS.BROWSING_HISTORY, []);
 
-  const setHistoryItems = (items: BrowsingHistoryItem[]) => {
-    saveHistoryItems(items);
-  };
+  const setHistoryItems = useCallback(
+    (items: BrowsingHistoryItem[]) => {
+      saveHistoryItems(items);
+    },
+    [saveHistoryItems],
+  );
 
-  const addHistoryItem = (item: BrowsingHistoryItemInput) => {
-    const normalizedItem = {
-      ...item,
-      timestamp: item.timestamp ?? Date.now(),
-    } as BrowsingHistoryItem;
+  const addHistoryItem = useCallback(
+    (item: BrowsingHistoryItemInput) => {
+      const normalizedItem = {
+        ...item,
+        timestamp: item.timestamp ?? Date.now(),
+      } as BrowsingHistoryItem;
 
-    saveHistoryItems((prev) => {
-      return [
-        ...prev.filter((h) => h.link !== normalizedItem.link),
-        normalizedItem,
-      ];
-    });
-  };
+      saveHistoryItems((prev) => {
+        return [
+          ...prev.filter((h) => h.link !== normalizedItem.link),
+          normalizedItem,
+        ];
+      });
+    },
+    [saveHistoryItems],
+  );
 
-  const clearAllHistory = () => {
+  const clearAllHistory = useCallback(() => {
     saveHistoryItems([]);
-  };
+  }, [saveHistoryItems]);
 
   return {
     historyItems,

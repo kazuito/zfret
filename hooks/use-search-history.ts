@@ -1,13 +1,13 @@
 "use client";
 
-import { useLocalStorage } from "@uidotdev/usehooks";
 import { useCallback } from "react";
+import { useLocalStorageState } from "@/hooks/use-local-storage-state";
 import { LS_KEYS } from "@/lib/constants";
 
 const MAX_HISTORY_SIZE = 10;
 
 export function useSearchHistory() {
-  const [queries, setQueries] = useLocalStorage<string[]>(
+  const [queries, setQueries] = useLocalStorageState<string[]>(
     LS_KEYS.SEARCH_HISTORY,
     [],
   );

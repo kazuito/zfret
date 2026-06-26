@@ -12,7 +12,10 @@ import { cn } from "@/lib/utils";
 import { useVideoPlayer } from "./video-player";
 
 export const SongControls = () => {
-  const { state: { isPlaying, isStarted }, action: { setIsPlaying, skip } } = useVideoPlayer();
+  const {
+    state: { isPlaying, isStarted },
+    action: { setIsPlaying, skip },
+  } = useVideoPlayer();
 
   if (!isStarted) {
     return null;

@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { HeadingRoot, HeadingTitle } from "@/components/heading";
 import { Icon } from "@/components/icon";
 import {
@@ -24,7 +24,7 @@ import {
   SearchSubmit,
 } from "./_components/search-form";
 
-const Page = () => {
+const SearchPageContent = () => {
   const [urlQuery, setUrlQuery] = useQueryState("q", {
     history: "replace",
   });
@@ -163,6 +163,14 @@ const Page = () => {
         )}
       </div>
     </div>
+  );
+};
+
+const Page = () => {
+  return (
+    <Suspense>
+      <SearchPageContent />
+    </Suspense>
   );
 };
 

@@ -23,10 +23,10 @@
   "linter": {
     "enabled": true,
     "rules": {
+      "preset": "recommended",
       "correctness": {
         "useExhaustiveDependencies": "info"
       },
-      "recommended": true,
       "a11y": "off",
       "suspicious": {
         "noArrayIndexKey": "warn"
