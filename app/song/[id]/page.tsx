@@ -7,7 +7,7 @@ import { Suspense } from "react";
 import AddHistory from "@/components/add-history";
 import { Skeleton } from "@/components/ui/skeleton";
 import { estimateKey } from "@/features/chords/key";
-import { getSong } from "@/features/song/queries";
+import { getSong } from "@/features/songs/queries";
 import { ChordLines } from "./_components/chord-lines";
 import { RelatedSongList } from "./_components/related-song-list";
 import { SongControls } from "./_components/song-controls";

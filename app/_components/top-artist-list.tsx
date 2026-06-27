@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardAction, CardHeader, CardTitle } from "@/components/ui/card";
-import { getTopArtists } from "@/features/song/queries";
+import { getTopArtists } from "@/features/songs/queries";
 import { hashLinearGradient } from "@/lib/hash-gradient";
 import {
   ExhibitionContent,

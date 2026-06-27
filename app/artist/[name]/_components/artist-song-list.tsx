@@ -7,7 +7,7 @@ import {
   ListItemTitle,
   ListRoot,
 } from "@/components/ui/list";
-import type { getArtistSongs } from "@/features/song/queries";
+import type { getArtistSongs } from "@/features/songs/queries";
 
 export const ArtistSongList = ({
   songs,

@@ -1,4 +1,4 @@
-import type { Song } from "@/features/song/queries";
+import type { Song } from "@/features/songs/queries";
 import { ChordPopover } from "./chord-popover";
 
 type ChordPart = NonNullable<Song["lines"]>[number][number];

@@ -8,11 +8,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <div className="mx-auto max-w-3xl p-6 pt-0">
       <div>{children}</div>
       <div className="mt-6 flex justify-center">
-        <Button
-          variant="ghost"
-          nativeButton={false}
-          render={<Link href="/" />}
-        >
+        <Button variant="ghost" nativeButton={false} render={<Link href="/" />}>
           <Icon icon={ArrowLeft01Icon} />
           Back
         </Button>

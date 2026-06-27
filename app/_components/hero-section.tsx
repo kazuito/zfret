@@ -13,10 +13,7 @@ export const HeroSection = () => {
         Explore chords and lyrics from iconic Japan Hits
       </p>
       <div className="flex gap-3">
-        <Button
-          nativeButton={false}
-          render={<Link href="/trending/songs" />}
-        >
+        <Button nativeButton={false} render={<Link href="/trending/songs" />}>
           <Icon icon={MusicNote02Icon} strokeWidth={2.4} />
           Explore Songs
         </Button>

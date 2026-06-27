@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Song } from "@/features/song/queries";
+import type { Song } from "@/features/songs/queries";
 import { cn } from "@/lib/utils";
 
 export const SongCredits = ({

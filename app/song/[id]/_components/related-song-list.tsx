@@ -12,7 +12,7 @@ import {
   ListRoot,
   ListTitle,
 } from "@/components/ui/list";
-import { getRelatedSongs } from "@/features/song/queries";
+import { getRelatedSongs } from "@/features/songs/queries";
 
 export const RelatedSongList = async ({
   artistName,

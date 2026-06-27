@@ -15,7 +15,7 @@ import {
   ListItemTitle,
   ListRoot,
 } from "@/components/ui/list";
-import { getSearchResults, type SearchResult } from "@/features/song/actions";
+import { getSearchResults, type SearchResult } from "@/features/songs/actions";
 import { useSearchHistory } from "../../hooks/use-search-history";
 import { RecentSearches } from "./_components/recent-searches";
 import {
