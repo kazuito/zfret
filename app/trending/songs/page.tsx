@@ -8,7 +8,7 @@ import {
   ListItemTitle,
   ListRoot,
 } from "@/components/ui/list";
-import { getTopSongs } from "@/features/song/actions";
+import { getTopSongs } from "@/features/song/queries";
 
 const Page = async () => {
   const songs = await getTopSongs({ limit: 100 });

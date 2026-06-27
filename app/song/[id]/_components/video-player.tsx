@@ -127,9 +127,10 @@ export const VideoPlayer = ({ youtubeVideoId }: { youtubeVideoId: string }) => {
             <Image
               alt="YouTube Thumbnail"
               src={`https://img.youtube.com/vi/${youtubeVideoId}/mqdefault.jpg`}
-              fill
-              sizes="(min-width: 640px) 640px, 100vw"
-              className="object-cover blur-xs brightness-75"
+              className="size-full object-cover blur-sm brightness-75"
+              width={100}
+              height={100}
+              loading="eager"
             />
           </button>
         )}

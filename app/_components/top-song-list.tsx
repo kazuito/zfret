@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { getTopSongs } from "@/features/song/actions";
+import { getTopSongs } from "@/features/song/queries";
 import { hashLinearGradient } from "@/lib/hash-gradient";
 import {
   ExhibitionContent,
@@ -28,7 +28,7 @@ export const TopSongList = async () => {
       <ExhibitionContent>
         {topSongs.map((song, i) => (
           <ExhibitionItem key={song.id} asChild>
-            <Link href={`/song/${song.id}`} prefetch={false}>
+            <Link href={`/song/${song.id}`} prefetch>
               <Card className="m-px w-70 pt-0">
                 <div
                   className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-3xl bg-neutral-800/40"

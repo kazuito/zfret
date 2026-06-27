@@ -5,7 +5,8 @@ import { cacheLife } from "next/cache";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import AddHistory from "@/components/add-history";
-import { getSong } from "@/features/song/actions";
+import { Skeleton } from "@/components/ui/skeleton";
+import { getSong } from "@/features/song/queries";
 import { ChordLines } from "./_components/chord-lines";
 import { RelatedSongList } from "./_components/related-song-list";
 import { SongControls } from "./_components/song-controls";
@@ -22,7 +23,7 @@ type Props = {
 export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
-  cacheLife("max");
+  cacheLife("weeks");
 
   const { id: songId } = await params;
   const song = await getSong(songId);
@@ -34,7 +35,7 @@ export const generateMetadata = async ({
 };
 
 const Page = async ({ params }: Props) => {
-  cacheLife("max");
+  cacheLife("weeks");
 
   const { id: songId } = await params;
 
@@ -68,7 +69,7 @@ const Page = async ({ params }: Props) => {
           <div className="sticky right-0 bottom-4 left-0 mt-8 flex justify-center">
             <SongControls />
           </div>
-          <Suspense>
+          <Suspense fallback={<Skeleton className="my-10 h-48 w-full" />}>
             <RelatedSongList
               className="my-10"
               artistName={song.artist.name}

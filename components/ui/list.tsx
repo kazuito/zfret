@@ -79,7 +79,7 @@ export const ListItemLink = ({
 }: React.ComponentProps<typeof Link>) => {
   return (
     <ListItem asChild className="relative">
-      <Link prefetch={false} {...props}>
+      <Link {...props}>
         {children}
         <OnLinkPending>
           <Spinner className="absolute right-4 text-muted-foreground" />

@@ -12,7 +12,7 @@ import {
   ListRoot,
   ListTitle,
 } from "@/components/ui/list";
-import { getRelatedSongs } from "@/features/song/actions";
+import { getRelatedSongs } from "@/features/song/queries";
 
 export const RelatedSongList = async ({
   artistName,
@@ -47,7 +47,7 @@ export const RelatedSongList = async ({
       <ListContent>
         {relatedSongs.map((relatedSong) => {
           return (
-            <ListItemLink key={relatedSong.id} href={relatedSong.url}>
+            <ListItemLink key={relatedSong.id} href={relatedSong.url} prefetch>
               <ListItemTitle>{relatedSong.title}</ListItemTitle>
             </ListItemLink>
           );

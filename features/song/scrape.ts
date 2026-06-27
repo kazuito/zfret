@@ -1,11 +1,14 @@
-"use server";
-
 import { load } from "cheerio";
+import { cacheLife } from "next/cache";
 import { parseArtistItem, parseChords, parseSongItem } from "./parse";
 
 export async function scrapeSong(id: string) {
+  "use cache";
+  cacheLife("weeks");
+
   const url = `https://www.ufret.jp/song.php?data=${id}`;
   const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to fetch song ${id}: ${res.status}`);
   const html = await res.text();
   const $ = load(html);
 
@@ -36,9 +39,13 @@ export async function scrapeSong(id: string) {
 }
 
 export async function scrapeArtistSongs(name: string) {
+  "use cache";
+  cacheLife("weeks");
+
   const encodedArtistName = encodeURIComponent(name);
   const url = `https://www.ufret.jp/artist.php?data=${encodedArtistName}`;
   const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to fetch artist ${name}: ${res.status}`);
   const $ = load(await res.text());
 
   const songItems = $(".js-artistSong li.normal-chord");
@@ -49,6 +56,7 @@ export async function scrapeArtistSongs(name: string) {
 
 export async function scrapeTopSongs() {
   const res = await fetch("https://www.ufret.jp/rank.php");
+  if (!res.ok) throw new Error(`Failed to fetch top songs: ${res.status}`);
   const $ = load(await res.text());
 
   const $items = $("ul.c-list--rank").first().find("li.normal-chord");
@@ -62,6 +70,7 @@ export async function scrapeTopSongs() {
 
 export async function scrapeTopArtists() {
   const res = await fetch("https://www.ufret.jp/rank_artist.php");
+  if (!res.ok) throw new Error(`Failed to fetch top artists: ${res.status}`);
   const $ = load(await res.text());
 
   const artistItems = $("ul.c-list--rank").first().find("li");
@@ -73,6 +82,8 @@ export async function scrapeTopArtists() {
 export async function scrapeSearchResults(query: string) {
   const url = `https://www.ufret.jp/search.php?key=${encodeURIComponent(query)}`;
   const res = await fetch(url);
+  if (!res.ok)
+    throw new Error(`Failed to fetch search "${query}": ${res.status}`);
   const $ = load(await res.text());
 
   const artists = $("ul.c-card-artist .c-card-artist__artist")

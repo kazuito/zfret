@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   turbopack: {},
   cacheComponents: true,
+  partialPrefetching: true,
   images: {
     remotePatterns: [
       {

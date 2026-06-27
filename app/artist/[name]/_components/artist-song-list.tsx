@@ -4,7 +4,7 @@ import {
   ListItemTitle,
   ListRoot,
 } from "@/components/ui/list";
-import { getArtistSongs } from "@/features/song/actions";
+import { getArtistSongs } from "@/features/song/queries";
 
 export const ArtistSongList = async ({
   artistName,

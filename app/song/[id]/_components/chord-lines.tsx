@@ -1,4 +1,4 @@
-import type { Song } from "@/features/song/actions";
+import type { Song } from "@/features/song/queries";
 
 type ChordPart = NonNullable<Song["lines"]>[number][number];
 

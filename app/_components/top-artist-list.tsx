@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardAction, CardHeader, CardTitle } from "@/components/ui/card";
-import { getTopArtists } from "@/features/song/actions";
+import { getTopArtists } from "@/features/song/queries";
 import { hashLinearGradient } from "@/lib/hash-gradient";
 import {
   ExhibitionContent,
@@ -22,7 +22,7 @@ export const TopArtistList = async () => {
       <ExhibitionContent>
         {topArtists.map((artist, i) => (
           <ExhibitionItem key={artist.name} asChild>
-            <Link href={`/artist/${artist.name}`} prefetch={false}>
+            <Link href={`/artist/${artist.name}`}>
               <Card className="w-70 pt-0">
                 <div
                   className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-3xl bg-neutral-800/40"

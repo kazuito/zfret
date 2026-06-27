@@ -8,7 +8,7 @@ import {
   HeadingSuffix,
   HeadingTitle,
 } from "@/components/heading";
-import type { Song } from "@/features/song/actions";
+import type { Song } from "@/features/song/queries";
 
 export const SongHeading = ({ song }: { song: Song }) => {
   const favItem = {
