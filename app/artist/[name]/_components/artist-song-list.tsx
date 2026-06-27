@@ -1,6 +1,7 @@
 "use client";
 
 import { useQueryState } from "nuqs";
+import { useMemo } from "react";
 import {
   ListContent,
   ListItemLink,
@@ -8,6 +9,7 @@ import {
   ListRoot,
 } from "@/components/ui/list";
 import type { getArtistSongs } from "@/features/songs/queries";
+import { createSearchIndex, normalizeForSearch } from "@/lib/search";
 
 export const ArtistSongList = ({
   songs,
@@ -16,9 +18,16 @@ export const ArtistSongList = ({
 }) => {
   const [query] = useQueryState("q");
 
-  const computedSongs = query?.trim()
-    ? songs.filter((song) => song.title.includes(query))
-    : songs;
+  const index = useMemo(
+    () => createSearchIndex(songs, (song) => song.title),
+    [songs],
+  );
+
+  const computedSongs = useMemo(() => {
+    const normalized = normalizeForSearch(query?.trim() ?? "");
+    if (!normalized) return songs;
+    return index.search(normalized).map((result) => result.item);
+  }, [index, songs, query]);
 
   if (computedSongs.length === 0)
     return (
