@@ -36,7 +36,7 @@ export const ChordGuitar = ({ notes }: { notes: ChordTone[] }) => {
               <div
                 key={fret}
                 className={cn(
-                  "relative h-7",
+                  "relative h-5",
                   fret > 0 && "border-border border-l",
                   fret === 1 && "border-foreground border-l-2",
                 )}
@@ -45,7 +45,7 @@ export const ChordGuitar = ({ notes }: { notes: ChordTone[] }) => {
                 {tone && (
                   <span
                     className={cn(
-                      "absolute top-1/2 left-1/2 z-10 flex size-4 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-[8px] leading-none",
+                      "absolute top-1/2 left-1/2 z-10 flex size-4 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full font-medium text-[8px] leading-none",
                       toneFillClass(tone.role),
                     )}
                   >
