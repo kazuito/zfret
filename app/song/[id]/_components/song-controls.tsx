@@ -73,7 +73,7 @@ export const SongControls = () => {
               <Icon icon={GoForward10SecIcon} className="size-6" />
             </Button>
           </div>
-          <Separator orientation="vertical" />
+          <Separator orientation="vertical" className="my-2" />
         </>
       )}
       <Popover>
