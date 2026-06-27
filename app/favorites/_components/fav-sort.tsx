@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { sortFavoritesBy } from "@/features/favorites/constants";
+import { favSortOptions } from "@/features/favorites/constants";
 import { cn } from "@/lib/utils";
 
 export const FavSort = ({
@@ -51,16 +51,20 @@ export const FavSort = ({
         />
         <span className="sr-only">Toggle sort order</span>
       </Button>
-      <Select value={sortKey} onValueChange={(value) => setSortKey(value)}>
+      <Select
+        items={favSortOptions}
+        value={sortKey}
+        onValueChange={(value) => setSortKey(value)}
+      >
         <SelectTrigger className="rounded-s-none">
           <SelectValue placeholder="Sort by" />
         </SelectTrigger>
         <SelectContent align="end">
           <SelectGroup>
             <SelectLabel>Sort by</SelectLabel>
-            {Object.entries(sortFavoritesBy).map(([key, value]) => (
-              <SelectItem key={key} value={key}>
-                {value.label}
+            {favSortOptions.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
               </SelectItem>
             ))}
           </SelectGroup>

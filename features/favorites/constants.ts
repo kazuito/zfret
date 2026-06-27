@@ -1,6 +1,6 @@
 import type { FavoriteItem } from "./types";
 
-export const sortFavoritesBy = {
+export const favSortDefinitions = {
   timestamp: {
     label: "Date Added",
     fn: (a: FavoriteItem, b: FavoriteItem) => b.timestamp - a.timestamp,
@@ -26,3 +26,13 @@ export const sortFavoritesBy = {
     },
   },
 };
+
+export const favSortOptions = Object.entries(favSortDefinitions).map(
+  ([key, value]) => ({
+    label: value.label,
+    value: key,
+  }),
+);
+
+export type FavSortKey = keyof typeof favSortDefinitions;
+export type FavSortOrder = "asc" | "desc";

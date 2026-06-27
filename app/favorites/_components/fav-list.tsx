@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useQueryState } from "nuqs";
-import { useMemo } from "react";
+import { parseAsStringLiteral, useQueryState } from "nuqs";
 import {
   ListContent,
   ListItemLink,
@@ -10,8 +9,9 @@ import {
   ListItemTitle,
   ListRoot,
 } from "@/components/ui/list";
-import { sortFavoritesBy } from "@/features/favorites/constants";
+import { favSortDefinitions } from "@/features/favorites/constants";
 import { useFavorites } from "@/features/favorites/hooks/use-favorites";
+import { sortFavorites } from "@/features/favorites/sort";
 import { cn } from "@/lib/utils";
 
 export const FavList = ({
@@ -19,22 +19,21 @@ export const FavList = ({
   ...props
 }: React.ComponentProps<"div">) => {
   const { favorites } = useFavorites();
-  const [sortKey] = useQueryState("sortKey", {
-    defaultValue: "timestamp",
-  });
-  const [sortOrder] = useQueryState("sortOrder", {
-    defaultValue: "desc",
-  });
+  const [sortKey] = useQueryState(
+    "sortKey",
+    parseAsStringLiteral(
+      Object.keys(favSortDefinitions) as (keyof typeof favSortDefinitions)[],
+    ).withDefault("timestamp"),
+  );
+  const [sortOrder] = useQueryState(
+    "sortOrder",
+    parseAsStringLiteral(["asc", "desc"] as const).withDefault("desc"),
+  );
 
-  const isAsc = sortOrder === "asc";
-
-  const computedFavorites = useMemo(() => {
-    if (!favorites || favorites.length === 0) return [];
-    const sortFn = sortFavoritesBy[sortKey as keyof typeof sortFavoritesBy]?.fn;
-    if (!sortFn) return favorites;
-    const sorted = [...favorites].sort(sortFn);
-    return isAsc ? sorted : sorted.reverse();
-  }, [sortKey, favorites, isAsc]);
+  const computedFavorites = sortFavorites(favorites, {
+    key: sortKey,
+    order: sortOrder,
+  });
 
   return (
     <div className={cn("", className)} {...props}>
