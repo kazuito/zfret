@@ -31,6 +31,7 @@ export const ArtistHeading = ({ artistName }: { artistName: string }) => {
         <Input
           type="search"
           onChange={(e) => setFilterQuery(e.target.value)}
+          value={filterQuery ?? ""}
           placeholder="Search songs..."
           className="w-38 rounded-full transition-all focus:w-48"
         />
