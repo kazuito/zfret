@@ -23,7 +23,7 @@ const FavButton = ({ item }: Props) => {
       variant="secondary"
       onClick={() => toggleFavorite(item)}
       className={cn(
-        "starting:scale-95 rounded-full starting:opacity-0 transition duration-300 ease-out",
+        "starting:scale-95 rounded-full starting:opacity-0 transition duration-300 ease-out active:scale-90",
         isFavorite
           ? "bg-red-500/20! text-red-500"
           : "opacity-50 hover:opacity-100",

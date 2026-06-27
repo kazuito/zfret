@@ -39,7 +39,7 @@ export const RelatedSongList = async ({
       <ListHeader>
         <ListTitle
           render={
-            <Link href={`/artist/${artistName}`} className="w-fit">
+            <Link href={`/artist/${artistName}`}>
               {artistName}
               <Icon icon={ArrowRight01Icon} />
             </Link>
