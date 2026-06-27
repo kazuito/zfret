@@ -21,9 +21,13 @@ Package manager is **pnpm** (Node 22, pinned via `mise.toml`).
 - `pnpm format` — Biome format only
 - `pnpm typecheck` — `tsc --noEmit`
 - `pnpm knip` — find unused files/exports/dependencies
+- `pnpm test` — run the Vitest unit suite once
+- `pnpm test:watch` — Vitest in watch mode
 
-There is no test suite. The Husky **pre-commit** hook runs `pnpm lint` +
-`pnpm typecheck`; quality gating happens there, not in CI tests.
+Tests are **Vitest** unit tests, co-located as `*.test.ts` next to the code
+they cover (currently the pure music theory in `features/chords`). The Husky
+**pre-commit** hook runs `pnpm lint` + `pnpm typecheck`; quality gating happens
+there, not in CI tests.
 
 ## Stack
 
