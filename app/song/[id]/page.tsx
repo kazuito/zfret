@@ -72,7 +72,6 @@ const Page = async ({ params }: Props) => {
           <AddHistory item={historyItem} />
 
           <SongHeading song={song} />
-          <SongKey estimate={keyEstimate} />
           <div className="mx-auto max-w-3xl">
             {song.youtubeVideoId && (
               <VideoPlayer youtubeVideoId={song.youtubeVideoId} />
@@ -80,6 +79,7 @@ const Page = async ({ params }: Props) => {
             <div className="mt-10 space-y-10">
               <ChordLines lines={song.lines} />
               <SongCredits song={song} />
+          <SongKey estimate={keyEstimate} />
             </div>
             <div className="sticky right-0 bottom-4 left-0 mt-8 flex items-center justify-center gap-3">
               <TransposeControl />
