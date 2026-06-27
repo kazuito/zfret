@@ -1,4 +1,5 @@
 import type { Song } from "@/features/song/queries";
+import { ChordPopover } from "./chord-popover";
 
 type ChordPart = NonNullable<Song["lines"]>[number][number];
 
@@ -36,7 +37,7 @@ export const ChordLines = ({
 
               return (
                 <div key={partKey} className="flex flex-col">
-                  {!!part.chord && <div className="text-sm">{part.chord}</div>}
+                  {!!part.chord && <ChordPopover chord={part.chord} />}
                   {lineHasLyric && (
                     <div className="h-6 text-nowrap bg-linear-to-b from-foreground/60 to-foreground/20 bg-clip-text text-transparent">
                       {part.lyric}
