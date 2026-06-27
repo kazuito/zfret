@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { cacheLife } from "next/cache";
 import AddHistory from "@/components/add-history";
 import { ClientOnly } from "@/components/client-only";
+import { getArtistSongs } from "@/features/song/queries";
 import { ArtistHeading } from "./_components/artist-heading";
 import { ArtistSongList } from "./_components/artist-song-list";
 
@@ -30,6 +31,8 @@ const Page = async ({ params }: Props) => {
   const { name } = await params;
   const decodedName = decodeURIComponent(name);
 
+  const songs = await getArtistSongs({ name: decodedName });
+
   const historyItem = {
     type: "artist" as const,
     name: decodedName,
@@ -42,7 +45,7 @@ const Page = async ({ params }: Props) => {
         <AddHistory item={historyItem} />
       </ClientOnly>
       <ArtistHeading artistName={decodedName} />
-      <ArtistSongList artistName={decodedName} />
+      <ArtistSongList songs={songs} />
     </div>
   );
 };
