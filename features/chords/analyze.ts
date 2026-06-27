@@ -1,6 +1,6 @@
 import { FLAT_NAMES, parseNote, SHARP_NAMES } from "./notes";
 import { resolveQuality } from "./qualities";
-import type { ChordInfo, ParsedNote } from "./types";
+import type { ChordInfo, ChordTone, ParsedNote } from "./types";
 
 const NO_CHORD: ChordInfo = {
   name: "No Chord",
@@ -36,15 +36,18 @@ export const analyzeChord = (raw: string): ChordInfo => {
   const quality = resolveQuality(rest);
   const names = root.flat ? FLAT_NAMES : SHARP_NAMES;
 
-  const notes = quality.intervals.map(
-    (interval) => names[(root.pitch + interval) % 12],
-  );
+  const notes: ChordTone[] = quality.intervals.map((interval, index) => {
+    const pitch = (root.pitch + interval) % 12;
+    return { pitch, name: names[pitch], role: index === 0 ? "root" : "chord" };
+  });
 
-  if (
-    bass &&
-    !quality.intervals.some((i) => (root.pitch + i) % 12 === bass.pitch)
-  ) {
-    notes.unshift(bass.display);
+  if (bass) {
+    const existing = notes.find((note) => note.pitch === bass.pitch);
+    if (existing) {
+      if (existing.role !== "root") existing.role = "bass";
+    } else {
+      notes.unshift({ pitch: bass.pitch, name: bass.display, role: "bass" });
+    }
   }
 
   let name = `${root.display} ${quality.name}`;
