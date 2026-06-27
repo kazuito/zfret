@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import AddHistory from "@/components/add-history";
 import { Skeleton } from "@/components/ui/skeleton";
+import { estimateKey } from "@/features/chords/key";
 import { getSong } from "@/features/song/queries";
 import { ChordLines } from "./_components/chord-lines";
 import { RelatedSongList } from "./_components/related-song-list";
@@ -13,6 +14,8 @@ import { SongControls } from "./_components/song-controls";
 import { SongCredits } from "./_components/song-credits";
 import { SongHeading } from "./_components/song-heading";
 import { SongKey } from "./_components/song-key";
+import { TransposeControl } from "./_components/transpose-control";
+import { TransposeProvider } from "./_components/transpose-provider";
 import { VideoPlayer, VideoPlayerProvider } from "./_components/video-player";
 
 type Props = {
@@ -53,33 +56,45 @@ const Page = async ({ params }: Props) => {
     link: `/song/${songId}`,
   };
 
+  const chords = song.lines
+    .flat()
+    .map((part) => part.chord)
+    .filter((chord): chord is string => !!chord);
+  const keyEstimate = estimateKey(chords);
+  const baseKey = keyEstimate
+    ? { tonic: keyEstimate.tonic, mode: keyEstimate.mode }
+    : null;
+
   return (
     <VideoPlayerProvider enabled={!!song.youtubeVideoId}>
-      <div className="mx-auto max-w-3xl p-6 pt-0">
-        <AddHistory item={historyItem} />
+      <TransposeProvider baseKey={baseKey}>
+        <div className="mx-auto max-w-3xl p-6 pt-0">
+          <AddHistory item={historyItem} />
 
-        <SongHeading song={song} />
-        <SongKey lines={song.lines} />
-        <div className="mx-auto max-w-3xl">
-          {song.youtubeVideoId && (
-            <VideoPlayer youtubeVideoId={song.youtubeVideoId} />
-          )}
-          <div className="mt-10 space-y-10">
-            <ChordLines lines={song.lines} />
-            <SongCredits song={song} />
+          <SongHeading song={song} />
+          <SongKey estimate={keyEstimate} />
+          <div className="mx-auto max-w-3xl">
+            {song.youtubeVideoId && (
+              <VideoPlayer youtubeVideoId={song.youtubeVideoId} />
+            )}
+            <div className="mt-10 space-y-10">
+              <ChordLines lines={song.lines} />
+              <SongCredits song={song} />
+            </div>
+            <div className="sticky right-0 bottom-4 left-0 mt-8 flex items-center justify-center gap-3">
+              <TransposeControl />
+              <SongControls />
+            </div>
+            <Suspense fallback={<Skeleton className="my-10 h-48 w-full" />}>
+              <RelatedSongList
+                className="my-10"
+                artistName={song.artist.name}
+                songId={songId}
+              />
+            </Suspense>
           </div>
-          <div className="sticky right-0 bottom-4 left-0 mt-8 flex justify-center">
-            <SongControls />
-          </div>
-          <Suspense fallback={<Skeleton className="my-10 h-48 w-full" />}>
-            <RelatedSongList
-              className="my-10"
-              artistName={song.artist.name}
-              songId={songId}
-            />
-          </Suspense>
         </div>
-      </div>
+      </TransposeProvider>
     </VideoPlayerProvider>
   );
 };

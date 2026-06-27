@@ -111,17 +111,33 @@ const relativeOf = ({ tonic, mode }: Candidate): Candidate => ({
   score: 0,
 });
 
-const noteNames = (tonic: number, mode: KeyMode): string[] => {
-  const useFlat =
-    mode === "major"
-      ? FLAT_MAJOR_TONICS.has(tonic)
-      : FLAT_MINOR_TONICS.has(tonic);
-  return useFlat ? FLAT_NAMES : SHARP_NAMES;
-};
+export const prefersFlat = (tonic: number, mode: KeyMode): boolean =>
+  mode === "major"
+    ? FLAT_MAJOR_TONICS.has(tonic)
+    : FLAT_MINOR_TONICS.has(tonic);
+
+const noteNames = (tonic: number, mode: KeyMode): string[] =>
+  prefersFlat(tonic, mode) ? FLAT_NAMES : SHARP_NAMES;
 
 const keyName = ({ tonic, mode }: Candidate): string => {
   const names = noteNames(tonic, mode);
   return `${names[tonic]} ${mode === "major" ? "Major" : "Minor"}`;
+};
+
+export type KeyDescription = {
+  name: string;
+  scale: string[];
+  alternative: string;
+};
+
+export const describeKey = (tonic: number, mode: KeyMode): KeyDescription => {
+  const names = noteNames(tonic, mode);
+  const intervals = mode === "major" ? MAJOR_SCALE : MINOR_SCALE;
+  return {
+    name: keyName({ tonic, mode, score: 0 }),
+    scale: intervals.map((interval) => names[(tonic + interval) % 12]),
+    alternative: keyName(relativeOf({ tonic, mode, score: 0 })),
+  };
 };
 
 const gradeConfidence = (
@@ -169,20 +185,19 @@ export const estimateKey = (chords: string[]): KeyEstimate | null => {
     chosen = relative;
   }
 
-  const intervals = chosen.mode === "major" ? MAJOR_SCALE : MINOR_SCALE;
-  const names = noteNames(chosen.tonic, chosen.mode);
+  const description = describeKey(chosen.tonic, chosen.mode);
 
   return {
     tonic: chosen.tonic,
     mode: chosen.mode,
-    name: keyName(chosen),
-    scale: intervals.map((interval) => names[(chosen.tonic + interval) % 12]),
+    name: description.name,
+    scale: description.scale,
     confidence: gradeConfidence(
       chosen,
       ranked,
       lastRoot === chosen.tonic,
       firstRoot === chosen.tonic,
     ),
-    alternative: keyName(relativeOf(chosen)),
+    alternative: description.alternative,
   };
 };

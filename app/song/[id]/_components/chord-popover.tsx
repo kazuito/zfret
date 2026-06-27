@@ -9,21 +9,27 @@ import {
 } from "@/components/ui/popover";
 import { analyzeChord } from "@/features/chords/analyze";
 import { ChordDiagram } from "@/features/chords/components/chord-diagram";
+import { transposeChord } from "@/features/chords/transpose";
+import { useTranspose } from "./transpose-provider";
 
 export const ChordPopover = ({ chord }: { chord: string }) => {
   const [open, setOpen] = useState(false);
-  const info = open ? analyzeChord(chord) : null;
+  const { semitones, preferFlat } = useTranspose();
+  const display = transposeChord(chord, semitones, preferFlat);
+  const info = open ? analyzeChord(display) : null;
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger className="-mx-1 w-fit cursor-pointer rounded-md px-1 text-sm outline-hidden transition-colors hover:bg-muted focus-visible:bg-muted data-[state=open]:bg-muted">
-        {chord}
+        {display}
       </PopoverTrigger>
       {info && (
         <PopoverContent align="start" className="w-72">
           <div className="flex flex-col gap-3">
             <div className="space-y-1">
-              <div className="font-semibold text-lg leading-none">{chord}</div>
+              <div className="font-semibold text-lg leading-none">
+                {display}
+              </div>
               <div className="text-muted-foreground text-sm">{info.name}</div>
             </div>
             <p className="text-foreground/80 text-sm leading-relaxed">
