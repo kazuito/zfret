@@ -21,7 +21,22 @@ export async function getArtistSongs({
   cacheLife("weeks");
 
   const artistSongs = await scrapeArtistSongs(name);
-  return artistSongs.filter((song) => song.tags.length === 0).slice(0, limit);
+  return dedupeByLowestId(
+    artistSongs.filter((song) => song.tags.length === 0),
+  ).slice(0, limit);
+}
+
+function dedupeByLowestId<T extends { id: string; title: string }>(
+  songs: T[],
+): T[] {
+  const lowestIdByTitle = new Map<string, T>();
+  for (const song of songs) {
+    const existing = lowestIdByTitle.get(song.title);
+    if (!existing || Number(song.id) < Number(existing.id)) {
+      lowestIdByTitle.set(song.title, song);
+    }
+  }
+  return songs.filter((song) => lowestIdByTitle.get(song.title) === song);
 }
 
 export async function getTopSongs({ limit = 100 }: { limit?: number } = {}) {
@@ -52,7 +67,7 @@ export async function getRelatedSongs({
   "use cache";
   cacheLife("weeks");
 
-  const artistSongs = await scrapeArtistSongs(artistName);
+  const artistSongs = dedupeByLowestId(await scrapeArtistSongs(artistName));
 
   const selfIndex = artistSongs.findIndex((song) => song.id === songId);
 
