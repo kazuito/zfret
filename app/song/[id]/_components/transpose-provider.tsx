@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, use, useMemo, useState } from "react";
+import { useQueryState } from "nuqs";
+import { createContext, use, useMemo } from "react";
 import { type KeyMode, prefersFlat } from "@/features/chords/key";
 
 const MIN_SEMITONES = -11;
@@ -25,7 +26,10 @@ export const TransposeProvider = ({
   baseKey: { tonic: number; mode: KeyMode } | null;
   children: React.ReactNode;
 }) => {
-  const [semitones, setSemitonesState] = useState(0);
+  const [semitones, setSemitonesState] = useQueryState("transpose", {
+    defaultValue: 0,
+    parse: (value) => parseInt(value, 10),
+  });
 
   const setSemitones = (value: number) =>
     setSemitonesState(Math.max(MIN_SEMITONES, Math.min(MAX_SEMITONES, value)));
