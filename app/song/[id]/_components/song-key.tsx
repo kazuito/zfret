@@ -2,7 +2,6 @@
 
 import { Badge } from "@/components/ui/badge";
 import { describeKey, type KeyEstimate } from "@/features/chords/key";
-import { cn } from "@/lib/utils";
 import { useTranspose } from "./transpose-provider";
 
 const CONFIDENCE_LABEL: Record<KeyEstimate["confidence"], string> = {

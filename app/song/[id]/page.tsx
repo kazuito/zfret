@@ -79,10 +79,9 @@ const Page = async ({ params }: Props) => {
             <div className="mt-10 space-y-10">
               <ChordLines lines={song.lines} />
               <SongCredits song={song} />
-          <SongKey estimate={keyEstimate} />
+              <SongKey estimate={keyEstimate} />
             </div>
-            <div className="sticky right-0 bottom-4 left-0 mt-8 flex items-center justify-center gap-3">
-              <TransposeControl />
+            <div className="sticky right-0 bottom-4 flex justify-end">
               <SongControls />
             </div>
             <Suspense fallback={<Skeleton className="my-10 h-48 w-full" />}>

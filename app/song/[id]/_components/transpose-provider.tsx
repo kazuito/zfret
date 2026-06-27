@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, use, useMemo, useState } from "react";
 import { type KeyMode, prefersFlat } from "@/features/chords/key";
 
 const MIN_SEMITONES = -11;
@@ -45,4 +45,10 @@ export const TransposeProvider = ({
   );
 };
 
-export const useTranspose = () => useContext(transposeContext);
+export const useTranspose = () => {
+  const context = use(transposeContext);
+  if (!context) {
+    throw Error("useTranspose must be used within a TransposeProvider");
+  }
+  return context;
+};
