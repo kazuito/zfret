@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { parseAsStringLiteral, useQueryState } from "nuqs";
 import {
   ListContent,
   ListItemLink,
@@ -9,7 +8,7 @@ import {
   ListItemTitle,
   ListRoot,
 } from "@/components/ui/list";
-import { favSortDefinitions } from "@/features/favorites/constants";
+import { useFavSort } from "@/features/favorites/hooks/use-fav-sort";
 import { useFavorites } from "@/features/favorites/hooks/use-favorites";
 import { sortFavorites } from "@/features/favorites/sort";
 import { cn } from "@/lib/utils";
@@ -19,16 +18,7 @@ export const FavList = ({
   ...props
 }: React.ComponentProps<"div">) => {
   const { favorites } = useFavorites();
-  const [sortKey] = useQueryState(
-    "sortKey",
-    parseAsStringLiteral(
-      Object.keys(favSortDefinitions) as (keyof typeof favSortDefinitions)[],
-    ).withDefault("timestamp"),
-  );
-  const [sortOrder] = useQueryState(
-    "sortOrder",
-    parseAsStringLiteral(["asc", "desc"] as const).withDefault("desc"),
-  );
+  const { sortKey, sortOrder } = useFavSort();
 
   const computedFavorites = sortFavorites(favorites, {
     key: sortKey,

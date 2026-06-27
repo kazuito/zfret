@@ -3,7 +3,7 @@ import type { FavoriteItem } from "./types";
 export const favSortDefinitions = {
   timestamp: {
     label: "Date Added",
-    fn: (a: FavoriteItem, b: FavoriteItem) => b.timestamp - a.timestamp,
+    fn: (a: FavoriteItem, b: FavoriteItem) => a.timestamp - b.timestamp,
   },
   title: {
     label: "Title",
@@ -27,12 +27,19 @@ export const favSortDefinitions = {
   },
 };
 
-export const favSortOptions = Object.entries(favSortDefinitions).map(
-  ([key, value]) => ({
-    label: value.label,
-    value: key,
-  }),
-);
-
 export type FavSortKey = keyof typeof favSortDefinitions;
 export type FavSortOrder = "asc" | "desc";
+
+export const favSortKeys = Object.keys(favSortDefinitions) as [
+  FavSortKey,
+  ...FavSortKey[],
+];
+export const favSortOrders = [
+  "asc",
+  "desc",
+] as const satisfies readonly FavSortOrder[];
+
+export const favSortOptions = favSortKeys.map((key) => ({
+  label: favSortDefinitions[key].label,
+  value: key,
+}));

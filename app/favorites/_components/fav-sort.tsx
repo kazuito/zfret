@@ -1,7 +1,6 @@
 "use client";
 
 import { Sorting02Icon } from "@hugeicons/core-free-icons";
-import { useQueryState } from "nuqs";
 import { Icon } from "@/components/icon";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,18 +13,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { favSortOptions } from "@/features/favorites/constants";
+import { useFavSort } from "@/features/favorites/hooks/use-fav-sort";
 import { cn } from "@/lib/utils";
 
 export const FavSort = ({
   className,
   ...props
 }: React.ComponentProps<"div">) => {
-  const [sortKey, setSortKey] = useQueryState("sortKey", {
-    defaultValue: "timestamp",
-  });
-  const [sortOrder, setSortOrder] = useQueryState("sortOrder", {
-    defaultValue: "desc",
-  });
+  const { sortKey, setSortKey, sortOrder, setSortOrder } = useFavSort();
 
   const toggleSortOrder = () => {
     const newOrder = sortOrder === "asc" ? "desc" : "asc";

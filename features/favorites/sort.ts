@@ -16,8 +16,8 @@ export function sortFavorites(
   },
 ) {
   if (!items || items.length === 0) return [];
-  const sortFn = favSortDefinitions[key as keyof typeof favSortDefinitions]?.fn;
+  const sortFn = favSortDefinitions[key]?.fn;
   if (!sortFn) return items;
-  const sorted = [...items].sort(sortFn);
-  return order === "asc" ? sorted : sorted.reverse();
+  const dir = order === "asc" ? 1 : -1;
+  return [...items].sort((a, b) => dir * sortFn(a, b));
 }
