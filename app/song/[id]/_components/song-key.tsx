@@ -4,18 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import { describeKey, type KeyEstimate } from "@/features/chords/key";
 import { useTranspose } from "./transpose-provider";
 
-const CONFIDENCE_LABEL: Record<KeyEstimate["confidence"], string> = {
-  high: "High confidence",
-  medium: "Medium confidence",
-  low: "Low confidence",
-};
-
-const CONFIDENCE_DOTS: Record<KeyEstimate["confidence"], number> = {
-  high: 3,
-  medium: 2,
-  low: 1,
-};
-
 export const SongKey = ({ estimate }: { estimate: KeyEstimate | null }) => {
   const { semitones } = useTranspose();
   if (!estimate) return null;

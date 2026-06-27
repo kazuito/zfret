@@ -14,7 +14,6 @@ import { SongControls } from "./_components/song-controls";
 import { SongCredits } from "./_components/song-credits";
 import { SongHeading } from "./_components/song-heading";
 import { SongKey } from "./_components/song-key";
-import { TransposeControl } from "./_components/transpose-control";
 import { TransposeProvider } from "./_components/transpose-provider";
 import { VideoPlayer, VideoPlayerProvider } from "./_components/video-player";
 
