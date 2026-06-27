@@ -12,6 +12,7 @@ import { RelatedSongList } from "./_components/related-song-list";
 import { SongControls } from "./_components/song-controls";
 import { SongCredits } from "./_components/song-credits";
 import { SongHeading } from "./_components/song-heading";
+import { SongKey } from "./_components/song-key";
 import { VideoPlayer, VideoPlayerProvider } from "./_components/video-player";
 
 type Props = {
@@ -58,6 +59,7 @@ const Page = async ({ params }: Props) => {
         <AddHistory item={historyItem} />
 
         <SongHeading song={song} />
+        <SongKey lines={song.lines} />
         <div className="mx-auto max-w-3xl">
           {song.youtubeVideoId && (
             <VideoPlayer youtubeVideoId={song.youtubeVideoId} />
