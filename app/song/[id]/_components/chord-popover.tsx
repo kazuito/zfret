@@ -22,7 +22,7 @@ export const ChordPopover = ({ chord }: { chord: string }) => {
       {info && (
         <PopoverContent align="start" className="w-72">
           <div className="flex flex-col gap-3">
-            <div className="space-y-2">
+            <div className="space-y-1">
               <div className="font-semibold text-lg leading-none">{chord}</div>
               <div className="text-muted-foreground text-sm">{info.name}</div>
             </div>
