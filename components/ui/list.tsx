@@ -1,7 +1,7 @@
 "use client";
 
+import { useRender } from "@base-ui/react/use-render";
 import Link from "next/link";
-import { Slot } from "radix-ui";
 import { cn } from "@/lib/utils";
 import { OnLinkPending } from "../on-link-pending";
 import { Spinner } from "./spinner";
@@ -29,19 +29,20 @@ export const ListHeader = ({
 };
 
 export const ListTitle = ({
-  asChild = false,
+  render,
+  className,
   ...props
-}: React.ComponentProps<"div"> & {
-  asChild?: boolean;
-}) => {
-  const Comp = asChild ? Slot.Root : "div";
-
-  return (
-    <Comp
-      className="flex w-fit items-center gap-2 *:[svg]:size-4 *:[svg]:text-muted-foreground"
-      {...props}
-    />
-  );
+}: useRender.ComponentProps<"div">) => {
+  return useRender({
+    render: render ?? <div />,
+    props: {
+      className: cn(
+        "flex w-fit items-center gap-2 *:[svg]:size-4 *:[svg]:text-muted-foreground",
+        className,
+      ),
+      ...props,
+    },
+  });
 };
 
 export const ListContent = ({
@@ -54,23 +55,20 @@ export const ListContent = ({
 };
 
 export const ListItem = ({
-  asChild,
+  render,
   className,
   ...props
-}: React.ComponentProps<"button"> & {
-  asChild?: boolean;
-}) => {
-  const Comp = asChild ? Slot.Root : "button";
-
-  return (
-    <Comp
-      className={cn(
+}: useRender.ComponentProps<"button">) => {
+  return useRender({
+    render: render ?? <button />,
+    props: {
+      className: cn(
         "flex min-w-0 items-center gap-3 rounded-lg border border-border/60 bg-background px-4 py-3 hover:bg-accent/20! active:bg-accent/15! dark:bg-secondary/20",
         className,
-      )}
-      {...props}
-    />
-  );
+      ),
+      ...props,
+    },
+  });
 };
 
 export const ListItemLink = ({
@@ -78,14 +76,17 @@ export const ListItemLink = ({
   ...props
 }: React.ComponentProps<typeof Link>) => {
   return (
-    <ListItem asChild className="relative">
-      <Link {...props}>
-        {children}
-        <OnLinkPending>
-          <Spinner className="absolute right-4 text-muted-foreground" />
-        </OnLinkPending>
-      </Link>
-    </ListItem>
+    <ListItem
+      className="relative"
+      render={
+        <Link {...props}>
+          {children}
+          <OnLinkPending>
+            <Spinner className="absolute right-4 text-muted-foreground" />
+          </OnLinkPending>
+        </Link>
+      }
+    />
   );
 };
 

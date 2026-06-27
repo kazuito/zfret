@@ -37,12 +37,14 @@ export const RelatedSongList = async ({
   return (
     <ListRoot {...props}>
       <ListHeader>
-        <ListTitle asChild>
-          <Link href={`/artist/${artistName}`} className="w-fit">
-            {artistName}
-            <Icon icon={ArrowRight01Icon} />
-          </Link>
-        </ListTitle>
+        <ListTitle
+          render={
+            <Link href={`/artist/${artistName}`} className="w-fit">
+              {artistName}
+              <Icon icon={ArrowRight01Icon} />
+            </Link>
+          }
+        />
       </ListHeader>
       <ListContent>
         {relatedSongs.map((relatedSong) => {

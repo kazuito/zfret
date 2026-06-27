@@ -1,4 +1,6 @@
-import { Slot } from "radix-ui";
+"use client";
+
+import { useRender } from "@base-ui/react/use-render";
 import { cn } from "@/lib/utils";
 
 export const HeadingRoot = ({
@@ -36,18 +38,17 @@ export const HeadingTitle = ({
 };
 
 export const HeadingSubtitle = ({
-  asChild = false,
+  render,
   className,
   ...props
-}: React.ComponentProps<"div"> & { asChild?: boolean }) => {
-  const Comp = asChild ? Slot.Root : "div";
-
-  return (
-    <Comp
-      className={cn("mt-1 w-fit text-foreground/60 sm:text-lg", className)}
-      {...props}
-    />
-  );
+}: useRender.ComponentProps<"div">) => {
+  return useRender({
+    render: render ?? <div />,
+    props: {
+      className: cn("mt-1 w-fit text-foreground/60 sm:text-lg", className),
+      ...props,
+    },
+  });
 };
 
 export const HeadingSuffix = ({

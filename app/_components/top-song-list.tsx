@@ -27,9 +27,11 @@ export const TopSongList = async () => {
       </ExhibitionHeader>
       <ExhibitionContent>
         {topSongs.map((song, i) => (
-          <ExhibitionItem key={song.id} asChild>
-            <Link href={`/song/${song.id}`} prefetch>
-              <Card className="m-px w-70 pt-0">
+          <ExhibitionItem
+            key={song.id}
+            render={
+              <Link href={`/song/${song.id}`} prefetch>
+                <Card className="m-px w-70 pt-0">
                 <div
                   className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-3xl bg-neutral-800/40"
                   style={{
@@ -46,10 +48,11 @@ export const TopSongList = async () => {
                   </CardAction>
                   <CardTitle>{song.title}</CardTitle>
                   <CardDescription>{song.artistName}</CardDescription>
-                </CardHeader>
-              </Card>
-            </Link>
-          </ExhibitionItem>
+                  </CardHeader>
+                </Card>
+              </Link>
+            }
+          />
         ))}
       </ExhibitionContent>
     </ExhibitionRoot>

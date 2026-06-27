@@ -19,10 +19,14 @@ const Footer = () => {
           </div>
         </div>
         <div className="ml-auto flex h-5 items-center gap-2">
-          <Button variant="ghost" asChild>
-            <Link href="https://github.com/kazuito/zfret" target="_blank">
-              Source
-            </Link>
+          <Button
+            variant="ghost"
+            nativeButton={false}
+            render={
+              <Link href="https://github.com/kazuito/zfret" target="_blank" />
+            }
+          >
+            Source
           </Button>
           <Separator orientation="vertical" />
           <ThemeToggle />

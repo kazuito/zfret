@@ -1,8 +1,6 @@
 "use client";
 
-import {
-  Clock02Icon,
-} from "@hugeicons/core-free-icons";
+import { Clock02Icon } from "@hugeicons/core-free-icons";
 import {
   HeadingContent,
   HeadingRoot,

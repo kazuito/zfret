@@ -34,10 +34,8 @@ export const HistoryMenu = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Icon icon={MoreHorizontalIcon} size={20} />
-        </Button>
+      <DropdownMenuTrigger render={<Button variant="outline" size="icon" />}>
+        <Icon icon={MoreHorizontalIcon} size={20} />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-38">
         <DropdownMenuItem variant="destructive" onClick={handleClear}>

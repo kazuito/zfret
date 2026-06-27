@@ -46,34 +46,31 @@ const Header = () => {
           </Link>
           <div className="flex items-center gap-0.5">
             <Button
-              asChild
+              nativeButton={false}
+              render={<Link href="/history" />}
               size="icon-lg"
               variant="ghost"
               className="rounded-full"
             >
-              <Link href="/history">
-                <Icon icon={Clock02Icon} className="size-5" />
-              </Link>
+              <Icon icon={Clock02Icon} className="size-5" />
             </Button>
             <Button
-              asChild
+              nativeButton={false}
+              render={<Link href="/favorites" />}
               size="icon-lg"
               variant="ghost"
               className="rounded-full"
             >
-              <Link href="/favorites">
-                <Icon icon={FavouriteIcon} className="size-5" />
-              </Link>
+              <Icon icon={FavouriteIcon} className="size-5" />
             </Button>
             <Button
-              asChild
+              nativeButton={false}
+              render={<Link href="/search" />}
               size="icon-lg"
               variant="ghost"
               className="rounded-full"
             >
-              <Link href="/search">
-                <Icon icon={SearchIcon} className="size-5" />
-              </Link>
+              <Icon icon={SearchIcon} className="size-5" />
             </Button>
           </div>
         </div>

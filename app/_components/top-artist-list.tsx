@@ -21,24 +21,27 @@ export const TopArtistList = async () => {
       </ExhibitionHeader>
       <ExhibitionContent>
         {topArtists.map((artist, i) => (
-          <ExhibitionItem key={artist.name} asChild>
-            <Link href={`/artist/${artist.name}`}>
-              <Card className="w-70 pt-0">
-                <div
-                  className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-3xl bg-neutral-800/40"
-                  style={{ backgroundImage: hashLinearGradient(artist.name) }}
-                >
-                  <div className="absolute inset-0 rounded-3xl backdrop-blur-xl"></div>
-                </div>
-                <CardHeader>
-                  <CardAction>
-                    <Badge variant="secondary">No.{i + 1}</Badge>
-                  </CardAction>
-                  <CardTitle>{artist.name}</CardTitle>
-                </CardHeader>
-              </Card>
-            </Link>
-          </ExhibitionItem>
+          <ExhibitionItem
+            key={artist.name}
+            render={
+              <Link href={`/artist/${artist.name}`}>
+                <Card className="w-70 pt-0">
+                  <div
+                    className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-3xl bg-neutral-800/40"
+                    style={{ backgroundImage: hashLinearGradient(artist.name) }}
+                  >
+                    <div className="absolute inset-0 rounded-3xl backdrop-blur-xl"></div>
+                  </div>
+                  <CardHeader>
+                    <CardAction>
+                      <Badge variant="secondary">No.{i + 1}</Badge>
+                    </CardAction>
+                    <CardTitle>{artist.name}</CardTitle>
+                  </CardHeader>
+                </Card>
+              </Link>
+            }
+          />
         ))}
       </ExhibitionContent>
     </ExhibitionRoot>

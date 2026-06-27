@@ -13,17 +13,20 @@ export const HeroSection = () => {
         Explore chords and lyrics from iconic Japan Hits
       </p>
       <div className="flex gap-3">
-        <Button asChild>
-          <Link href="/trending/songs">
-            <Icon icon={MusicNote02Icon} strokeWidth={2.4} />
-            Explore Songs
-          </Link>
+        <Button
+          nativeButton={false}
+          render={<Link href="/trending/songs" />}
+        >
+          <Icon icon={MusicNote02Icon} strokeWidth={2.4} />
+          Explore Songs
         </Button>
-        <Button variant="outline" asChild>
-          <Link href="/search">
-            <Icon icon={Search01Icon} strokeWidth={2.4} />
-            Search
-          </Link>
+        <Button
+          variant="outline"
+          nativeButton={false}
+          render={<Link href="/search" />}
+        >
+          <Icon icon={Search01Icon} strokeWidth={2.4} />
+          Search
         </Button>
       </div>
     </section>

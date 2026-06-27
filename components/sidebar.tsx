@@ -64,12 +64,11 @@ export const SidebarContent = ({
           className="w-full rounded-full"
           variant="outline"
           size="lg"
-          asChild
+          nativeButton={false}
+          render={<Link href="/search" />}
         >
-          <Link href="/search">
-            <Icon icon={SearchIcon} />
-            Search
-          </Link>
+          <Icon icon={SearchIcon} />
+          Search
         </Button>
       </div>
       <div className="mt-2 flex flex-col px-1 lg:mt-4">

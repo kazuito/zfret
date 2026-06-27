@@ -51,11 +51,11 @@ export const FavSort = ({
         />
         <span className="sr-only">Toggle sort order</span>
       </Button>
-      <Select value={sortKey} onValueChange={setSortKey}>
+      <Select value={sortKey} onValueChange={(value) => setSortKey(value)}>
         <SelectTrigger className="rounded-s-none">
           <SelectValue placeholder="Sort by" />
         </SelectTrigger>
-        <SelectContent align="end" position="popper">
+        <SelectContent align="end">
           <SelectGroup>
             <SelectLabel>Sort by</SelectLabel>
             {Object.entries(sortFavoritesBy).map(([key, value]) => (

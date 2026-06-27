@@ -23,9 +23,9 @@ export const SongHeading = ({ song }: { song: Song }) => {
       <div className="mr-4 h-14 w-1.5 shrink-0 rounded-full bg-accent/50" />
       <HeadingContent>
         <HeadingTitle>{song.title}</HeadingTitle>
-        <HeadingSubtitle asChild>
-          <Link href={song.artist.url}>{song.artist.name}</Link>
-        </HeadingSubtitle>
+        <HeadingSubtitle
+          render={<Link href={song.artist.url}>{song.artist.name}</Link>}
+        />
       </HeadingContent>
       <HeadingSuffix>
         <ClientOnly>
