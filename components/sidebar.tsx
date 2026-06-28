@@ -12,7 +12,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
 import { useFavorites } from "@/features/favorites/hooks/use-favorites";
-import { useBrowsingHistory } from "@/hooks/use-browsing-history";
 import { cn } from "@/lib/utils";
 import { Icon } from "./icon";
 import { Button } from "./ui/button";
