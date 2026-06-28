@@ -1,6 +1,10 @@
 "use client";
 
-import { Search01Icon } from "@hugeicons/core-free-icons";
+import {
+  ExternalLink,
+  ExternalLinkIcon,
+  Search01Icon,
+} from "@hugeicons/core-free-icons";
 import { useQuery } from "@tanstack/react-query";
 import { AnimatePresence } from "motion/react";
 import Link from "next/link";
@@ -8,6 +12,7 @@ import { useQueryState } from "nuqs";
 import { Suspense, useState } from "react";
 import { HeadingRoot, HeadingTitle } from "@/components/heading";
 import { Icon } from "@/components/icon";
+import { Button } from "@/components/ui/button";
 import {
   ListContent,
   ListItemLink,
@@ -16,6 +21,7 @@ import {
   ListRoot,
 } from "@/components/ui/list";
 import { getSearchResults, type SearchResult } from "@/features/songs/actions";
+import { getGoogleSearchUrl } from "@/lib/search";
 import { useSearchHistory } from "../../hooks/use-search-history";
 import { RecentSearches } from "./_components/recent-searches";
 import {
@@ -128,8 +134,23 @@ const SearchPageContent = () => {
           </div>
         )}
         {showEmptyMessage && (
-          <div className="my-20 text-center text-foreground/60">
-            No results found for &quot;<b>{urlQuery}</b>&quot;.
+          <div className="my-20 flex flex-col items-center gap-2">
+            <div className="text-center text-foreground/60">
+              No results found for &quot;<b>{urlQuery}</b>&quot;.
+            </div>
+            <Button
+              variant="link"
+              render={
+                <Link
+                  href={getGoogleSearchUrl(`${urlQuery} コード進行`)}
+                  target="_blank"
+                />
+              }
+              nativeButton={false}
+            >
+              Search on web
+              <Icon icon={ExternalLinkIcon} />
+            </Button>
           </div>
         )}
         {!isPending && results && (
@@ -162,6 +183,28 @@ const SearchPageContent = () => {
           </div>
         )}
       </div>
+      {query && !isPending && !showEmptyMessage && (
+        <div className="mt-12 mb-6">
+          <div className="flex flex-col items-center gap-2">
+            <div className="text-muted-foreground">
+              Missing expected results?
+            </div>
+            <Button
+              variant="link"
+              render={
+                <Link
+                  href={getGoogleSearchUrl(`${urlQuery} コード進行`)}
+                  target="_blank"
+                />
+              }
+              nativeButton={false}
+            >
+              Search on web
+              <Icon icon={ExternalLinkIcon} />
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -19,3 +19,8 @@ export function createSearchIndex<T>(items: T[], getText: (item: T) => string) {
     ignoreLocation: true,
   });
 }
+
+export function getGoogleSearchUrl(query: string) {
+  const encodedQuery = encodeURIComponent(query);
+  return `https://www.google.com/search?q=${encodedQuery}`;
+}
