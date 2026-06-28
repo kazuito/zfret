@@ -4,6 +4,7 @@ import {
   Cancel01Icon,
   Clock02Icon,
   FavouriteIcon,
+  FolderHeartIcon,
   Home07Icon,
   SearchIcon,
 } from "@hugeicons/core-free-icons";
@@ -93,7 +94,7 @@ export const SidebarContent = ({
       <div className="my-3 px-2">
         <Separator />
       </div>
-      <div>
+      <div className="px-2">
         <SidebarItem href="/history">
           <Icon icon={Clock02Icon} />
           History
@@ -106,13 +107,42 @@ export const SidebarContent = ({
 export const SidebarFavList = () => {
   const { favorites } = useFavorites();
 
+  const pathname = usePathname();
+
   return (
     <div className="w-full">
+      {favorites.length === 0 && (
+        <div className="flex flex-col items-center gap-2 rounded-lg bg-accent/20 p-3">
+          <div className="py-1">
+            <Icon
+              icon={FolderHeartIcon}
+              className="size-4.5 text-foreground/60"
+            />
+          </div>
+          <div className="text-balance text-center text-sm">
+            Your favorites will appear here.
+          </div>
+          <div>
+            <Button
+              size="sm"
+              variant="link"
+              render={<Link href="/trending/songs" />}
+              nativeButton={false}
+            >
+              Explore songs
+            </Button>
+          </div>
+        </div>
+      )}
       {favorites.map((item) => (
         <Link
           key={item.timestamp}
           href={item.link}
-          className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 hover:bg-accent/80 dark:hover:bg-accent/20 [&_svg]:size-4"
+          className={cn(
+            "flex items-center gap-2 rounded-lg px-2.5 py-1.5 hover:bg-accent/80 dark:hover:bg-accent/20 [&_svg]:size-4",
+            pathname === item.link && "bg-accent dark:bg-accent/30!",
+          )}
+          prefetch
         >
           {item.type === "song" && (
             <div className="min-w-0">
