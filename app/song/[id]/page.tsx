@@ -80,7 +80,7 @@ const Page = async ({ params }: Props) => {
               <SongCredits song={song} />
               <SongKey estimate={keyEstimate} />
             </div>
-            <div className="sticky right-0 bottom-4 my-10 flex justify-end">
+            <div className="pointer-events-none sticky bottom-4 my-10 flex justify-end">
               <SongControls />
             </div>
             <Suspense fallback={<Skeleton className="my-10 h-48 w-full" />}>
