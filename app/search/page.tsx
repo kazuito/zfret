@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  ExternalLink,
-  ExternalLinkIcon,
-  Search01Icon,
-} from "@hugeicons/core-free-icons";
+import { ExternalLinkIcon, Search01Icon } from "@hugeicons/core-free-icons";
 import { useQuery } from "@tanstack/react-query";
 import { AnimatePresence } from "motion/react";
 import Link from "next/link";
