@@ -47,7 +47,7 @@ export function useFavorites() {
   );
 
   return {
-    favorites,
+    favorites: favorites.sort((a, b) => b.timestamp - a.timestamp),
     addFavorite,
     removeFavorite,
     toggleFavorite,

@@ -10,9 +10,12 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
+import { useFavorites } from "@/features/favorites/hooks/use-favorites";
+import { useBrowsingHistory } from "@/hooks/use-browsing-history";
 import { cn } from "@/lib/utils";
 import { Icon } from "./icon";
 import { Button } from "./ui/button";
+import { Separator } from "./ui/separator";
 
 export const SidebarItem = ({
   children,
@@ -80,6 +83,17 @@ export const SidebarContent = ({
           <Icon icon={FavouriteIcon} />
           Favorites
         </SidebarItem>
+      </div>
+      <div className="my-3 px-3">
+        <Separator />
+      </div>
+      <div className="scroll-fade-y scrollbar-none w-full grow overflow-y-auto px-1">
+        <SidebarFavList />
+      </div>
+      <div className="my-3 px-2">
+        <Separator />
+      </div>
+      <div>
         <SidebarItem href="/history">
           <Icon icon={Clock02Icon} />
           History
@@ -89,11 +103,36 @@ export const SidebarContent = ({
   );
 };
 
+export const SidebarFavList = () => {
+  const { favorites } = useFavorites();
+
+  return (
+    <div className="w-full">
+      {favorites.map((item) => (
+        <Link
+          key={item.timestamp}
+          href={item.link}
+          className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 hover:bg-accent/80 dark:hover:bg-accent/20 [&_svg]:size-4"
+        >
+          {item.type === "song" && (
+            <div className="min-w-0">
+              <div className="truncate text-sm">{item.title}</div>
+              <div className="text-muted-foreground text-xs">
+                {item.artistName}
+              </div>
+            </div>
+          )}
+        </Link>
+      ))}
+    </div>
+  );
+};
+
 export const Sidebar = () => {
   return (
     <Suspense>
       <div className="sticky top-0 hidden h-dvh w-64 shrink-0 p-2 lg:flex">
-        <SidebarContent className="rounded-2xl border bg-accent/10 shadow-xs" />
+        <SidebarContent className="w-full rounded-2xl border bg-accent/10 shadow-xs" />
       </div>
     </Suspense>
   );
