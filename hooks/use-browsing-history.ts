@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
-import { useLocalStorageState } from "@/hooks/use-local-storage-state";
+import useLocalStorageState from "use-local-storage-state";
 import { LS_KEYS } from "@/lib/constants";
 
 export type BrowsingHistoryItem =
@@ -27,7 +27,7 @@ export type BrowsingHistoryItemInput = Omit<
 export function useBrowsingHistory() {
   const [historyItems, saveHistoryItems] = useLocalStorageState<
     BrowsingHistoryItem[]
-  >(LS_KEYS.BROWSING_HISTORY, []);
+  >(LS_KEYS.BROWSING_HISTORY, { defaultValue: [] });
 
   const setHistoryItems = useCallback(
     (items: BrowsingHistoryItem[]) => {

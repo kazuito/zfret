@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
-import { useLocalStorageState } from "@/hooks/use-local-storage-state";
+import useLocalStorageState from "use-local-storage-state";
 import { LS_KEYS } from "@/lib/constants";
 
 const MAX_HISTORY_SIZE = 10;
@@ -9,7 +9,7 @@ const MAX_HISTORY_SIZE = 10;
 export function useSearchHistory() {
   const [queries, setQueries] = useLocalStorageState<string[]>(
     LS_KEYS.SEARCH_HISTORY,
-    [],
+    { defaultValue: [] },
   );
 
   const clear = useCallback(() => {

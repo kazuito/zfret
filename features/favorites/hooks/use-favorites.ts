@@ -1,14 +1,14 @@
 "use client";
 
 import { useCallback } from "react";
-import { useLocalStorageState } from "@/hooks/use-local-storage-state";
+import useLocalStorageState from "use-local-storage-state";
 import { LS_KEYS } from "@/lib/constants";
 import type { FavoriteItem, FavoriteItemInput } from "../types";
 
 export function useFavorites() {
   const [favorites, saveFavorites] = useLocalStorageState<FavoriteItem[]>(
     LS_KEYS.FAVORITES,
-    [],
+    { defaultValue: [] },
   );
 
   const addFavorite = useCallback(
